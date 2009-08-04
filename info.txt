@@ -1,0 +1,4 @@
+Es durchsucht die Postgresql-Datenbank eines lokalen Quasselcores, um den Backlog einfacher zug√§nglich zu machen.
+Zweiter Version. Umfangreicher und f√r den Release geplant.
+
+Weiter Infos folgen ... um die erste Version zu besuchen: backlog-suche :)

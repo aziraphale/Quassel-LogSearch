@@ -33,5 +33,4 @@ while($search_ary = pg_fetch_array($result)){
    $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
    echo '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '<br>';
     }
-
 ?></div>

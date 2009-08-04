@@ -8,7 +8,7 @@
         javascript:document.getElementById('input').focus();
     //-->
 </script>  
-<?
+<?php
 require_once("config.php");
  $dbconn = pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host");
  
@@ -26,7 +26,7 @@ $array2 = explode('||',$string);
 if(!empty($array2[0])){
    echo '<option'.$echob.' value="'.$array2[1].'">'.$array2[0].'</option>';    
    }}
-
+pg_close($dbconn); 
 ?>
 </select><img src="style/lines.png" title="Number of results" alt="Lines" style="margin:2px; margin-left:20px;float:left;"><input title="Number of results" value="100" id="number" size="3" type="text" maxlength="4"  autocomplete="off"><br>
 </form>

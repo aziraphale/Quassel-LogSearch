@@ -1,7 +1,7 @@
 <?php
 // start silent session
 @session_start();
-// Begin da style
+
 include_once('style/header.php');
 
 if(isset($_SESSION['pwdn']) OR !empty($_SESSION['pwdn'])){
