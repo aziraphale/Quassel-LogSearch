@@ -4,6 +4,7 @@
 
 include_once('style/header.php');
 
+// actiove session?
 if(isset($_SESSION['pwdn']) OR !empty($_SESSION['pwdn'])){
     $sessions = 1;
     include_once('login.php');
