@@ -1,5 +1,5 @@
 <div style="width:100%; background: #6699cc;color:white; border-bottom:1px #000000 solid;" ><div style="padding: 20px;">
-<img style="float:left;margin-top:-15px;margin-bottom:-50px; margin-right:100px;" alt="" src="style/quassel.png"><span style="font-size: 14pt;">minad-quasselcore backlog-suche</span><br><br>
+<img style="float:left;margin-top:-15px;margin-bottom:-50px; margin-right:100px;" alt="" src="style/quassel.png"><span style="font-size: 20pt;color:white;">Quassel Backlog Search</span><br><br>
 <form onsubmit="javascript:such(); return false" action="#">
 <input value="" id="input" size="60" type="text"">&nbsp;<input type="submit" value="Start searching!" class="button">
 <br><img src="style/channel.png" style="z-index:1;position:relative;margin:2px;float:left;" alt="Buffer" title="Buffer to search"><select  title="Buffer to search" style="float:left;" id="buffer" name="buffername" size="1">

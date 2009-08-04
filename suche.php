@@ -52,12 +52,12 @@ while($search_ary = pg_fetch_array($result)) {
    $i++; 
     }
     if($i== 0){
-        echo '<center>Suche ergebnislos ...</center>';}
+        echo '<center>No results found for "'.$input.'" ...</center>';}
     
    
     
 $Endzeit = getmicrotime();
-echo '<br><br><div style="font-size:6pt;text-align:center;">Das Suchen dieser '.$i.' Ergebnisse hat ',
+echo '<br><br><div style="font-size:6pt;text-align:center;">'.$i.' results in ',
      number_format($Endzeit-$Anfangszeit, 4, ",", "."),
-     ' Sekunden gedauert.</div>';}
+     ' seconds.</div>';}
 ?>    

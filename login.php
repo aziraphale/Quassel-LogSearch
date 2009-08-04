@@ -12,7 +12,7 @@ $pwdn = sha1($_REQUEST['quasselpwd']);
 //echo $usern . $pwdn;
 require_once('config.php');
 
-$dbconn = pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host");
+$dbconn = pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host") or die("Connection to PostgreSQL failed.");
 
 
 $db_qry = pg_query($dbconn,"SELECT userid FROM quasseluser WHERE username = '$usern' AND password = '$pwdn';");
@@ -20,7 +20,7 @@ $userid = @pg_fetch_result ($db_qry, 0, 0);
 $userid = intval($userid);
 //echo $userid;
 if($userid == 0){
-    $error='<b>User und Passwort stimmen nicht überein!</b><br>';
+    $error='<b>Username and password do not match!</b><br>';
     include('loginform.php');
         }else{
 $_SESSION['usern'] = $usern; 
