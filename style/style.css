@@ -5,41 +5,41 @@ body {
      vertical-align: top;
      text-align: justify;
      background: #6699cc ;
-     overflow-x:hidden;}
+     overflow-x: hidden;}
      
       
 #footer {
-         font: 6pt/7pt Verdana, Arial, Helvetica, Sans-Serif;
-         color:white;
+    font: 6pt/7pt Verdana, Arial, Helvetica, Sans-Serif;
+    color: white;
     }
     
 #scontent{
     background: white;
-    border-bottom:1px solid black;
+    border-bottom: 1px solid black;
     }
     
 .wrap{
-white-space: pre-wrap; /* css-3 */
-white-space: -moz-pre-wrap !important; /* Mozilla, seit 1999 */
-white-space: -pre-wrap; /* Opera 4-6 */
-white-space: -o-pre-wrap; /* Opera 7 */
-word-wrap: break-word; /* Internet Explorer 5.5+ */
-width: 99%;
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap !important; /* Mozilla, seit 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    width: 99%;
     }
     
 .date{
-white-space: nowrap; /* css-3 */
-white-space: -moz-nowrap !important; /* Mozilla, seit 1999 */
-white-space: -nowrap; /* Opera 4-6 */
-white-space: -o-nowrap; /* Opera 7 */
+    white-space: nowrap; /* css-3 */
+    white-space: -moz-nowrap !important; /* Mozilla, seit 1999 */
+    white-space: -nowrap; /* Opera 4-6 */
+    white-space: -o-nowrap; /* Opera 7 */
     }    
     
     
 input,textarea,select {
     border: 1px solid #4a4a4a;
-    color:#4a4a4a;
+    color: #4a4a4a;
     background: white;
-    font-family:Verdana, Arial, Helvetica, Sans-Serif;    
+    font-family: Verdana, Arial, Helvetica, Sans-Serif;    
     }    
     
 

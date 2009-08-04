@@ -1,4 +1,7 @@
-<div style="width:100%; background: #6699cc;color:white; border-bottom:1px #000000 solid;" ><div style="padding: 20px;">
+<div style="width:100%; background: #6699cc;color:white; border-bottom:1px #000000 solid;" >
+<!-- menu -->
+<a style="margin:10px;float:right;" href="javascript:Request('scontent','about.php');">about</a>
+<div style="padding: 20px;">
 <img style="float:left;margin-top:-15px;margin-bottom:-50px; margin-right:100px;" alt="" src="style/quassel.png"><span style="font-size: 20pt;color:white;">Quassel Backlog Search</span><br><br>
 <form onsubmit="javascript:such(); return false" action="#">
 <input value="" id="input" size="60" type="text"">&nbsp;<input type="submit" value="Start searching!" class="button">
