@@ -11,6 +11,7 @@ if(isset($_SESSION['pwdn']) OR !empty($_SESSION['pwdn'])){
     }else{
     include_once('loginform.php');
     }
-    
+
 include_once('style/footer.php');
+
 ?>

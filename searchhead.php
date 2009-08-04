@@ -27,11 +27,10 @@ $array2 = explode('||',$string);
 if(!empty($array2[0])){
    echo '<option'.$echob.' value="'.$array2[1].'">'.$array2[0].'</option>';    
    }}
-   
+
 pg_close($dbconn); 
 ?>
 </select><img src="style/lines.png" title="Number of results" alt="Lines" style="margin:2px; margin-left:20px;float:left;"><input title="Number of results" value="100" id="number" size="3" type="text" maxlength="4"  autocomplete="off"><br>
 </form>
 </div></div><center>
 <div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 20px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center>Waiting for search ...</center></font></div></div>
-
