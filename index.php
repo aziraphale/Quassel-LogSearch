@@ -12,5 +12,4 @@ if(isset($_SESSION['pwdn']) OR !empty($_SESSION['pwdn'])){
     }
     
 include_once('style/footer.php');
-// das wars in der index
- ?>
+?>
