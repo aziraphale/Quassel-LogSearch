@@ -49,7 +49,7 @@ function search($bufferid, $input,$number){
             if($i== 0){
                 $output .=  '<center>No results found for "'.$input.'" ...</center>';}
 
-    $Endzeit = getmicrotime();
+    $Endzeit = $this->getmicrotime();
     $output .= '<br><br><div style="font-size:6pt;text-align:center;">'.$i.' results in ' . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . ' seconds.</div>';
 
   return $output;
