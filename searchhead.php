@@ -10,7 +10,7 @@
 </script>  
 <?
 require_once("config.php");
- $dbconn = pg_connect ("dbname=$dbname user=$user port=$port host=$host");
+ $dbconn = pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host");
  
    
  

@@ -12,7 +12,7 @@ $pwdn = sha1($_REQUEST['quasselpwd']);
 //echo $usern . $pwdn;
 require_once('config.php');
 
-$dbconn = pg_connect ("dbname=$dbname user=$user port=$port host=$host");
+$dbconn = pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host");
 
 
 $db_qry = pg_query($dbconn,"SELECT userid FROM quasseluser WHERE username = '$usern' AND password = '$pwdn';");

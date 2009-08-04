@@ -6,7 +6,7 @@ $messageid = $_REQUEST['messageid'];
 <div style="margin:5px;"><span onclick="document.getElementById('m<?=$messageid?>').style.display = 'none'; document.getElementById('d<?=$messageid?>').style.display = 'block';">#</span>
 <?php
 require_once("config.php");
-$dbconn = pg_connect ("dbname=$dbname user=$user port=$port host=$host");
+$dbconn = pg_connect ("dbname=$dbname user=$user  password='$password' port=$port host=$host");
 
 
 $result = pg_query($dbconn,"SELECT * FROM backlog WHERE type = 1 AND bufferid = $bufferid AND messageid >= $messageid order by messageid ASC limit 9");
