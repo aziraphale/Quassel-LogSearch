@@ -40,7 +40,7 @@ pg_close($dbconn);
 <br> </div>
 <div id="advanced" style="margin: 7px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">
     <span onclick="hide_a_search();" style="margin-left:-10px;" title="Close">[ Advanced search ]</span><br>
-    Search in a period:<br>
+    Search in a timeperiod:<br>
     <input title="Excepts any english timeformat" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
     <input title="Excepts any english timeformat" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
 <br>

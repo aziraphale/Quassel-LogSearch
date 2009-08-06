@@ -26,4 +26,5 @@
             document.getElementById('advanced').style.display='none';
             document.getElementById('time_start').value = 'Starttime';
             document.getElementById('time_end').value = 'Endtime';
+            document.getElementById('regexid').checked = false;
         }
