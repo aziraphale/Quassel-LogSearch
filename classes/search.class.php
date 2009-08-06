@@ -10,7 +10,7 @@ function getmicrotime()
         return ((float)$usec + (float)$sec);
     }
 
-function search($bufferid, $input,$number,$time_start,$time_end){
+function search($bufferid, $input,$number,$time_start,$time_end,$regex=0){
 
      $Anfangszeit = $this->getmicrotime();
 
@@ -20,10 +20,18 @@ function search($bufferid, $input,$number,$time_start,$time_end){
         //prepare vars
         $search_zeug[] = $bufferid;
         
+        // regex oder ilike?
+        if($regex == 'true'){
+            $method = '~*';
+            }else{
+                $method = 'ILIKE';
+                }
+        
+        
         $input_array = explode(" ",$input);
         $i=2;
         foreach($input_array AS $sonstwas){
-            $input_string  .= 'AND lower(message) ILIKE $'. $i;
+            $input_string  .= 'AND lower(message) '.$method.' $'. $i;
             $search_zeug[] = '%'.$sonstwas.'%';
             $i++;
         }
@@ -38,6 +46,7 @@ function search($bufferid, $input,$number,$time_start,$time_end){
             $i++;
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_end));
             }
+
 
         //prepare and execute search
         $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE "type" = 1 AND bufferid = $1 '. $input_string . $time_string .' order by messageid DESC limit ' . $number);

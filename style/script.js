@@ -12,7 +12,7 @@
      function such()     {
              document.getElementById('scontent').innerHTML = '<center><img src="style/loading.gif"></center>';
              //document.getElementById('scontent').style.background = 'white';
-             new Ajax.Updater('scontent', 'suche.php?search=1&string=' + document.getElementById('input').value + '&buffername=' + document.getElementById('buffer').value + '&number=' + document.getElementById('number').value + '&time_end=' + document.getElementById('time_end').value + '&time_start=' + document.getElementById('time_start').value, {asynchronous:true, evalScripts:true});    }
+             new Ajax.Updater('scontent', 'suche.php?search=1&string=' + document.getElementById('input').value + '&buffername=' + document.getElementById('buffer').value + '&number=' + document.getElementById('number').value + '&time_end=' + document.getElementById('time_end').value + '&time_start=' + document.getElementById('time_start').value + '&regexid=' + document.getElementById('regexid').checked, {asynchronous:true, evalScripts:true});    }
       
       
             

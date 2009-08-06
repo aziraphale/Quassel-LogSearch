@@ -16,10 +16,11 @@ if((!isset($search)) or empty($search)){
      $number = intval($_REQUEST['number']);
      $time_start = trim($_REQUEST['time_start']);
      $time_end = trim($_REQUEST['time_end']);
+     $regex = $_REQUEST['regexid'];
     require_once('classes/search.class.php');
     $search=new searchengine(); 
 
-echo $search->search($bufferid, $input,$number,$time_start,$time_end);
+echo $search->search($bufferid, $input,$number,$time_start,$time_end,$regex);
 
 }
 ?>    
