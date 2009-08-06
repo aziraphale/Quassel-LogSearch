@@ -44,7 +44,7 @@ pg_close($dbconn);
     <input title="Excepts any english timeformat" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
     <input title="Excepts any english timeformat" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
 <br>
-Regex:<input value="salami" type="checkbox" name="regexid" id="regexid">
+Regex:<input type="checkbox" name="regexid" id="regexid" title="search with regular expression">
 <br>
 </div></form>
 </div><center>
