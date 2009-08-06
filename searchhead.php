@@ -1,8 +1,10 @@
-<div style="width:100%; background: #6699cc;color:white; border-bottom:1px #000000 solid;" >
+<div style="width:100%; background: #6699cc;color:white;" >
 <!-- menu -->
 <a style="margin:10px;float:right;" href="javascript:Request('scontent','about.php');">about</a>
-<div style="padding: 20px;">
-<img style="float:left;margin-top:-15px;margin-bottom:-50px; margin-right:100px;" alt="" src="style/quassel.png"><span style="font-size: 20pt;color:white;">Quassel Backlog Search</span><br><br>
+<img style="float:left;margin:10px;margin-bottom:-20px; margin-right:60px;" alt="" src="style/quassel.png">
+
+<div style="padding: 20px; float:left;">
+<span style="font-size: 20pt;color:white;">Quassel Backlog Search</span><br><br>
 <form onsubmit="javascript:such(); return false" action="#">
 <input value="" id="input" size="60" type="text"">&nbsp;<input type="submit" value="Start searching!" class="button">
 <br><img src="style/channel.png" style="z-index:1;position:relative;margin:2px;float:left;" alt="Buffer" title="Buffer to search">
@@ -33,7 +35,13 @@ if(!empty($array2[0])){
 
 pg_close($dbconn); 
 ?>
-</select><img src="style/lines.png" title="Number of results" alt="Lines" style="margin:2px; margin-left:20px;float:left;"><input title="Number of results" value="100" id="number" size="3" type="text" maxlength="4"  autocomplete="off"><br>
+</select><img src="style/lines.png" title="Number of results" alt="Lines" style="margin:2px; margin-left:20px;float:left;"><input title="Number of results" value="100" id="number" size="3" type="text" maxlength="4"  autocomplete="off">
+<span onclick="document.getElementById('advanced').style.display='block';" style="font-size:7pt;margin-left:20px;">[ Advanced search ]</span>
+<br>
 </form>
-</div></div><center>
+</div>
+<div id="advanced" style="padding: 10px;float:left;display:none;">
+<span onclick="document.getElementById('advanced').style.display='none';">Advanced search</span>
+</div>
+</div><center>
 <div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 20px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center>Waiting for search ...</center></font></div></div>
