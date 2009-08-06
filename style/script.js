@@ -21,3 +21,9 @@
              document.getElementById('m'+divid).style.display = 'block';
              document.getElementById('m'+divid).style.border = '1px solid #3399cc';
              new Ajax.Updater('m'+divid, 'moreinfo.php?messageid=' +divid+ '&bufferid=' +bufferid , {asynchronous:true, evalScripts:true});    }
+             
+     function hide_a_search(){
+            document.getElementById('advanced').style.display='none';
+            document.getElementById('time_start').value = 'Starttime';
+            document.getElementById('time_end').value = 'Endtime';
+        }
