@@ -2,9 +2,10 @@
 <!-- menu -->
 <a style="margin:10px;float:right;" href="javascript:Request('scontent','about.php');">about</a>
 <img style="float:left;margin:10px;margin-bottom:-20px; margin-right:60px;" alt="" src="style/quassel.png">
+<div style="min-width:900px;overflow:none; float:left; ">
 
-<div style="padding: 20px; float:left;">
 <form onsubmit="javascript:such(); return false" action="#">
+<div style="padding: 20px; float:left; ">
 <span style="font-size: 20pt;color:white;">Quassel Backlog Search</span><br><br>
 <input value="" id="input" size="60" type="text"">&nbsp;<input type="submit" value="Start searching!" class="button">
 <br><img src="style/channel.png" style="z-index:1;position:relative;margin:2px;float:left;" alt="Buffer" title="Buffer to search">
@@ -43,6 +44,6 @@ if(!empty($array2[0])){
 <div<? if($backend == "sqlite"){ echo ' style="display:none;"'; } ?>>Regex:<input type="checkbox" name="regexid" id="regexid" title="search with regular expression"></div>
 
 <br>
-</div></form>
+</div></form></div>
 </div><center>
 <div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 20px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center>Waiting for search ...</center></font></div></div>
