@@ -19,8 +19,8 @@
 
     require("config.php");
     require_once('classes/'.$backend.'.class.php');
-    $backend=new backend();
-    $array = $backend->bufferids($userid);
+    $backendclass=new backend();
+    $array = $backendclass->bufferids($userid);
 
 foreach($array as $string){
 $array2 = explode('||',$string);
@@ -39,7 +39,9 @@ if(!empty($array2[0])){
     <input title="Excepts any english timeformat" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
     <input title="Excepts any english timeformat" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
 <br>
-Regex:<input type="checkbox" name="regexid" id="regexid" title="search with regular expression">
+
+<div<? if($backend == "sqlite"){ echo ' style="display:none;"'; } ?>>Regex:<input type="checkbox" name="regexid" id="regexid" title="search with regular expression"></div>
+
 <br>
 </div></form>
 </div><center>

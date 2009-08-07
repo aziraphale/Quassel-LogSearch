@@ -13,7 +13,7 @@ function getmicrotime()
     }
 
 function search($bufferid, $input,$number,$time_start,$time_end,$regex=0){
-
+    require("config.php");
      $Anfangszeit = $this->getmicrotime();
 
         
@@ -25,8 +25,13 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0){
             $method = '~*';
             }else{
                 $method = 'ILIKE';
+
                 }
-        
+                
+             // sqlite workaround
+             if($backend == "sqlite"){
+                        $method = 'LIKE';
+                        }
         
         $input_array = explode(" ",$input);
         $i=2;
@@ -35,7 +40,9 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0){
             $search_zeug[] = '%'.$sonstwas.'%';
             $i++;
         }
-     
+        
+
+
         if(!empty($time_start) AND $time_start != "Starttime"){
             $time_string .= ' AND time > $'.$i.'AT TIME ZONE \'UTC\'';
             $i++;
@@ -46,6 +53,20 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0){
             $i++;
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_end));
             }
+            
+        // sqlite workaround
+        if($backend == "sqlite"){
+        $i=2;
+        $input_string = '';
+        foreach($input_array AS $sonstwas){
+            $input_string  .= 'AND lower(message) '.$method.' "%'.$sonstwas.'%"';
+            $search_zeug[] = '%'.$sonstwas.'%';
+            $i++;
+        }
+        $time_string = $time_start . '||' . $time_end;
+            }
+            
+                       
 
             // search with backend
             $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number);

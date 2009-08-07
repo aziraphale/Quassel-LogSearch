@@ -90,9 +90,10 @@ function moreinfo($bufferid,$messageid){
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
            $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '<br>';
-        $result = pg_query($dbconn,"SELECT * FROM backlog WHERE type = 1 AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 8");
         }
-
+        
+        
+    $result = pg_query($dbconn,"SELECT * FROM backlog WHERE type = 1 AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 8");
 
     while($search_ary = pg_fetch_array($result)){
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));

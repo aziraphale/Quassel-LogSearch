@@ -8,6 +8,7 @@ $backend = "postgresql";
 
 //
 // postgresql data; (just examples, please edit)
+// needed if backend postgresql
 //
 
  $host = "localhost";
@@ -19,8 +20,10 @@ $backend = "postgresql";
  
 //
 // path to quassel-storage.sqlite; (just examples, please edit)
+// needed if backend sqlite
+// must be browsable with php ! (tipp for unix: "ln -s" is your friend)
 //
 
-$sqlitedb = "/path/to/quassel-storage.sqlite"
+$sqlitedb = "/path/to/quassel-storage.sqlite";
 
 ?>
