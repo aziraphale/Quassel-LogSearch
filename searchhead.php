@@ -31,7 +31,7 @@ if(!empty($array2[0])){
 
 ?>
 </select><img src="style/lines.png" title="Number of results" alt="Lines" style="margin:2px; margin-left:20px;float:left;"><input title="Number of results" value="100" id="number" size="3" type="text" maxlength="4"  autocomplete="off">
-<span onclick="document.getElementById('advanced').style.display='block';" style="font-size:7pt;margin-left:20px;" title="Show advanced search">[ Advanced search ]</span>
+<span id="asearch" onclick="show_a_search();" style="font-size:7pt;margin-left:20px;" title="Show advanced search">[ Advanced search ]</span>
 <br> </div>
 <div id="advanced" style="margin: 7px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">
     <span onclick="hide_a_search();" style="margin-left:-10px;" title="Close">[ Advanced search ]</span><br>

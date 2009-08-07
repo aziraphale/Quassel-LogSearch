@@ -27,4 +27,11 @@
             document.getElementById('time_start').value = 'Starttime';
             document.getElementById('time_end').value = 'Endtime';
             document.getElementById('regexid').checked = false;
+            document.getElementById('asearch').style.display='inline';
+        }
+
+    function show_a_search(){
+            document.getElementById('asearch').style.display='none';
+            document.getElementById('advanced').style.display='inline';        
+        
         }
