@@ -43,6 +43,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number){
     $outputary[1] = $i;
 
     return $outputary;
+    pg_close($dbconn);
     }    
 
 
@@ -53,6 +54,7 @@ function login_backend($usern,$pwdn){
     $db_qry = pg_query($dbconn,"SELECT userid FROM quasseluser WHERE username = '$usern' AND password = '$pwdn';");
     
     return @pg_fetch_result ($db_qry, 0, 0);
+    pg_close($dbconn);
     }
 
 
@@ -67,6 +69,7 @@ function bufferids($userid){
         natcasesort($array);
 
     return $array;
+    pg_close($dbconn);
     }
 
 
@@ -98,6 +101,7 @@ function moreinfo($bufferid,$messageid){
            $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '<br>';
     }
     return $output;
+    pg_close($dbconn);
     }
 
     }
