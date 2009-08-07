@@ -10,12 +10,22 @@ if($sessions == 1){
     $pwdn = sha1($_REQUEST['quasselpwd']);
 } 
 
-require_once('config.php');
-$dbconn = pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host") or die("Connection to PostgreSQL failed.");
-
-// login
-$db_qry = pg_query($dbconn,"SELECT userid FROM quasseluser WHERE username = '$usern' AND password = '$pwdn';");
-$userid = @pg_fetch_result ($db_qry, 0, 0);
+    if(is_file('config.php')){
+    require('config.php');        
+        }else{
+            echo '<b>There is no config.php!</b>';
+            exit;
+            }
+    if(is_file('classes/'.$backend.'.class.php')){
+            require_once('classes/'.$backend.'.class.php');
+        }else{
+            echo '<b>Please edit your config.php - no or wrong backend chosen!</b>';
+            exit;
+            }
+            
+    $backend=new backend();
+    
+    $userid = $backend->login_backend($usern,$pwdn);
 $userid = intval($userid);
 // userid = valid?
 if($userid == 0){

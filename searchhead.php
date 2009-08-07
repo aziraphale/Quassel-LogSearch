@@ -16,16 +16,11 @@
 <select  title="Buffer to search" style="float:left;" id="buffer" name="buffername" size="1">
 
 <?php
-require_once("config.php");
- $dbconn = pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host");
- 
-// get bufferids und buffernames for user 
-   $result = pg_query($dbconn,"SELECT buffername,bufferid FROM buffer WHERE userid = $userid;");
 
-while($search_ary = pg_fetch_array($result)) {
-$array[] = $search_ary[0] .'||'. $search_ary[1];
-}
-natcasesort($array);
+    require("config.php");
+    require_once('classes/'.$backend.'.class.php');
+    $backend=new backend();
+    $array = $backend->bufferids($userid);
 
 foreach($array as $string){
 $array2 = explode('||',$string);
@@ -33,7 +28,7 @@ if(!empty($array2[0])){
    echo '<option'.$echob.' value="'.$array2[1].'">'.$array2[0].'</option>';    
    }}
 
-pg_close($dbconn); 
+
 ?>
 </select><img src="style/lines.png" title="Number of results" alt="Lines" style="margin:2px; margin-left:20px;float:left;"><input title="Number of results" value="100" id="number" size="3" type="text" maxlength="4"  autocomplete="off">
 <span onclick="document.getElementById('advanced').style.display='block';" style="font-size:7pt;margin-left:20px;" title="Show advanced search">[ Advanced search ]</span>
