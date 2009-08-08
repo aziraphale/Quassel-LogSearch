@@ -61,15 +61,20 @@ function login_backend($usern,$pwdn){
 function bufferids($userid){
    $dbconn = $this->login();
     // get bufferids und buffernames for user 
-   $result = pg_query($dbconn,"SELECT buffername,bufferid FROM buffer WHERE userid = $userid;");
+   $result = pg_query($dbconn,"SELECT buffername,bufferid,networkid FROM buffer WHERE userid = $userid AND buffername!='' order by networkid ASC,buffername ASC");
 
     while($search_ary = pg_fetch_array($result)) {
-        $array[] = $search_ary[0] .'||'. $search_ary[1];
-        }
-        natcasesort($array);
+        $array[] = $search_ary[0] .'||'. $search_ary[1].'||'.$search_ary[2];
+         }
 
     return $array;
     pg_close($dbconn);
+    }
+
+function networkname($networkid){
+    $dbconn = $this->login();
+    $db_qry = pg_query($dbconn,"SELECT networkname FROM network WHERE networkid = '$networkid';");    
+    return @pg_fetch_result ($db_qry, 0, 0);
     }
 
 

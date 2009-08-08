@@ -69,16 +69,30 @@ function login_backend($usern,$pwdn){
 function bufferids($userid){
    $dbconn = $this->login();
     // get bufferids und buffernames for user 
-   $result = $dbconn->query("SELECT buffername,bufferid FROM buffer WHERE userid = $userid;");
+   $result = $dbconn->query("SELECT buffername,bufferid,networkid FROM buffer WHERE userid = $userid AND buffername!='' order by networkid ASC,buffername ASC;");
 
     foreach($result as $search_ary) {
-        $array[] = $search_ary[0] .'||'. $search_ary[1];
+        $array[] = $search_ary[0] .'||'. $search_ary[1].'||'. $search_ary[2];
         }
-        natcasesort($array);
 
     return $array;
     $dbconn = NULL;
     }
+
+
+function networkname($networkid){
+   $dbconn = $this->login();
+    // get bufferids und buffernames for user 
+   $result = $dbconn->query("SELECT networkname FROM network WHERE networkid = '$networkid';");
+
+    foreach($result as $search_ary) {
+        $array = $search_ary[0];
+        }
+    echo $array;
+    return $array;
+    $dbconn = NULL;
+    }
+
 
 
 function moreinfo($bufferid,$messageid){

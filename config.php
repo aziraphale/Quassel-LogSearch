@@ -3,8 +3,8 @@
 // choose backend postgresql or sqlite
 //
 
-$backend = "postgresql";
-#$backend = "sqlite";
+#$backend = "postgresql";
+$backend = "sqlite";
 
 //
 // postgresql data; (just examples, please edit)
@@ -26,4 +26,6 @@ $backend = "postgresql";
 
 $sqlitedb = "/path/to/quassel-storage.sqlite";
 
+
+$sqlitedb =".git/quassel-storage.sqlite";
 ?>
