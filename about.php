@@ -1,7 +1,7 @@
 <center>
 <b style="font-size:13pt;">Quassel Backlog Search</b><br>Version: 0.1
 <br><br><br><br>
-A webbased <b>Quassel-Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a> (with PostgreSQL backend).
+A webbased <b>Quassel-Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.
 <br>
 <b>Quassel Backlog Search</b> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">Creative Commons Licence</a>.
 <br>developed 2009 by <a href="http://m4yer.minad.de/?page=5" target="_blank">m4yer</a>.
