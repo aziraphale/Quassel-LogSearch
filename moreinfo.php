@@ -9,7 +9,7 @@
     $bufferid = $_REQUEST['bufferid'];
     $messageid = $_REQUEST['messageid'];
 ?>
-<div style="margin:5px;"><span onclick="document.getElementById('m<?=$messageid?>').style.display = 'none'; document.getElementById('d<?=$messageid?>').style.display = 'block';">#</span>
+<div style="margin:5px;"><span title="hide context" onclick="document.getElementById('m<?=$messageid?>').style.display = 'none'; document.getElementById('d<?=$messageid?>').style.display = 'block';">#</span>
 <?php
 
 
