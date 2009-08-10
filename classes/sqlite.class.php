@@ -41,7 +41,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number){
                 }
             $user = explode ( '!',$user);
            
-           $output .= '<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\');">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +$search_ary["time"]).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';
+           $output .= '<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\');" title="show context">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +$search_ary["time"]).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';
            $i++; 
             }
     
@@ -105,14 +105,16 @@ function moreinfo($bufferid,$messageid){
             }
 
     $array = array_reverse($array);
-
+        $i=count($array);
     foreach($array as $search_ary){
+        $i--;
+        if($i==0){$hl='color:black;';}
            $result2 = $dbconn->query('SELECT sender FROM sender WHERE senderid = '. $search_ary['senderid']);
            foreach($result2 as $search_ary2) {
                 $user = $search_ary2[0];
                 }
             $user = explode ( '!',$user);
-           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$search_ary["time"]).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '<br>';
+           $output .= '<font class="date" style="color:c3c3c3;'.$hl.'">['.date("H:i:s d.m.y",$search_ary["time"]).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;<font> style="'.$hl.'"' . htmlspecialchars($search_ary["message"]) . '</font><br>';
         }
 
         $result = $dbconn->query("SELECT * FROM backlog WHERE type = 1 AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 8");

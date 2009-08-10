@@ -35,7 +35,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number){
          $db_qry = pg_execute($dbconn, 'sender', array($search_ary['senderid']));
 
            $user = explode ( '!', pg_fetch_result ($db_qry, 0, 0) );
-           $output .= '<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\');">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';
+           $output .= '<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\');" title="show context">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';
            $i++; 
             }
     
@@ -89,12 +89,14 @@ function moreinfo($bufferid,$messageid){
             }
 
     $array = array_reverse($array);
-
+    $i=count($array);
     foreach($array as $search_ary){
+        $i--;
+        if($i==0){$hl='color:black;';}
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
-           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '<br>';
+           $output .= '<font class="date" style="color:c3c3c3;'.$hl.'">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;&nbsp;</font><font style="'.$hl.'">' . htmlspecialchars($search_ary["message"]) . '</font><br>';
         }
         
         
