@@ -2,7 +2,7 @@
 <!-- menu -->
 <a style="position:absolute; top:0px;right:0px;margin:10px;" href="javascript:Request('scontent','about.php');">about</a>
 <img style="position:relative;float:left;margin:10px;margin-bottom:-20px; margin-right:60px;" alt="" src="style/quassel.png">
-<div style="min-width:900px;overflow:none; float:left; ">
+<div style="overflow:none; float:left; ">
 
 <form onsubmit="javascript:such(); return false" action="#">
 <div style="padding: 20px; float:left; ">
