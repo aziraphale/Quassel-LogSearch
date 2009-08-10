@@ -73,7 +73,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0){
             
             $output = $outputary[0];
 
-            if($i == 0){
+            if($outputary[1] == 0){
                 $output .=  '<center>No results found for "'.$input.'" ...</center>';}
 
     $Endzeit = $this->getmicrotime();
