@@ -1,7 +1,7 @@
 <div style="width:100%; background: #6699cc;color:white;" >
 <!-- menu -->
 <a style="margin:10px;float:right;" href="javascript:Request('scontent','about.php');">about</a>
-<img style="float:left;margin:10px;margin-bottom:-20px; margin-right:60px;" alt="" src="style/quassel.png">
+<img style="position:relative;float:left;margin:10px;margin-bottom:-20px; margin-right:60px;" alt="" src="style/quassel.png">
 <div style="min-width:900px;overflow:none; float:left; ">
 
 <form onsubmit="javascript:such(); return false" action="#">

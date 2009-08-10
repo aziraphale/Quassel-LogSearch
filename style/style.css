@@ -4,13 +4,17 @@ body {
      font: 9pt/10pt Verdana, Arial, Helvetica, Sans-Serif;
      vertical-align: top;
      text-align: justify;
-     background: #6699cc ;
+     background: #6699cc;
      overflow-x: hidden;}
      
       
 #footer {
     font: 6pt/7pt Verdana, Arial, Helvetica, Sans-Serif;
     color: white;
+    }
+
+#login,#postform,#bodyid {
+    background: #6699cc;
     }
     
 #scontent{
