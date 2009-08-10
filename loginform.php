@@ -1,4 +1,4 @@
-<br><br><br><br><br><br><br><br><br><br><br><br><br><center><div id="login" style="margin-bottom: 30px; height: 80px;">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><center><div id="login" style="height: 200px;">
 <form id="postform" action="#" onsubmit="Request('bodyid','login.php?'+$(this).serialize()); return false">
 <?=$error?>
 <input type="hidden" name="get" value="true">
