@@ -1,5 +1,5 @@
-<center>
-<b style="font-size:13pt;">Quassel Backlog Search</b><br>Version: 0.1
+<span style="float:right;margin: -10px;" onclick="javascript:document.getElementById('scontent').innerHTML = '<center>Waiting for search ...</center>';">[ x ]</span><center>
+<b style="font-size:13pt;">Quassel Backlog Search</b><br>Version: 0.1+
 <br><br><br><br>
 A webbased <b>Quassel-Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.
 <br>
@@ -13,7 +13,7 @@ A webbased <b>Quassel-Search-Engine</b> for <a target="_blank" href="http://quas
 Most icons are &copy; by the <a href="http://www.oxygen-icons.org/" target="_blank">Oxygen Team</a>, used under <a href="http://www.gnu.org/licenses/lgpl.html" target="_blank">LGPL</a> and adopted from <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.
 <br><br><br><br><b>Special thanks go to:</b><br>
 <b>brot</b> for bugfixing, testing, helping, finding features and bugs, building the environment, advertising, motivating and a lot more.<br>
-<b>the Quassel Community</b> for feedback, finding bugs and using.<br>
-<b><a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a></b> for developing such a great IRC-Client.<br><br>
+<b>the Quassel IRC Community</b> for feedback, finding bugs and using.<br>
+<b><a target="_blank" href="http://quassel-irc.org/">the Quassel IRC Team</a></b> for developing such a great IRC-Client.<br><br>
 
 </center>
