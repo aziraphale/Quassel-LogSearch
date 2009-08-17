@@ -10,7 +10,7 @@ $array[] = $file;
 }}
     natsort($array);
     $array = array_reverse($array);
-    echo $array[0];
+    echo $array[0] . '+'. exec("git log --tags $array[0].. --oneline | wc -l");
     echo ' ( git - ';
     include('.git/refs/heads/master');
     echo ' )';
