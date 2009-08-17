@@ -1,5 +1,23 @@
 <span style="float:right;margin: -10px;" onclick="javascript:document.getElementById('scontent').innerHTML = '<center>Waiting for search ...</center>';">[ x ]</span><center>
-<b style="font-size:13pt;">Quassel Backlog Search</b><br>Version: 0.1+
+<b style="font-size:13pt;">Quassel Backlog Search</b><br><br style="line-height:5pt;">
+<?
+if(is_dir('.git')){
+    echo 'Version: ';
+    
+if($verzeichnis=opendir('.git/refs/tags')){
+while ($file = @readdir ($verzeichnis)) {
+$array[] = $file;
+}}
+    natsort($array);
+    $array = array_reverse($array);
+    echo $array[0];
+    echo ' ( git - ';
+    include('.git/refs/heads/master');
+    echo ' )';
+    }else{
+        echo 'Version: 0.2';
+        }
+?>
 <br><br><br><br>
 A webbased <b>Quassel-Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.
 <br>
