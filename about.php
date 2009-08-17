@@ -15,7 +15,7 @@ $array[] = $file;
     include('.git/refs/heads/master');
     echo ' )';
     }else{
-        echo 'Version: 0.2';
+        echo 'Version: 0.2+';
         }
 ?>
 <br><br><br><br>
