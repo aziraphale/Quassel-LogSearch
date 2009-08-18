@@ -17,6 +17,7 @@ $array[] = $file;
     }else{
         echo 'Version: 0.2+';
         }
+    echo '<br>on '.exec('quasselcore --version');
 ?>
 <br><br><br><br>
 A webbased <b>Quassel-Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.
