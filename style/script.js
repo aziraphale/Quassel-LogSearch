@@ -12,21 +12,22 @@
      function such()     {
              document.getElementById('scontent').innerHTML = '<center><img src="style/loading.gif"></center>';
              //document.getElementById('scontent').style.background = 'white';
-             new Ajax.Updater('scontent', 'suche.php?search=1&string=' + document.getElementById('input').value + '&buffername=' + document.getElementById('buffer').value + '&number=' + document.getElementById('number').value + '&time_end=' + document.getElementById('time_end').value + '&time_start=' + document.getElementById('time_start').value + '&regexid=' + document.getElementById('regexid').checked, {asynchronous:true, evalScripts:true});    }
+             new Ajax.Updater('scontent', 'suche.php?search=1&string=' + document.getElementById('input').value + '&buffername=' + document.getElementById('buffer').value + '&number=' + document.getElementById('number').value + '&time_end=' + document.getElementById('time_end').value + '&time_start=' + document.getElementById('time_start').value + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked, {asynchronous:true, evalScripts:true});    }
       
       
             
-     function moreinfo(divid,bufferid)     {
+     function moreinfo(divid,bufferid,types)     {
              document.getElementById('d'+divid).style.display = 'none';
              document.getElementById('m'+divid).style.display = 'block';
              document.getElementById('m'+divid).style.border = '1px solid #3399cc';
-             new Ajax.Updater('m'+divid, 'moreinfo.php?messageid=' +divid+ '&bufferid=' +bufferid , {asynchronous:true, evalScripts:true});    }
+             new Ajax.Updater('m'+divid, 'moreinfo.php?messageid=' +divid+ '&bufferid=' +bufferid+ '&types=' +types , {asynchronous:true, evalScripts:true});    }
              
      function hide_a_search(){
             document.getElementById('advanced').style.display='none';
             document.getElementById('time_start').value = 'Starttime';
             document.getElementById('time_end').value = 'Endtime';
             document.getElementById('regexid').checked = false;
+            document.getElementById('types').checked = true;
             document.getElementById('asearch').style.display='inline';
         }
 

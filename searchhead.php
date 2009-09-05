@@ -38,15 +38,15 @@ if(!empty($array2[0])){
 </select><img src="style/lines.png" title="Number of results" alt="Lines" style="margin:2px; margin-left:20px;float:left;"><input title="Number of results" value="100" id="number" size="3" type="text" maxlength="4"  autocomplete="off">
 <span id="asearch" onclick="show_a_search();" style="font-size:7pt;margin-left:20px;" title="Show advanced search">[ Advanced search ]</span>
 <br> </div>
-<div id="advanced" style="margin: 7px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">
+<div id="advanced" style="margin: 5px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">
     <span onclick="hide_a_search();" style="margin-left:-10px;" title="Close">[ Advanced search ]</span><br>
     Search in a timeperiod:<br>
     <input title="Excepts any english timeformat" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
     <input title="Excepts any english timeformat" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
 <br>
 
-<div<? if($backend == "sqlite"){ echo ' style="display:none;"'; } ?>>Regex:<input type="checkbox" name="regexid" id="regexid" title="search with regular expression"></div>
-
+<div<? if($backend == "sqlite"){ echo ' style="display:none;"'; } ?>>Regex:<input type="checkbox" name="regexid" id="regexid" title="search with regular expression" style="margin-right:15px;">
+Only messages:<input type="checkbox" name="types" id="types" title="search only messages - if _not_ checked joins,quits,... will be shown and searched" checked="checked"></div>
 <br>
 </div></form></div>
 </div><center>

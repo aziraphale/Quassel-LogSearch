@@ -1,6 +1,6 @@
 <?php
-
-class backend{
+    require_once('classes/parser.class.php');
+class backend extends parser{
 
 function login(){
     require("config.php");
@@ -14,11 +14,17 @@ function login(){
             }
     }
 
-function search_backend($input_string,$time_string,$search_zeug,$number){   
+function search_backend($input_string,$time_string,$search_zeug,$number,$type=0){   
     $dbconn = $this->login();
+        
+        if($type == 0){
+            $type_string = ' AND "type" IN (1,4)';
+            }else{
+                $type_string = ' AND "type" IN (1,4,8,32,64,128,256,512,1024,16384)';
+                }
 
     //prepare and execute search
-        $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE "type" = 1 AND bufferid = $1 '. $input_string . $time_string .' order by messageid DESC limit ' . $number);
+        $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE bufferid = $1 '. $type_string. $input_string . $time_string .' order by messageid DESC limit ' . $number);
         $result = pg_prepare($dbconn, 'sender', 'SELECT sender FROM sender WHERE senderid = $1');
         $i=0;
         $result = pg_execute($dbconn, 'my_query', $search_zeug);
@@ -35,12 +41,14 @@ function search_backend($input_string,$time_string,$search_zeug,$number){
          $db_qry = pg_execute($dbconn, 'sender', array($search_ary['senderid']));
 
            $user = explode ( '!', pg_fetch_result ($db_qry, 0, 0) );
-           $output .= '<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\');" title="show context">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';
+           
+           $output .= $this->parse($search_ary,$user,$type);
            $i++; 
             }
     
     $outputary[0] = $output;
     $outputary[1] = $i;
+
 
     return $outputary;
     pg_close($dbconn);
@@ -78,10 +86,16 @@ function networkname($networkid){
     }
 
 
-function moreinfo($bufferid,$messageid){
+function moreinfo($bufferid,$messageid,$types){
+            if($types == 0){
+            $type_string = ' AND "type" IN (1,4)';
+            }else{
+                $type_string = ' AND "type" IN (1,4,8,32,64,128,256,512,1024,16384)';
+                }
+    
     $dbconn = $this->login();
 
-    $result = pg_query($dbconn,"SELECT * FROM backlog WHERE type = 1 AND bufferid = $bufferid AND messageid >= $messageid order by messageid ASC limit 9");
+    $result = pg_query($dbconn,"SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid >= $messageid order by messageid ASC limit 9");
     $result2 = pg_prepare($dbconn, "sender", 'SELECT sender FROM sender WHERE senderid = $1');
     
     while($search_ary = pg_fetch_array($result)){
@@ -96,17 +110,17 @@ function moreinfo($bufferid,$messageid){
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
-           $output .= '<font class="date" style="color:c3c3c3;'.$hl.'">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;&nbsp;</font><font style="'.$hl.'">' . htmlspecialchars($search_ary["message"]) . '</font><br>';
+           $output .= '<font class="date" style="color:c3c3c3;'.$hl.'">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="'.$hl.'"' . $this->parse($search_ary,$user,$types,1) . '</font><br>';
         }
         
         
-    $result = pg_query($dbconn,"SELECT * FROM backlog WHERE type = 1 AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 8");
+    $result = pg_query($dbconn,"SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid < $messageid order by messageid DESC limit 8");
 
     while($search_ary = pg_fetch_array($result)){
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
-           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '<br>';
+           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
     }
     return $output;
     pg_close($dbconn);

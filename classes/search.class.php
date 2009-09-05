@@ -1,6 +1,7 @@
 <?php
 // search.class
     require("config.php");
+    require_once('parser.class.php');
     require_once($backend.'.class.php');
 
 class searchengine extends backend
@@ -12,11 +13,11 @@ function getmicrotime()
         return ((float)$usec + (float)$sec);
     }
 
-function search($bufferid, $input,$number,$time_start,$time_end,$regex=0){
+function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=1){
     require("config.php");
      $Anfangszeit = $this->getmicrotime();
 
-        
+
         //prepare vars
         $search_zeug[] = $bufferid;
         
@@ -69,7 +70,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0){
                        
 
             // search with backend
-            $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number);
+            $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types);
             
             $output = $outputary[0];
 

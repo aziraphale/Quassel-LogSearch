@@ -16,7 +16,7 @@ function login(){
             
     }
 
-function search_backend($input_string,$time_string,$search_zeug,$number){   
+function search_backend($input_string,$time_string,$search_zeug,$number,$type=0){   
     $dbconn = $this->login();
        
         $timeary = explode ('||',$time_string);
@@ -47,7 +47,8 @@ function search_backend($input_string,$time_string,$search_zeug,$number){
     
     $outputary[0] = $output;
     $outputary[1] = $i;
-
+    $outputary[2] = $search_ary["type"];
+    
     return $outputary;
     $dbconn = NULL;
     }    
@@ -94,8 +95,7 @@ function networkname($networkid){
     }
 
 
-
-function moreinfo($bufferid,$messageid){
+function moreinfo($bufferid,$messageid,$types=0){
     $dbconn = $this->login();
 
     $result = $dbconn->query("SELECT * FROM backlog WHERE type = 1 AND bufferid = $bufferid AND messageid >= $messageid order by messageid ASC limit 9");
