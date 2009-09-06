@@ -83,20 +83,49 @@ a.links:hover {
     }
     
 //mircfarben
-.mirc00 { color: #ffffff; }
-.mirc01 { color: #000000; }
-.mirc02 { color: #000080; }
-.mirc03 { color: #008000; }
-.mirc04 { color: #ff0000; }
-.mirc05 { color: #800000; }
-.mirc06 { color: #800080; }
-.mirc07 { color: #ffa500; }
-.mirc08 { color: #ffff00; }
-.mirc09 { color: #00ff00; }
-.mirc0a { color: #008080; }
-.mirc0b { color: #00ffff; }
-.mirc0c { color: #4169e1; }
-.mirc0d { color: #ff00ff; }
-.mirc0e { color: #808080; }
-.mirc0f { color: #c0c0c0; }
-  
+*.mirc00 { color: #ffffff; }
+*.mirc01 { color: #000000; }
+*.mirc02 { color: #000080; }
+*.mirc03 { color: #008000; }
+*.mirc04 { color: #ff0000; }
+*.mirc05 { color: #800000; }
+*.mirc06 { color: #800080; }
+*.mirc07 { color: #ffa500; }
+*.mirc08 { color: #ffff00; }
+*.mirc09 { color: #00ff00; }
+*.mirc0a { color: #008080; }
+*.mirc10 { color: #008080; }
+*.mirc0b { color: #00ffff; }
+*.mirc11 { color: #00ffff; }
+*.mirc0c { color: #4169e1; }
+*.mirc12 { color: #4169e1; }
+*.mirc0d { color: #ff00ff; }
+*.mirc13 { color: #ff00ff; }
+*.mirc0e { color: #808080; }
+*.mirc14 { color: #808080; }
+*.mirc0f { color: #c0c0c0; }
+*.mirc15 { color: #c0c0c0; }
+
+//mircbgfarben
+.mircbg00 { background-color: #ffffff; }
+.mircbg01 { background-color: #000000; }
+.mircbg02 { background-color: #000080; }
+.mircbg03 { background-color: #008000; }
+.mircbg04 { background-color: #ff0000; }
+.mircbg05 { background-color: #800000; }
+.mircbg06 { background-color: #800080; }
+.mircbg07 { background-color: #ffa500; }
+.mircbg08 { background-color: #ffff00; }
+.mircbg09 { background-color: #00ff00; }
+.mircbg0a { background-color: #008080; }
+.mircbg10 { background-color: #008080; }
+.mircbg0b { background-color: #00ffff; }
+.mircbg11 { background-color: #00ffff; }
+.mircbg0c { background-color: #4169e1; }
+.mircbg12 { background-color: #4169e1; }
+.mircbg0d { background-color: #ff00ff; }
+.mircbg13 { background-color: #ff00ff; }
+.mircbg0e { background-color: #808080; }
+.mircbg14 { background-color: #808080; }
+.mircbg0f { background-color: #c0c0c0; }
+.mircbg15 { background-color: #c0c0c0; }

@@ -2,6 +2,7 @@
 class parser{
     
     function make_link($text){
+        //klickbare links
         $ret = ' ' . $text;
         $ret = preg_replace("#(^|[\n ])([\w]+?://.*?[^ \"\n\r\t<]*)#is", "\\1<a href=\"\\2\" class=\"links\" target=\"_blank\">\\2</a>", $ret);
         $ret = preg_replace("#(^|[\n ])((www|ftp)\.[\w\-]+\.[\w\-.\~]+(?:/[^ \"\t\n\r<]*)?)#is", "\\1<a class=\"links\" href=\"http://\\2\" target=\"_blank\">\\2</a>", $ret);
@@ -10,9 +11,9 @@ class parser{
         }
     
     function mirc($line){
+        // mirc-formatierung
         $line = ' '.$line.' ';
-
-        $i =1;
+        $i = 1;
         $m = 1;
         $l = 1;
         $j = 1;
@@ -20,8 +21,8 @@ class parser{
         $lock = 0;
         while($i!=0 OR $m !=0){
             $lock++;
-            if($lock == 50){
-                echo 'ENDLOS!!!';
+            if($lock == 100){
+                //DEBUG echo 'ENDLOS!!!';
                 break;
                 }
             if($j%2 == 0){
@@ -30,7 +31,8 @@ class parser{
                     $refe = '<b>';
                     }
             if($n%2 == 0){
-                $refa = '</font>';
+               //neue farbe anfangen
+               $refa = "</font><font class=\"mirc\\1\">";
                 }else{
                     $refa = "<font class=\"mirc\\1\">";
                     }
@@ -46,18 +48,18 @@ class parser{
                 if($posen === FALSE){
                     $l = 0;
                     $posen = 1000;}
-                //echo $posfe.'!'.$posfa.'!'.$posen.'!'.$i.'!'.$m.'<br>';
+              //DEBUG echo $posfe.'!'.$posfa.'!'.$posen.'!'.$i.'!'.$m.'<br>';
             if($posfe < $posfa AND $posfe < $posen){
                 //fett
                 $line = preg_replace('//', $refe, $line,1,$i);
                     $j++;
-                    continue;
                 }elseif($posfa < $posfe AND $posfa < $posen){
                     //farbe
-                    $line = preg_replace('/(((?<=(\S|.))|\n)[0-9a-fA-F]{2}+)/', $refa, $line,1);
-                    $line = preg_replace('//', '', $line,1,$i);
+                    $line = preg_replace('/(((?<=(\S|.))|\n)[0-9a-fA-F]{2}((\,)|\n)[0-9a-fA-F]{2}|((?<=(\S|.))|\n)[0-9a-fA-F]{2}+)/', $refa, $line,1,$n);
+                        //bgcolor
+                        $line = preg_replace('/((?<=(\S|.)mirc[0-9a-fA-F]{2})|\n)(?!([0-9a-fA-F]{2})),/', ' mircbg\\1', $line,1,$p);
+                    $line = preg_replace('//', '', $line,1,$i); // aufräumen
                         $n++;
-                        continue;
                     }else{
                         if($j%2 == 0 AND $n%2 == 0){
                             $line = preg_replace('//', '</b></font>', $line,1,$l);
@@ -77,23 +79,20 @@ class parser{
                                     if($l == 1){
                                         $n++;
                                         continue;
-                                        }
-                                    }
-                        }
-                        //DEBUG echo $j .'!'. $n.'<br>';
-                       
-            }
+        }}}}
         if($j%2 == 0){
             $line = $line.'</b>';
             }
         if($n%2 == 0){
             $line = $line.'</font>';
             }
-            
+
         return trim($line);
         }
+
       
     function format($line){
+        //formatierungszusammefassung
         $line = htmlspecialchars($line);
         $line = $this->make_link($line);
         $line = $this->mirc($line);
@@ -103,6 +102,7 @@ class parser{
     
     function parse($search_ary,$user,$types,$more=0){
            $output = "\n".'<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\');" title="show context">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;';
+           //alle unterstützten types
            switch(intval($search_ary["type"])){
             //all
             case 1:
@@ -147,6 +147,7 @@ class parser{
                 $output1 .= ' * <b>' .substr($search_ary["message"],0,strpos($search_ary["message"]," ")) . '</b> has changed the topic to: ' . $this->format(str_replace('"','',substr($search_ary["message"],strpos($search_ary["message"],'"'))));
                 break;
              default:
+             // böse, das kann theoretisch garnicht passieren ...
                 $error ='ERROR!';
             }        
         
@@ -158,15 +159,12 @@ class parser{
                 }else{
                     $output = $output1;
                     }        
-
-        
         }
         
         return $output;
         }    
-    
-    
-    
+
+
     }
     
 ?>
