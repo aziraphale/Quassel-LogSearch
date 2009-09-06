@@ -1,20 +1,102 @@
 <?php
 class parser{
     
-function make_link($text)
-    {
-    $ret = ' ' . $text;
-    $ret = preg_replace("#(^|[\n ])([\w]+?://.*?[^ \"\n\r\t<]*)#is", "\\1<a href=\"\\2\" target=\"_blank\">\\2</a>", $ret);
-    $ret = preg_replace("#(^|[\n ])((www|ftp)\.[\w\-]+\.[\w\-.\~]+(?:/[^ \"\t\n\r<]*)?)#is", "\\1<a href=\"http://\\2\" target=\"_blank\">\\2</a>", $ret);
-    $ret = substr($ret, 1);
-    return($ret);
-    }
+    function make_link($text){
+        $ret = ' ' . $text;
+        $ret = preg_replace("#(^|[\n ])([\w]+?://.*?[^ \"\n\r\t<]*)#is", "\\1<a href=\"\\2\" class=\"links\" target=\"_blank\">\\2</a>", $ret);
+        $ret = preg_replace("#(^|[\n ])((www|ftp)\.[\w\-]+\.[\w\-.\~]+(?:/[^ \"\t\n\r<]*)?)#is", "\\1<a class=\"links\" href=\"http://\\2\" target=\"_blank\">\\2</a>", $ret);
+        $ret = substr($ret, 1);
+        return($ret);
+        }
     
+    function mirc($line){
+        $line = ' '.$line.' ';
+
+        $i =1;
+        $m = 1;
+        $l = 1;
+        $j = 1;
+        $n = 1;
+        $lock = 0;
+        while($i!=0 OR $m !=0){
+            $lock++;
+            if($lock == 50){
+                echo 'ENDLOS!!!';
+                break;
+                }
+            if($j%2 == 0){
+                $refe = '</b>';
+                }else{
+                    $refe = '<b>';
+                    }
+            if($n%2 == 0){
+                $refa = '</font>';
+                }else{
+                    $refa = "<font class=\"mirc\\1\">";
+                    }
+            $posfe = strpos($line,'',0);
+            $posfa = strpos($line,'',0);
+            $posen = strpos($line,'',0);
+                if($posfe === FALSE){
+                    $i = 0;
+                    $posfe = 1001;}
+                if($posfa === FALSE){
+                    $m = 0;
+                    $posfa = 1001;}
+                if($posen === FALSE){
+                    $l = 0;
+                    $posen = 1000;}
+                //echo $posfe.'!'.$posfa.'!'.$posen.'!'.$i.'!'.$m.'<br>';
+            if($posfe < $posfa AND $posfe < $posen){
+                //fett
+                $line = preg_replace('//', $refe, $line,1,$i);
+                    $j++;
+                    continue;
+                }elseif($posfa < $posfe AND $posfa < $posen){
+                    //farbe
+                    $line = preg_replace('/(((?<=(\S|.))|\n)[0-9a-fA-F]{2}+)/', $refa, $line,1);
+                    $line = preg_replace('//', '', $line,1,$i);
+                        $n++;
+                        continue;
+                    }else{
+                        if($j%2 == 0 AND $n%2 == 0){
+                            $line = preg_replace('//', '</b></font>', $line,1,$l);
+                            if($l == 1){
+                                $j++;
+                                $n++;
+                                continue;
+                                }
+                            }elseif($j%2 == 0){
+                                $line = preg_replace('//', '</b>', $line,1,$l);
+                                if($l == 1){
+                                    $j++;
+                                    continue;
+                                    }
+                                }elseif($n%2 == 0){
+                                    $line = preg_replace('//', '</font>', $line,1,$l);
+                                    if($l == 1){
+                                        $n++;
+                                        continue;
+                                        }
+                                    }
+                        }
+                        //DEBUG echo $j .'!'. $n.'<br>';
+                       
+            }
+        if($j%2 == 0){
+            $line = $line.'</b>';
+            }
+        if($n%2 == 0){
+            $line = $line.'</font>';
+            }
+            
+        return trim($line);
+        }
       
     function format($line){
         $line = htmlspecialchars($line);
         $line = $this->make_link($line);
-        
+        $line = $this->mirc($line);
         return $line;
         }
     
@@ -24,7 +106,7 @@ function make_link($text)
            switch(intval($search_ary["type"])){
             //all
             case 1:
-                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;<b>'.$user[0].'</b>&gt;</font>&nbsp;' . $this->format($search_ary["message"]);
+                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . $this->format($search_ary["message"]);
                 break;
             // /me
             case 4:

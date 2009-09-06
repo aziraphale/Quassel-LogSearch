@@ -54,6 +54,7 @@ a,img {
 }
 
 
+
 a:link,a:visited,a:active,.link, span{
      color: #4a4a4a;
      cursor: pointer; 
@@ -66,3 +67,36 @@ a:hover,a:focus, .link:hover {
      cursor: pointer; 
      text-decoration: none;
 }
+
+a.links {
+     color: #0000aa;
+     cursor: pointer; 
+     text-decoration: none;
+     font-weight: normal;    
+    }
+    
+a.links:hover {
+     color: #0000aa;
+     cursor: pointer; 
+     text-decoration: underline;
+     font-weight: normal;    
+    }
+    
+//mircfarben
+.mirc00 { color: #ffffff; }
+.mirc01 { color: #000000; }
+.mirc02 { color: #000080; }
+.mirc03 { color: #008000; }
+.mirc04 { color: #ff0000; }
+.mirc05 { color: #800000; }
+.mirc06 { color: #800080; }
+.mirc07 { color: #ffa500; }
+.mirc08 { color: #ffff00; }
+.mirc09 { color: #00ff00; }
+.mirc0a { color: #008080; }
+.mirc0b { color: #00ffff; }
+.mirc0c { color: #4169e1; }
+.mirc0d { color: #ff00ff; }
+.mirc0e { color: #808080; }
+.mirc0f { color: #c0c0c0; }
+  
