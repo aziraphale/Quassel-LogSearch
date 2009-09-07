@@ -1,5 +1,6 @@
 <?php
-    require_once('classes/parser.class.php');
+
+require_once('classes/parser.class.php');
 class backend extends parser{
 
 function login(){
@@ -22,9 +23,9 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
             }else{
                 $type_string = ' AND "type" IN (1,4,8,32,64,128,256,512,1024,16384)';
                 }
-
+        $buffers = array_shift($search_zeug);
     //prepare and execute search
-        $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE bufferid = $1 '. $type_string. $input_string . $time_string .' order by messageid DESC limit ' . $number);
+        $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE bufferid IN ('.$buffers.') '. $type_string. $input_string . $time_string .' order by messageid DESC limit ' . $number);
         $result = pg_prepare($dbconn, 'sender', 'SELECT sender FROM sender WHERE senderid = $1');
         $i=0;
         $result = pg_execute($dbconn, 'my_query', $search_zeug);
@@ -83,6 +84,12 @@ function networkname($networkid){
     $dbconn = $this->login();
     $db_qry = pg_query($dbconn,"SELECT networkname FROM network WHERE networkid = '$networkid';");    
     return @pg_fetch_result ($db_qry, 0, 0);
+    }
+
+function buffername($bufferid){
+    $dbconn = $this->login();
+    $db_qry = pg_query($dbconn,"SELECT buffername,networkid FROM buffer WHERE bufferid = '$bufferid';");
+    return $this->networkname(@pg_fetch_result ($db_qry, 0, 1)) .' -> '. @pg_fetch_result ($db_qry, 0, 0) ;
     }
 
 

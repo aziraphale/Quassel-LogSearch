@@ -16,7 +16,12 @@ function getmicrotime()
 function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=1){
     require("config.php");
      $Anfangszeit = $this->getmicrotime();
-
+    if(empty($bufferid)){
+            echo '<center>No results - please select a Chat.</center>';
+            $Endzeit = $this->getmicrotime();
+            echo '<br><br><div style="font-size:6pt;text-align:center;">0 results in ' . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . ' seconds.</div>';
+            die();
+        }
 
         //prepare vars
         $search_zeug[] = $bufferid;
@@ -35,7 +40,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
                         }
         
         $input_array = explode(" ",$input);
-        $i=2;
+        $i=1;
         foreach($input_array AS $sonstwas){
             $input_string  .= 'AND lower(message) '.$method.' $'. $i;
             $search_zeug[] = '%'.$sonstwas.'%';
@@ -57,7 +62,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             
         // sqlite workaround
         if($backend == "sqlite"){
-        $i=2;
+        $i=1;
         $input_string = '';
         foreach($input_array AS $sonstwas){
             $input_string  .= 'AND lower(message) '.$method.' "%'.$sonstwas.'%"';
