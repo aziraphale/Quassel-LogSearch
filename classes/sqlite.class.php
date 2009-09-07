@@ -1,6 +1,7 @@
 <?php
 
-class backend{
+require_once('classes/parser.class.php');
+class backend extends parser {
 
 function login(){
     require("config.php");
@@ -29,7 +30,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
             $time_string .= ' AND time < "' .strtotime($timeary[1]).'"';
         }
       
-        $result = $dbconn->query('SELECT * FROM backlog WHERE "type" = 1 AND bufferid = '.$search_zeug[0].' '. $input_string .$time_string. ' order by messageid DESC limit ' . $number);
+        $result = $dbconn->query('SELECT * FROM backlog WHERE ("type" = 1 OR  "type" = 4) AND bufferid = '.$search_zeug[0].' '. $input_string .$time_string. ' order by messageid DESC limit ' . $number);
         $i=0;
 
         foreach($result as $search_ary) {
@@ -41,7 +42,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
                 }
             $user = explode ( '!',$user);
            
-           $output .= '<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\');" title="show context">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +$search_ary["time"]).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';
+           $output .= $this->parse($search_ary,$user,$type);
            $i++; 
             }
     
@@ -98,7 +99,7 @@ function networkname($networkid){
 function moreinfo($bufferid,$messageid,$types=0){
     $dbconn = $this->login();
 
-    $result = $dbconn->query("SELECT * FROM backlog WHERE type = 1 AND bufferid = $bufferid AND messageid >= $messageid order by messageid ASC limit 9");
+    $result = $dbconn->query("SELECT * FROM backlog WHERE  (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid >= $messageid order by messageid ASC limit 9");
     
     foreach($result as $search_ary) {
         $array[] = $search_ary;
@@ -114,17 +115,17 @@ function moreinfo($bufferid,$messageid,$types=0){
                 $user = $search_ary2[0];
                 }
             $user = explode ( '!',$user);
-           $output .= '<font class="date" style="color:c3c3c3;'.$hl.'">['.date("H:i:s d.m.y",$search_ary["time"]).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;<font> style="'.$hl.'"' . htmlspecialchars($search_ary["message"]) . '</font><br>';
+           $output .= '<font class="date" style="color:c3c3c3;'.$hl.'">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="'.$hl.'"' . $this->parse($search_ary,$user,$types,1) . '</font><br>';
         }
 
-        $result = $dbconn->query("SELECT * FROM backlog WHERE type = 1 AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 8");
+        $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 8");
     foreach($result as $search_ary) {
            $result2 = $dbconn->query('SELECT sender FROM sender WHERE senderid = '. $search_ary['senderid']);
            foreach($result2 as $search_ary2) {
                 $user = $search_ary2[0];
                 }
             $user = explode ( '!',$user);
-           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$search_ary["time"]).']</font>&nbsp;<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . htmlspecialchars($search_ary["message"]) . '<br>';
+           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
     }
     return $output;
     $dbconn = NULL;
