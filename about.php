@@ -15,9 +15,10 @@ $array[] = $file;
     include('.git/refs/heads/master');
     echo ' )';
     }else{
-        echo 'Version: 0.2+';
+        //fallbackversion
+        echo 'Version: 0.3+';
         }
-    echo '<br>on '.exec('quasselcore --version');
+    echo '<br>on '.@exec('quasselcore --version');
 ?>
 <br><br><br><br>
 A webbased <b>Quassel-Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.

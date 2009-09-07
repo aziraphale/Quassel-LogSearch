@@ -1,0 +1,15 @@
+Quassel Backlog Search - Installation Notes
+
+Please also have a look at README file!
+
+To install simply copy the complete data to a folder reachable via http 
+(with php-support) ON THE SERVER where the quasselcore runs.
+
+To finish just configure the "config.php" for your system ( read the 
+comments there for help )
+
+Now everything should run. Simply point your browser to the index.php, 
+enter your quassel login gdetails and enjoy an easy way to search!
+
+For help, you can contact "m4yer" on FreeNode in #quassel (please via 
+query) or per mail <m4yer@minad.de>
