@@ -11,7 +11,7 @@ if((!isset($search)) or empty($search)){
     include('searchhead.php');
 
 }else{
-     $input = $_REQUEST['string'];
+     $input = stripslashes($_REQUEST['string']);
      $bufferid = $_REQUEST['buffername'];
      $number = intval($_REQUEST['number']);
      $time_start = trim($_REQUEST['time_start']);
@@ -20,7 +20,6 @@ if((!isset($search)) or empty($search)){
      $types = $_REQUEST['types'];
     require_once('classes/search.class.php');
     $search=new searchengine(); 
-
 if($types == 'true'){
     $types = 0;
     }else{

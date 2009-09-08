@@ -28,8 +28,12 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
         $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE bufferid IN ('.$buffers.') '. $type_string. $input_string . $time_string .' order by messageid DESC limit ' . $number);
         $result = pg_prepare($dbconn, 'sender', 'SELECT sender FROM sender WHERE senderid = $1');
         $i=0;
-        $result = pg_execute($dbconn, 'my_query', $search_zeug);
+        $result = @pg_execute($dbconn, 'my_query', $search_zeug);
+            if(empty($result)){
+                echo '<center>Invalid request.</center>';
+                }
 
+            
         // summer || winter ?
          if(date('I')){
             $addtime = 3600*2;
@@ -37,11 +41,11 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
                 $addtime = 3600;
                 }
 
-        while($search_ary = pg_fetch_array($result)) {
+        while($search_ary = @pg_fetch_array($result)) {
 
-         $db_qry = pg_execute($dbconn, 'sender', array($search_ary['senderid']));
+         $db_qry = @pg_execute($dbconn, 'sender', array($search_ary['senderid']));
 
-           $user = explode ( '!', pg_fetch_result ($db_qry, 0, 0) );
+           $user = explode ( '!', @pg_fetch_result ($db_qry, 0, 0) );
            
            $output .= $this->parse($search_ary,$user,$type);
            $i++; 
