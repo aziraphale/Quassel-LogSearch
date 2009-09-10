@@ -3,8 +3,7 @@
 <?=$error?>
 <input type="hidden" name="get" value="true">
 Quasseluser:<br>
-<input size="30" id="input" type="text" name="quasseluser" value="<?=$usern?>"></span><br>
+<input size="30" id="input" type="text" name="quasseluser" value="<?=$usern?>"><br>
 Passwort:<br>
-<input size="30" type="password" name="quasselpwd"></span><br>
-<input type="submit" value="Login" class="button"></form><br>
-</div>
+<input size="30" type="password" name="quasselpwd"><br>
+<input type="submit" value="Login" class="button"></form><br></div>
