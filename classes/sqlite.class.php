@@ -121,6 +121,9 @@ function moreinfo($bufferid,$messageid,$types=0){
     $array = array_reverse($array);
         $i=count($array);
     foreach($array as $search_ary){
+        if($i==count($array)){
+            $output .= '<span style="display:none;" id="up'.$messageid.'">'.$search_ary["messageid"].'</span>'; // more up
+            }
         $i--;
         if($i==0){$hl='color:black;';}
            $result2 = $dbconn->query('SELECT sender FROM sender WHERE senderid = '. $search_ary['senderid']);
@@ -141,9 +144,67 @@ function moreinfo($bufferid,$messageid,$types=0){
             $user = explode ( '!',$user);
             $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
             $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
+            $downid = $search_ary["messageid"];
     }
+    $output .= '<span style="display:none;" id="down'.$messageid.'">'.$downid.'</span>'; // more down
     return $output;
     $dbconn = NULL;
     }
+
+function moremore($bufferid,$messageid,$state,$types=0){
+
+    $dbconn = $this->login();
+
+    if($state=='up'){
+    
+$result = $dbconn->query("SELECT * FROM backlog WHERE  (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid > $messageid order by messageid ASC limit 9");
+   
+    if(empty($result)){
+        die;}
+    foreach($result as $search_ary) {
+        $array[] = $search_ary;
+            }
+
+    $i=count($array);
+    foreach($result as $search_ary) {
+        $array[] = $search_ary;
+            }
+
+    $array = array_reverse($array);
+        $i=count($array);
+    foreach($array as $search_ary){
+        if($i==count($array)){
+            $lastid = $search_ary["messageid"]; // more up
+            }
+        $i--;
+           $result2 = $dbconn->query('SELECT sender FROM sender WHERE senderid = '. $search_ary['senderid']);
+           foreach($result2 as $search_ary2) {
+                $user = $search_ary2[0];
+                }
+            $user = explode ( '!',$user);
+           $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
+           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="'.$hl.'"' . $this->parse($search_ary,$user,$types,1) . '</font><br>';
+        }}else{
+
+$result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 9");
+
+    foreach($result as $search_ary) {
+           $result2 = $dbconn->query('SELECT sender FROM sender WHERE senderid = '. $search_ary['senderid']);
+           foreach($result2 as $search_ary2) {
+                $user = $search_ary2[0];
+                }
+            $user = explode ( '!',$user);
+            $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
+            $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
+    $lastid = $search_ary["messageid"];
+    }
+
+
+            }
+    
+    return array($output,$lastid);
+    pg_close($dbconn);
+    }
+
 
     }

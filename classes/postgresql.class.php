@@ -116,6 +116,9 @@ function moreinfo($bufferid,$messageid,$types){
     $array = array_reverse($array);
     $i=count($array);
     foreach($array as $search_ary){
+        if($i==count($array)){
+            $output .= '<span style="display:none;" id="up'.$messageid.'">'.$search_ary["messageid"].'</span>'; // more up
+            }
         $i--;
         if($i==0){$hl='color:black;';}
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
@@ -132,9 +135,63 @@ function moreinfo($bufferid,$messageid,$types){
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
            $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
+           $downid = $search_ary["messageid"];
     }
+    $output .= '<span style="display:none;" id="down'.$messageid.'">'.$downid.'</span>'; // more down
     return $output;
     pg_close($dbconn);
     }
+
+function moremore($bufferid,$messageid,$state,$types){
+            if($types == 0){
+            $type_string = ' AND "type" IN (1,4)';
+            }else{
+                $type_string = ' AND "type" IN (1,4,8,32,64,128,256,512,1024,16384)';
+                }
+    $dbconn = $this->login();
+    $result2 = pg_prepare($dbconn, "sender", 'SELECT sender FROM sender WHERE senderid = $1');
+
+    if($state=='up'){
+    
+    $result = pg_query($dbconn,"SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid > $messageid order by messageid ASC limit 9");
+   
+    
+    while($search_ary = pg_fetch_array($result)){
+        $array[] = $search_ary;
+            }
+    if(count($array)==0){
+        die;
+        }
+
+    $array = @array_reverse($array);
+    $i=count($array);
+    foreach($array as $search_ary){
+        if($i==count($array)){
+            $lastid = $search_ary["messageid"]; // more up
+            }
+        $i--;
+         $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
+
+           $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
+           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font>' . $this->parse($search_ary,$user,$types,1) . '</font><br>';
+        }}else{
+            
+                $result = @pg_query($dbconn,"SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid < $messageid order by messageid DESC limit 9");
+
+            while($search_ary = @pg_fetch_array($result)){
+                   $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
+        
+                   $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
+                   $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
+                   $lastid = $search_ary["messageid"];
+            }
+            
+            
+            }
+    
+    return array($output,$lastid);
+    pg_close($dbconn);
+    }
+
 
     }

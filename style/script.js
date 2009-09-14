@@ -30,6 +30,13 @@
              document.getElementById('m'+divid).style.border = '1px solid #3399cc';
              new Ajax.Updater('m'+divid, 'moreinfo.php?messageid=' +divid+ '&bufferid=' +bufferid+ '&types=' +types , {asynchronous:true, evalScripts:true});    }
 
+    function moreup(msgid,bufferid,state,types){
+         new Ajax.Updater('wantmore'+msgid, 'moremore.php?messageid='+document.getElementById(state+msgid).innerHTML+'&bufferid='+bufferid+'&state='+state+'&base='+msgid+ '&types=' +types, {asynchronous:true, evalScripts:true,insertion: Insertion.Top});        
+        }
+
+    function moredown(msgid,bufferid,state,types){
+         new Ajax.Updater('wantmore'+msgid, 'moremore.php?messageid='+document.getElementById(state+msgid).innerHTML+'&bufferid='+bufferid+'&state='+state+'&base='+msgid+ '&types=' +types, {asynchronous:true, evalScripts:true,insertion: Insertion.Bottom});        
+        }
 
      function hide_a_search(){
             document.getElementById('buffer').multiple = false;

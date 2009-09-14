@@ -12,8 +12,8 @@
     $types = $_REQUEST['types'];
 ?>
 <div style="margin:5px;"><span title="hide context" onclick="document.getElementById('m<?=$messageid?>').style.display = 'none'; document.getElementById('d<?=$messageid?>').style.display = 'block';">#</span> <?php
-echo $backend ->buffername($bufferid) . '<br>';
+echo $backend ->buffername($bufferid);?><br><span onclick="moreup('<?=$messageid?>','<?=$bufferid?>','up','<?=$types?>')">&and; more</span><div id="wantmore<?=$messageid?>"><?
 
 echo $backend ->moreinfo($bufferid,$messageid,$types);
 
-?></div>
+?></div><span onclick="moredown('<?=$messageid?>','<?=$bufferid?>','down','<?=$types?>')">&or; more</span><div id="wantmore<?=$messageid?>"></div>
