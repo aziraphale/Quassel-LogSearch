@@ -1,7 +1,22 @@
+//
+//
+//  quasselbacklogsearchjs - dunno how but it works :P
+//  here is all the magic ...
+//
+//
+
+        Ajax.Responders.register({
+          onCreate: function() {
+        document.getElementById('load').style.display = 'block';
+          },
+          onComplete: function() {
+        document.getElementById('load').style.display = 'none';
+          }
+        });
+
      function stopError(){
      return true;} 
-
-
+     
      function leer(check){
      }
 
