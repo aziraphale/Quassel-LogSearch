@@ -5,12 +5,17 @@ class backend extends parser {
 
 function login(){
     require("config.php");
+
+        if(!class_exists('PDO')){
+            echo '<b>Could not connect to database!<br>Could not find PDO Driver for SQLite 3.x!<br>Please check your PHP and dependencies</b>';
+            exit();
+            }
   
     try {
     $conn = new PDO("sqlite:$sqlitedb");
     }
     catch(PDOException $e) {
-        echo '<b>Could not connect to database!<br>Please edit your config.php - wrong backend chosen or wrong database-path!</b>';
+        echo '<b>Could not connect to database!<br>&nbsp;&nbsp;&nbsp;PHP-error: '.$e->getMessage().'!<br>Please edit/check your config.php - wrong backend chosen or wrong database-path - and check dependencies!</b>';
         exit;
     }
     return $conn;

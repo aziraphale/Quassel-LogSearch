@@ -1,7 +1,7 @@
 <?php
 @session_start();
 
-// actiove session?
+// active session?
 if($sessions == 1){
     $usern = $_SESSION['usern']; 
     $pwdn = $_SESSION['pwdn'];    
