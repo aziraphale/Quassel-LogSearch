@@ -12,13 +12,15 @@ if (version_compare(PHP_VERSION, '5.1.0') !== 1) {
 }
 
 
-// actiove session?
+// active session or login-try?
 if(isset($_SESSION['pwdn']) OR !empty($_SESSION['pwdn'])){
     $sessions = 1;
     include_once('login.php');
-    }else{
-    include_once('loginform.php');
-    }
+    }elseif($_REQUEST['login']==true){
+            include_once('login.php');
+            }else{
+                include_once('loginform.php');
+                }
 
 include_once('style/footer.php');
 
