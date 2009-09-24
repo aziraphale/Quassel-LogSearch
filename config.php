@@ -1,10 +1,10 @@
 <?php
 //
-// choose backend postgresql or sqlite
+// choose backend postgresql or sqlite (simple remove and/or add #)
 //
 
-$backend = "postgresql";
-#$backend = "sqlite";
+$backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) required
+#$backend = "sqlite";   // php-version with PDO Driver for SQLite 3.x required
 
 //
 // postgresql data; (just examples, please edit)
@@ -21,7 +21,8 @@ $backend = "postgresql";
 //
 // path to quassel-storage.sqlite; (just examples, please edit)
 // needed if backend sqlite
-// must be browsable with php ! (tipp for unix: "ln -s" is your friend)
+//
+// Info: must be browsable with php (within the web-path) and readable! (tipp: links should also work)
 //
 
 $sqlitedb = "/path/to/quassel-storage.sqlite";

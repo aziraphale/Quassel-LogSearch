@@ -16,7 +16,6 @@
     //-->
 </script>
 <select  title="Chat to search" style="float:left;position:relative;z-index:99;" id="buffer" name="buffername" size="1">
-
 <?php
 
     require("config.php");
@@ -33,7 +32,6 @@ if(!empty($array2[0])){
    echo '<option'.$echob.' value="'.$array2[1].'">'.$array2[0].'</option>';
    $i= $array2[2];    
    }}
-
 
 ?>
 </select><label for="number"><img src="style/lines.png" title="Number of results" alt="Lines" style="margin:2px; margin-left:20px;float:left;"></label><input name="number" title="Number of results" value="100" id="number" size="3" type="text" maxlength="4"  autocomplete="off">

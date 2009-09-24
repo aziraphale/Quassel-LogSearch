@@ -5,27 +5,27 @@
 //
 //
 
-        Ajax.Responders.register({
+     Ajax.Responders.register({
           onCreate: function() {
         document.getElementById('load').style.display = 'block';
           },
           onComplete: function() {
         document.getElementById('load').style.display = 'none';
           }
-        });
+     });
 
      function stopError(){
      return true;} 
-     
+
      function leer(check){
      }
 
 
      function Request(divid,page)     {
-             document.getElementById(divid).innerHTML = '<br><br><br><br><br><br><br><br><br><br><center><img src="style/loading.gif" style="border:1px solid black;"></center><br>';
+             document.getElementById(divid).innerHTML = '<span id="load" style="display:none;position:absolute; top:5px;left:5px;z-index:99"><img src="style/loading.gif" style="border:1px solid black;"></span>';
              new Ajax.Updater(divid, page, {asynchronous:true, evalScripts:true});}
 
-      
+
      function such()     {
         var ary = new Array();
 
@@ -45,11 +45,11 @@
              document.getElementById('m'+divid).style.border = '1px solid #3399cc';
              new Ajax.Updater('m'+divid, 'moreinfo.php?messageid=' +divid+ '&bufferid=' +bufferid+ '&types=' +types , {asynchronous:true, evalScripts:true});    }
 
-    function moreup(msgid,bufferid,state,types){
+     function moreup(msgid,bufferid,state,types){
          new Ajax.Updater('wantmore'+msgid, 'moremore.php?messageid='+document.getElementById(state+msgid).innerHTML+'&bufferid='+bufferid+'&state='+state+'&base='+msgid+ '&types=' +types, {asynchronous:true, evalScripts:true,insertion: Insertion.Top});        
         }
 
-    function moredown(msgid,bufferid,state,types){
+     function moredown(msgid,bufferid,state,types){
          new Ajax.Updater('wantmore'+msgid, 'moremore.php?messageid='+document.getElementById(state+msgid).innerHTML+'&bufferid='+bufferid+'&state='+state+'&base='+msgid+ '&types=' +types, {asynchronous:true, evalScripts:true,insertion: Insertion.Bottom});        
         }
 
@@ -66,13 +66,13 @@
         }
 
 
-    function show_a_search(){
+     function show_a_search(){
             document.getElementById('asearch').style.display='none';
             document.getElementById('advanced').style.display='inline';
         }
 
 
-    function multiple(){
+     function multiple(){
             if(document.getElementById('buffer').multiple == true){
                 document.getElementById('buffer').style.marginBottom= '0px';
                 document.getElementById('buffer').size=1;
