@@ -175,6 +175,9 @@ $result = $dbconn->query("SELECT * FROM backlog WHERE  (type = 1 OR  type = 4) A
         $array[] = $search_ary;
             }
 
+    if(empty($array)){
+        die;}
+
     $array = array_reverse($array);
         $i=count($array);
     foreach($array as $search_ary){
@@ -192,6 +195,8 @@ $result = $dbconn->query("SELECT * FROM backlog WHERE  (type = 1 OR  type = 4) A
         }}else{
 
 $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 9");
+    if(empty($result)){
+        die;}
 
     foreach($result as $search_ary) {
            $result2 = $dbconn->query('SELECT sender FROM sender WHERE senderid = '. $search_ary['senderid']);
