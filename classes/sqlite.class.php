@@ -112,6 +112,14 @@ function buffername($bufferid){
 
 
 function moreinfo($bufferid,$messageid,$types=0){
+        //timezone support
+        require('config.php');
+             // summer || winter ?
+             if(date('I')){
+                $addtime = 36*($timezone+100);
+                }else{
+                    $addtime = 36*$timezone;
+                    }
     $dbconn = $this->login();
 
     $result = $dbconn->query("SELECT * FROM backlog WHERE  (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid >= $messageid order by messageid ASC limit 9");
@@ -154,6 +162,14 @@ function moreinfo($bufferid,$messageid,$types=0){
     }
 
 function moremore($bufferid,$messageid,$state,$types=0){
+        //timezone support
+        require('config.php');
+             // summer || winter ?
+             if(date('I')){
+                $addtime = 36*($timezone+100);
+                }else{
+                    $addtime = 36*$timezone;
+                    }
 
     $dbconn = $this->login();
 

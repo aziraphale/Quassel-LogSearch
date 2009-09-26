@@ -7,6 +7,15 @@ $backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) requi
 #$backend = "sqlite";   // php-version with PDO Driver for SQLite 3.x required
 
 //
+//  timezone
+//  Difference to Greenwich time (GMT) in hours
+//  Example: +0100 = MET
+//  summertime will be choosen automaticly by the server.
+//
+
+$timezone = "+0100";
+
+//
 // postgresql data; (just examples, please edit)
 // needed if backend postgresql
 //

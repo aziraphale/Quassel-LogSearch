@@ -93,6 +93,15 @@ function buffername($bufferid){
 
 
 function moreinfo($bufferid,$messageid,$types){
+        //timezone support
+        require('config.php');
+             // summer || winter ?
+             if(date('I')){
+                $addtime = 36*($timezone+100);
+                }else{
+                    $addtime = 36*$timezone;
+                    }
+
             if($types == 0){    // choose type
             $type_string = ' AND "type" IN (1,4)';
             }else{
@@ -138,6 +147,14 @@ function moreinfo($bufferid,$messageid,$types){
     }
 
 function moremore($bufferid,$messageid,$state,$types){
+        //timezone support
+        require('config.php');
+             // summer || winter ?
+             if(date('I')){
+                $addtime = 36*($timezone+100);
+                }else{
+                    $addtime = 36*$timezone;
+                    }
             if($types == 0){    // choose type
             $type_string = ' AND "type" IN (1,4)';
             }else{

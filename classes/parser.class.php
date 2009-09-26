@@ -103,13 +103,15 @@ class parser{
     
     
     function parse($search_ary,$user,$types,$more=0){
-         // summer || winter ?
-         if(date('I')){
-            $addtime = 3600*2;
-            }else{
-                $addtime = 3600;
-                }
-        
+        //timezone support
+        require('config.php');
+             // summer || winter ?
+             if(date('I')){
+                $addtime = 36*($timezone+100);
+                }else{
+                    $addtime = 36*$timezone;
+                    }
+
            $output = "\n".'<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\');" title="show context">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;'; // hautpsuche
            // alle unterstützten types: 1,4,8,32,128,64,256,1024,16384
            switch(intval($search_ary["type"])){
