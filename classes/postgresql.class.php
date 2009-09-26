@@ -5,14 +5,14 @@ class backend extends parser{
 
 function login(){
     require("config.php");
-    if(!function_exists('pg_connect')){
+    if(!function_exists('pg_connect')){ // no connect no postgres
         echo '<b>Could not connect to database!<br>Could not find PostgreSQL Support (pgsql)!<br>Please check your PHP and install PostgreSQL Support (pgsql)</b>';
         exit();
         }
 
-    $conn = @pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host");
+    $conn = @pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host"); // suppress error and parse later
     
-    if($conn === false){
+    if($conn === false){    // parse error human readable
         echo '<b>Could not connect to database!<br>Connection failed!<br>Please edit/check your config.php - wrong backend chosen or wrong database-infos!</b>';
         exit;
         }else{
@@ -23,7 +23,7 @@ function login(){
 function search_backend($input_string,$time_string,$search_zeug,$number,$type=0){   
     $dbconn = $this->login();
         
-        if($type == 0){
+        if($type == 0){ // choose type
             $type_string = ' AND "type" IN (1,4)';
             }else{
                 $type_string = ' AND "type" IN (1,4,8,32,64,128,256,512,1024,16384)';
@@ -34,25 +34,15 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
         $result = pg_prepare($dbconn, 'sender', 'SELECT sender FROM sender WHERE senderid = $1');
         $i=0;
         $result = @pg_execute($dbconn, 'my_query', $search_zeug);
-            if(empty($result)){
+            if(empty($result)){ // leer
                 echo '<center>Invalid request.</center>';
                 }
 
             
-        // summer || winter ?
-         if(date('I')){
-            $addtime = 3600*2;
-            }else{
-                $addtime = 3600;
-                }
-
-        while($search_ary = @pg_fetch_array($result)) {
-
-         $db_qry = @pg_execute($dbconn, 'sender', array($search_ary['senderid']));
-
+        while($search_ary = @pg_fetch_array($result)) { // jede zeile parsen und sender bestimmen
+           $db_qry = @pg_execute($dbconn, 'sender', array($search_ary['senderid']));
            $user = explode ( '!', @pg_fetch_result ($db_qry, 0, 0) );
-           
-           $output .= $this->parse($search_ary,$user,$type);
+           $output .= $this->parse($search_ary,$user,$type);    //parse everything.
            $i++; 
             }
     
@@ -103,7 +93,7 @@ function buffername($bufferid){
 
 
 function moreinfo($bufferid,$messageid,$types){
-            if($types == 0){
+            if($types == 0){    // choose type
             $type_string = ' AND "type" IN (1,4)';
             }else{
                 $type_string = ' AND "type" IN (1,4,8,32,64,128,256,512,1024,16384)';
@@ -139,7 +129,7 @@ function moreinfo($bufferid,$messageid,$types){
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
-           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
+           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';   //parse
            $downid = $search_ary["messageid"];
     }
     $output .= '<span style="display:none;" id="down'.$messageid.'">'.$downid.'</span>'; // more down
@@ -148,7 +138,7 @@ function moreinfo($bufferid,$messageid,$types){
     }
 
 function moremore($bufferid,$messageid,$state,$types){
-            if($types == 0){
+            if($types == 0){    // choose type
             $type_string = ' AND "type" IN (1,4)';
             }else{
                 $type_string = ' AND "type" IN (1,4,8,32,64,128,256,512,1024,16384)';
@@ -156,11 +146,10 @@ function moremore($bufferid,$messageid,$state,$types){
     $dbconn = $this->login();
     $result2 = pg_prepare($dbconn, "sender", 'SELECT sender FROM sender WHERE senderid = $1');
 
-    if($state=='up'){
+    if($state=='up'){   // if want newer
     
     $result = pg_query($dbconn,"SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid > $messageid order by messageid ASC limit 9");
-   
-    
+
     while($search_ary = pg_fetch_array($result)){
         $array[] = $search_ary;
             }
@@ -178,9 +167,9 @@ function moremore($bufferid,$messageid,$state,$types){
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
-           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font>' . $this->parse($search_ary,$user,$types,1) . '</font><br>';
-        }}else{
-            
+           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font>' . $this->parse($search_ary,$user,$types,1) . '</font><br>';  //parse
+        }}else{ // else want older
+
                 $result = @pg_query($dbconn,"SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid < $messageid order by messageid DESC limit 9");
 
             while($search_ary = @pg_fetch_array($result)){
@@ -189,10 +178,7 @@ function moremore($bufferid,$messageid,$state,$types){
                    $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
                    $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
                    $lastid = $search_ary["messageid"];
-            }
-            
-            
-            }
+            }}
     
     return array($output,$lastid);
     pg_close($dbconn);

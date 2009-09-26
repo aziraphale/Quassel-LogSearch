@@ -6,7 +6,7 @@ class backend extends parser {
 function login(){
     require("config.php");
 
-        if(!class_exists('PDO')){
+        if(!class_exists('PDO')){ // no pdo no sqlite3
             echo '<b>Could not connect to database!<br>Could not find PDO Driver for SQLite 3.x!<br>Please check your PHP and dependencies</b>';
             exit();
             }
@@ -14,12 +14,11 @@ function login(){
     try {
     $conn = new PDO("sqlite:$sqlitedb");
     }
-    catch(PDOException $e) {
+    catch(PDOException $e) {    // getMessage (human readable)
         echo '<b>Could not connect to database!<br>&nbsp;&nbsp;&nbsp;PHP-error: '.$e->getMessage().'!<br>Please edit/check your config.php - wrong backend chosen or wrong database-path - and check dependencies!</b>';
         exit;
     }
     return $conn;
-
     }
 
 function search_backend($input_string,$time_string,$search_zeug,$number,$type=0){   
@@ -40,14 +39,13 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
 
         foreach($result as $search_ary) {
 
-
            $result2 = $dbconn->query('SELECT sender FROM sender WHERE senderid = '. $search_ary['senderid']);
            foreach($result2 as $search_ary2) {
                 $user = $search_ary2[0];
                 }
            $user = explode ( '!',$user);
            $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
-           $output .= $this->parse($search_ary,$user,$type);
+           $output .= $this->parse($search_ary,$user,$type);    //parse everything
            $i++; 
            }
 
@@ -81,7 +79,6 @@ function bufferids($userid){
     foreach($result as $search_ary) {
         $array[] = $search_ary[0] .'||'. $search_ary[1].'||'. $search_ary[2];
         }
-
     return $array;
     $dbconn = NULL;
     }
@@ -148,7 +145,7 @@ function moreinfo($bufferid,$messageid,$types=0){
                 }
             $user = explode ( '!',$user);
             $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
-            $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
+            $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';//parse
             $downid = $search_ary["messageid"];
     }
     $output .= '<span style="display:none;" id="down'.$messageid.'">'.$downid.'</span>'; // more down
@@ -160,20 +157,15 @@ function moremore($bufferid,$messageid,$state,$types=0){
 
     $dbconn = $this->login();
 
-    if($state=='up'){
+    if($state=='up'){   // if want newer
     
-$result = $dbconn->query("SELECT * FROM backlog WHERE  (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid > $messageid order by messageid ASC limit 9");
+    $result = $dbconn->query("SELECT * FROM backlog WHERE  (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid > $messageid order by messageid ASC limit 9");
    
     if(empty($result)){
         die;}
     foreach($result as $search_ary) {
         $array[] = $search_ary;
             }
-
-    foreach($result as $search_ary) {
-        $array[] = $search_ary;
-            }
-
     if(empty($array)){
         die;}
 
@@ -190,8 +182,8 @@ $result = $dbconn->query("SELECT * FROM backlog WHERE  (type = 1 OR  type = 4) A
                 }
             $user = explode ( '!',$user);
            $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
-           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="'.$hl.'"' . $this->parse($search_ary,$user,$types,1) . '</font><br>';
-        }}else{
+           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="'.$hl.'"' . $this->parse($search_ary,$user,$types,1) . '</font><br>';   //parse
+        }}else{ // else want older
 
 $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 9");
     if(empty($result)){
@@ -205,7 +197,7 @@ $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AN
             $user = explode ( '!',$user);
             $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
             $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;' . $this->parse($search_ary,$user,$types,1) . '<br>';
-    $lastid = $search_ary["messageid"];
+    $lastid = $search_ary["messageid"]; //more down
     }
 
 

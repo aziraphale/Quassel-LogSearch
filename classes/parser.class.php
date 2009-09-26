@@ -11,8 +11,9 @@ class parser{
         }
     
     function mirc($line){
-        // mirc-formatierung
-        $line = ' '.$line.' ';
+        // mirc-formatierung - evil!
+        $line = ' '.$line.' ';  // regexworkaround
+        //vars,vars,vars ...
         $i = 1;
         $m = 1;
         $l = 1;
@@ -21,7 +22,7 @@ class parser{
         $lock = 0;
         while($i!=0 OR $m !=0){
             $lock++;
-            if($lock == 100){
+            if($lock == 100){   // endlosschleife verhindern, sollte nicht passieren, aber sicher ist sicher
                 //DEBUG echo 'ENDLOS!!!';
                 break;
                 }
@@ -39,6 +40,7 @@ class parser{
             $posfe = strpos($line,'',0);
             $posfa = strpos($line,'',0);
             $posen = strpos($line,'',0);
+                // weitermachen, selbst wenn eins 0 ist.
                 if($posfe === FALSE){
                     $i = 0;
                     $posfe = 1001;}
@@ -61,29 +63,29 @@ class parser{
                     $line = preg_replace('//', '', $line,1,$i); // aufräumen
                         $n++;
                     }else{
-                        if($j%2 == 0 AND $n%2 == 0){
+                        if($j%2 == 0 AND $n%2 == 0){    // beide schließen
                             $line = preg_replace('//', '</b></font>', $line,1,$l);
                             if($l == 1){
                                 $j++;
                                 $n++;
                                 continue;
                                 }
-                            }elseif($j%2 == 0){
+                            }elseif($j%2 == 0){ //nur fett
                                 $line = preg_replace('//', '</b>', $line,1,$l);
                                 if($l == 1){
                                     $j++;
                                     continue;
                                     }
-                                }elseif($n%2 == 0){
+                                }elseif($n%2 == 0){ //nur farbe
                                     $line = preg_replace('//', '</font>', $line,1,$l);
                                     if($l == 1){
                                         $n++;
                                         continue;
         }}}}
-        if($j%2 == 0){
+        if($j%2 == 0){  // noch was offen?
             $line = $line.'</b>';
             }
-        if($n%2 == 0){
+        if($n%2 == 0){  //noch was offen?
             $line = $line.'</font>';
             }
 
@@ -101,8 +103,15 @@ class parser{
     
     
     function parse($search_ary,$user,$types,$more=0){
-           $output = "\n".'<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\');" title="show context">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;';
-           //alle unterstützten types
+         // summer || winter ?
+         if(date('I')){
+            $addtime = 3600*2;
+            }else{
+                $addtime = 3600;
+                }
+        
+           $output = "\n".'<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\');" title="show context">#&nbsp;</span><font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']</font>&nbsp;'; // hautpsuche
+           // alle unterstützten types: 1,4,8,32,128,64,256,1024,16384
            switch(intval($search_ary["type"])){
             //all
             case 1:
@@ -151,11 +160,11 @@ class parser{
                 $error ='ERROR!';
             }        
         
-        if(!empty($error)){
+        if(!empty($error)){ // wenn kein fehler vorkommt kanns weitergehen, ansonsten wir keine ausgabe gemacht.
             $output = '';
             }else{
-            if($more == 0){
-                $output = $output . $output1.'</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';
+            if($more == 0){ //hauptsuche oder more*
+                $output = $output . $output1.'</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';  //hauptsuche ende
                 }else{
                     $output = $output1;
                     }        

@@ -7,8 +7,8 @@
 class searchengine extends backend
 {
 
-function getmicrotime()
-    {
+function getmicrotime(){
+    //suchzeit berechnen
         list($usec, $sec) = explode(" ", microtime());
         return ((float)$usec + (float)$sec);
     }
@@ -37,11 +37,12 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
                 $search_zeug[] = '%'.$sonstwas.'%';
                 $i++;
             }
-         }else{
+         }else{ // regex
             $input_string  .= 'AND message ~* $1';
             $search_zeug[] = $input;
             }
-
+        
+        // zeitspannensuche?
         if(!empty($time_start) AND $time_start != "Starttime"){
             $time_string .= ' AND time > $'.$i.'AT TIME ZONE \'UTC\'';
             $i++;
@@ -53,7 +54,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_end));
             }
 
-        // sqlite workaround
+        // sqlite workaround-block
         if($backend == "sqlite"){
                 $method = 'LIKE';
                 $input = strtolower($input); // sqlite workaround: also search caseinsensitive
@@ -64,7 +65,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
                 $search_zeug[] = '%'.$sonstwas.'%';
                 $i++;
             }
-            $time_string = $time_start . '||' . $time_end;
+            $time_string = $time_start . '||' . $time_end;  //zusammenwurschten
             }
 
 
@@ -77,7 +78,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             if($outputary[1] == 0){
                 $output .=  '<center>No results found for "'.$input.'" - please try another searchstring.</center>';}
 
-    $Endzeit = $this->getmicrotime();
+    $Endzeit = $this->getmicrotime();   //zeit berechnen
     $output .= '<br><br><div style="font-size:6pt;text-align:center;">'.$outputary[1].' results in ' . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . ' seconds.</div>';
 
   return $output;
