@@ -170,7 +170,6 @@ $result = $dbconn->query("SELECT * FROM backlog WHERE  (type = 1 OR  type = 4) A
         $array[] = $search_ary;
             }
 
-    $i=count($array);
     foreach($result as $search_ary) {
         $array[] = $search_ary;
             }
@@ -213,7 +212,7 @@ $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AN
             }
     
     return array($output,$lastid);
-    pg_close($dbconn);
+    $dbconn = NULL;
     }
 
 
