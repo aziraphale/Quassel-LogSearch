@@ -102,7 +102,7 @@ class parser{
         }
     
     
-    function parse($search_ary,$user,$types,$more=0){
+    function parse($search_ary,$usern,$types,$more=0){
         //timezone support
         require('config.php');
              // summer || winter ?
@@ -117,30 +117,30 @@ class parser{
            switch(intval($search_ary["type"])){
             //all
             case 1:
-                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;'.$user[0].'&gt;</font>&nbsp;' . $this->format($search_ary["message"]);
+                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;'.$usern[0].'&gt;</font>&nbsp;' . $this->format($search_ary["message"]);
                 break;
             // /me
             case 4:
-                $output1 .= '<font style="color:#0000ff;">&nbsp;-*-</font>&nbsp;<b>'.$user[0].'</b> ' . $this->format($search_ary["message"]);
+                $output1 .= '<font style="color:#0000ff;">&nbsp;-*-</font>&nbsp;<b>'.$usern[0].'</b> ' . $this->format($search_ary["message"]);
                 break;
            //nickchange
            case 8:
-                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;-&gt;</font>&nbsp;<b>'.$user[0].'</b> is known as <b>' . $this->format($search_ary["message"]).'</b>';
+                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;-&gt;</font>&nbsp;<b>'.$usern[0].'</b> is known as <b>' . $this->format($search_ary["message"]).'</b>';
                 break;
             //join
             case 32:
-                $output1 .= '<font style="color:#0000ff;">&nbsp;--&gt;</font>&nbsp;<b>'.$user[0].'</b> has joined ' . $this->format($search_ary["message"]);
+                $output1 .= '<font style="color:#0000ff;">&nbsp;--&gt;</font>&nbsp;<b>'.$usern[0].'</b> has joined ' . $this->format($search_ary["message"]);
                 break;
            //quit
             case 128:
-                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;--</font>&nbsp;<b>'.$user[0].'</b> has quit (' . $this->format($search_ary["message"]).')';
+                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;--</font>&nbsp;<b>'.$usern[0].'</b> has quit (' . $this->format($search_ary["message"]).')';
                 break;
             case 64:
-                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;--</font>&nbsp;<b>'.$user[0].'</b> has quit (' . $this->format($search_ary["message"]).')';
+                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;--</font>&nbsp;<b>'.$usern[0].'</b> has quit (' . $this->format($search_ary["message"]).')';
                 break;
            //kick
             case 256:
-                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;-*</font>&nbsp;<b>'.$user[0].'</b> has kicked <b>'.substr($search_ary["message"],0,strpos($search_ary["message"]," ")).'</b> (' . str_replace('"','',substr($search_ary["message"],strpos($this->format($search_ary["message"]),' ')+1)).')';
+                $output1 .= '<font style="color:#0000ff;">&nbsp;&lt;-*</font>&nbsp;<b>'.$usern[0].'</b> has kicked <b>'.substr($search_ary["message"],0,strpos($search_ary["message"]," ")).'</b> (' . str_replace('"','',substr($search_ary["message"],strpos($this->format($search_ary["message"]),' ')+1)).')';
                 break;
             //topic  
             case 1024:
