@@ -23,5 +23,11 @@ class debug {
         }
     
     }
+    
+class no_debug {
+
+    function debug($type,$string){}
+    
+    }
 
 ?>

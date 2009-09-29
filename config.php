@@ -36,4 +36,16 @@ $timezone = "+0100";
 
 $sqlitedb = "/path/to/quassel-storage.sqlite";
 
+
+//
+//
+//  debug (pro only)
+//
+//
+//  enable debuger, if errors occure to get full php-error-output; for normal users default-error-handling should do it
+//  throws out lots of messages and also logs error. just for testing not for use!
+//
+
+$debug = "normal"; // set to "debug" to enable debuging-class
+
 ?>
