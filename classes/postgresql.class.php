@@ -61,8 +61,11 @@ function login_backend($usern,$pwdn){
 
     // login
     $db_qry = pg_query($dbconn,"SELECT userid FROM quasseluser WHERE username = '$usern' AND password = '$pwdn';");
-    
-    return @pg_fetch_result ($db_qry, 0, 0);
+
+    if(pg_num_rows($db_qry)==0){
+            return FALSE;
+        }else{
+            return @pg_fetch_result ($db_qry, 0, 0);}
     pg_close($dbconn);
     }
 
@@ -126,7 +129,9 @@ function moreinfo($bufferid,$messageid,$types){
             $output .= '<span style="display:none;" id="up'.$messageid.'">'.$search_ary["messageid"].'</span>'; // more up
             }
         $i--;
-        if($i==0){$hl='color:black;';}
+        if($i == 0){$hl = 'color:black;';
+            }else{
+                $hl = '';}
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );

@@ -1,9 +1,11 @@
 <?php
 require_once('debuger.php');
-     $search = $_REQUEST['search'];
-     if((!isset($userid)) or empty($userid)){    
+    if(isset($_REQUEST['search'])){
+     $search = $_REQUEST['search'];}
+     if((!isset($userid)) or empty($userid)){
+         if(isset($_REQUEST['userid'])){
          $userid = intval($_REQUEST['userid']);
-         }
+         }}
 
 // startet searching?          
 if((!isset($search)) or empty($search)){

@@ -41,8 +41,15 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             $input_string  .= 'AND message ~* $1';
             $search_zeug[] = $input;
             }
-        
+
         // zeitspannensuche?
+        if(strtotime($time_start) === false){   //valid?
+            $time_start = NULL;
+            }
+        if(strtotime($time_end) === false){ //valid?
+            $time_end = NULL;
+            }
+
         if(!empty($time_start) AND $time_start != "Starttime"){
             $time_string .= ' AND time > $'.$i.'AT TIME ZONE \'UTC\'';
             $i++;

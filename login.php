@@ -1,10 +1,15 @@
 <?php
 require_once('debuger.php');
 if (session_id() == ""){
-    session_start();
+    @session_start();
 }
 
+
 // active session?
+if(!isset($sessions) or empty($sessions)){
+    $sessions = 0;
+    }
+
 if($sessions == 1){
     $usern = $_SESSION['usern']; 
     $pwdn = $_SESSION['pwdn'];    
