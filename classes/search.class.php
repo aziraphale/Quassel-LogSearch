@@ -26,7 +26,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
         //prepare vars
         $search_zeug[] = $bufferid;
 
-
+        $input_string = '';
         //regex braucht kein externes or, wer regex nutz, soll auch das or so machen ;)
         if($regex != 'true'){
              $method = 'ILIKE';
@@ -53,6 +53,8 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             $i++;
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_end));
             }
+
+        $time_string = '';
 
         // sqlite workaround-block
         if($backend == "sqlite"){

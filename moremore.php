@@ -1,4 +1,5 @@
 <?
+    require_once('debuger.php');
     require("config.php");
     require_once('classes/parser.class.php');
     require_once('classes/'.$backend.'.class.php');

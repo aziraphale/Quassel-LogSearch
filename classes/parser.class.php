@@ -103,6 +103,7 @@ class parser{
     
     
     function parse($search_ary,$usern,$types,$more=0){
+        $output1 = '';
         //timezone support
         require('config.php');
              // summer || winter ?

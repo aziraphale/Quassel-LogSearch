@@ -22,6 +22,7 @@ function login(){
 
 function search_backend($input_string,$time_string,$search_zeug,$number,$type=0){   
     $dbconn = $this->login();
+        $output = '';
         
         if($type == 0){ // choose type
             $type_string = ' AND "type" IN (1,4)';
@@ -93,6 +94,7 @@ function buffername($bufferid){
 
 
 function moreinfo($bufferid,$messageid,$types){
+        $output = '';
         //timezone support
         require('config.php');
              // summer || winter ?
@@ -147,6 +149,11 @@ function moreinfo($bufferid,$messageid,$types){
     }
 
 function moremore($bufferid,$messageid,$state,$types){
+        $output = '';
+        $lastid = '';
+        if(empty($messageid)){
+            die();
+            }
         //timezone support
         require('config.php');
              // summer || winter ?
@@ -166,7 +173,7 @@ function moremore($bufferid,$messageid,$state,$types){
     if($state=='up'){   // if want newer
     
     $result = pg_query($dbconn,"SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid > $messageid order by messageid ASC limit 9");
-
+    $array = array();
     while($search_ary = pg_fetch_array($result)){
         $array[] = $search_ary;
             }

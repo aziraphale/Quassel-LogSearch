@@ -1,5 +1,5 @@
 <?php
-
+require_once('debuger.php');
      $search = $_REQUEST['search'];
      if((!isset($userid)) or empty($userid)){    
          $userid = intval($_REQUEST['userid']);

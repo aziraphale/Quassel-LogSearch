@@ -29,7 +29,7 @@ if(!empty($array2[0])){
    if($i != $array2[2]){
     echo '<optgroup label="'.$backendclass->networkname($array2[2]).'">';
     }
-   echo '<option'.$echob.' value="'.$array2[1].'">'.$array2[0].'</option>';
+   echo '<option value="'.$array2[1].'">'.$array2[0].'</option>';
    $i= $array2[2];    
    }}
 

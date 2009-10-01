@@ -1,11 +1,11 @@
 <?php
 //debug class - optional
 
-class debug {
-    
+class debughandler {
+
     function debug($type,$string) {
         // nimmt fehler auf, leitet richtig weiter und gibt aus
-        switch $type {
+        switch($type) {
             case 1: // normale fehler
             $error = '';
             break;
@@ -16,18 +16,19 @@ class debug {
             $error = '<br>::DEBUG:: '.$string.' ::DEBUG::<br>';
             break;
             default:
-            die('Fatal Error - Unknown Errortype!')
+            die('Fatal Error - Unknown Errortype!');
             } 
-        
+
         return $error;
         }
-    
-    }
-    
-class no_debug {
 
-    function debug($type,$string){}
-    
+    }
+
+class no_debughandler {
+        
+    function debug($type,$string){
+        }
+
     }
 
 ?>

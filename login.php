@@ -1,5 +1,8 @@
 <?php
-@session_start();
+require_once('debuger.php');
+if (session_id() == ""){
+    session_start();
+}
 
 // active session?
 if($sessions == 1){
