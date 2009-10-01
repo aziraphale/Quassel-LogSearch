@@ -21,4 +21,6 @@ if($debug == 'debug'){
     }else{
         $debuger = new no_debughandler();
         }
+        echo $fu;
+$debuger->debug();
 ?>

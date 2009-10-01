@@ -1,32 +1,31 @@
 <?php
 //debug class - optional
-
+$debug = "debug";
 class debughandler {
 
-    function debug($type,$string) {
+    function debug($type=0,$string=0) {
         // nimmt fehler auf, leitet richtig weiter und gibt aus
         switch($type) {
-            case 1: // normale fehler
-            $error = '';
-            break;
-            case 2: // oop
-            $error = '';
-            break;
-            case 3: // debugdurchleitung
-            $error = '<br>::DEBUG:: '.$string.' ::DEBUG::<br>';
+            case 0: // backtrace fehler
+                $array = error_get_last();
+                echo ':: <b>BT</b> ::<br><div style="margin-left:20px;margin-top:-0px">';
+                     exception_error_handler($array['type'], $array['message'], $array['file'], $array['line']);
+                echo '<pre style="margin-left:20px;margin-top:-0px">';
+                     debug_print_backtrace();
+                echo '</pre></div>';
             break;
             default:
             die('Fatal Error - Unknown Errortype!');
             } 
 
-        return $error;
+        return;
         }
 
     }
 
 class no_debughandler {
         
-    function debug($type,$string){
+    function debug($type=0,$string=0){
         }
 
     }
