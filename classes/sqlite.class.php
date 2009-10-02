@@ -21,16 +21,18 @@ function login(){
     return $conn;
     }
 
-function search_backend($input_string,$time_string,$search_zeug,$number,$type=0){   
+function search_backend($input_string,$time_string,$search_zeug,$number,$type=0){
+    $output = '';
+    $search_ary = '';
     $dbconn = $this->login();
 
         $timeary = explode ('||',$time_string);
         $time_string ='';        
-        if(!empty($timeary[0]) AND $timeary[0] != "Starttime"){
+        if(!empty($timeary[0])){
             $time_string = ' AND time > "' .strtotime($timeary[0]).'"';
         }       
 
-        if(!empty($timeary[1]) AND $timeary[1] != "Endtime"){
+        if(!empty($timeary[1])){
             $time_string .= ' AND time < "' .strtotime($timeary[1]).'"';
         }
         $buffers = array_shift($search_zeug);
@@ -44,14 +46,16 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
                 $user = $search_ary2[0];
                 }
            $user = explode ( '!',$user);
-           $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
+           $search_ary['time'] = date("r",$search_ary['time']); // timeworkaround
            $output .= $this->parse($search_ary,$user,$type);    //parse everything
            $i++; 
            }
 
     $outputary[0] = $output;
     $outputary[1] = $i;
-    $outputary[2] = $search_ary["type"];
+    if(!count($search_ary)){
+        $outputary[2] = $search_ary['type'];
+        }
 
     return $outputary;
     $dbconn = NULL;
@@ -112,6 +116,8 @@ function buffername($bufferid){
 
 
 function moreinfo($bufferid,$messageid,$types=0){
+        $output = '';
+        $downid = '';
         //timezone support
         require('config.php');
              // summer || winter ?
@@ -135,14 +141,17 @@ function moreinfo($bufferid,$messageid,$types=0){
             $output .= '<span style="display:none;" id="up'.$messageid.'">'.$search_ary["messageid"].'</span>'; // more up
             }
         $i--;
-        if($i==0){$hl='color:black;';}
+        if($i==0){
+            $hl='color:black;';
+            }else{
+                $hl = NULL;}
            $result2 = $dbconn->query('SELECT sender FROM sender WHERE senderid = '. $search_ary['senderid']);
            foreach($result2 as $search_ary2) {
                 $user = $search_ary2[0];
                 }
             $user = explode ( '!',$user);
            $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
-           $output .= '<font class="date" style="color:c3c3c3;'.$hl.'">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="'.$hl.'"' . $this->parse($search_ary,$user,$types,1) . '</font><br>';
+           $output .= '<font class="date" style="color:c3c3c3;'.$hl.'">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="'.$hl.'">' . $this->parse($search_ary,$user,$types,1) . '</font><br>';
         }
 
         $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 8");
@@ -162,6 +171,8 @@ function moreinfo($bufferid,$messageid,$types=0){
     }
 
 function moremore($bufferid,$messageid,$state,$types=0){
+        $output = '';
+        $lastid = '';
         //timezone support
         require('config.php');
              // summer || winter ?
@@ -198,7 +209,7 @@ function moremore($bufferid,$messageid,$state,$types=0){
                 }
             $user = explode ( '!',$user);
            $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
-           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font style="'.$hl.'"' . $this->parse($search_ary,$user,$types,1) . '</font><br>';   //parse
+           $output .= '<font class="date" style="color:c3c3c3;">['.date("H:i:s d.m.y",$addtime +strtotime($search_ary["time"])).']&nbsp;</font><font>' . $this->parse($search_ary,$user,$types,1) . '</font><br>';   //parse
         }}else{ // else want older
 
 $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 9");
