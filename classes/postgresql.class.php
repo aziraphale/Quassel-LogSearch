@@ -1,5 +1,10 @@
 <?php
+//
+//      Quassel Backlog Search - classes
+//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//
 
+// backend-class for postgresql support
 require_once('classes/parser.class.php');
 class backend extends parser{
 
