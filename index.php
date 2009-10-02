@@ -1,13 +1,14 @@
 <?php
 // start silent session
-@session_start();
+if (session_id() == ""){
+    @session_start();
+}
 
 include_once('style/header.php');
 
 // php not to old?
 if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OOP
-     echo '<b>Your php-Version is too old - please update at least to 5.1!</b>';
-     exit;
+     die('<b>Your php-Version is too old - please update at least to 5.1!</b>');
 }
 
 
