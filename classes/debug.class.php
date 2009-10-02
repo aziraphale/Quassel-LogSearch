@@ -11,13 +11,20 @@ class debughandler {
                      debug_print_backtrace();
                 echo '</pre></div>';
         }
-
+        
+    function timeerror($string){
+                echo '::<b>DEBUG</b>:: Invalid timeformat given in <i>'.$string.'</i> - will be ignored!<br>';
+        }
+        
     function debug($type=0,$string=0) {
         // nimmt fehler auf, leitet richtig weiter und gibt aus
         switch($type) {
             case 0: // backtrace fehler
                 $this->backtrace();
-            break;
+                break;
+            case 1: // timeerror
+                $this->timeerror($string);
+                break;
             default:
             die('Fatal Error - Unknown Errortype!');
             } 
@@ -30,6 +37,9 @@ class debughandler {
 class no_debughandler {
 
     function backtrace(){
+        }
+    
+    function timeerror($string){
         }
 
     function debug($type=0,$string=0){

@@ -26,4 +26,10 @@ if($debug == 'debug'){
     }else{  //set no handler => no errors.
         $debuger = new no_debughandler();
         }
+
+function debug($type=0,$string=0){  //pipe to debug()
+    $GLOBALS['debuger']->debug($type,$string);
+    return;
+    }
+    
 ?>

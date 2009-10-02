@@ -44,18 +44,20 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
 
         // zeitspannensuche?
         if(strtotime($time_start) === false){   //valid?
+            debug(1,$time_start);
             $time_start = NULL;
             }
         if(strtotime($time_end) === false){ //valid?
+            debug(1,$time_end);
             $time_end = NULL;
             }
 
-        if(!empty($time_start) AND $time_start != "Starttime"){
+        if(!empty($time_start)){
             $time_string .= ' AND time > $'.$i.'AT TIME ZONE \'UTC\'';
             $i++;
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_start));
             }
-        if(!empty($time_end) AND $time_end != 'Endtime'){
+        if(!empty($time_end)){
             $time_string .= ' AND time < $'.$i.'AT TIME ZONE \'UTC\'';
             $i++;
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_end));
