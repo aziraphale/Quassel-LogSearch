@@ -11,23 +11,25 @@ require('classes/debug.class.php');
 
 // define error-handler
 function exception_error_handler($errno, $errstr, $errfile, $errline) {
+        //log in hourly changing logfiles
         $fp = fopen ('debug-'.date('d-m-Y-H').'.log','a+');
         fwrite ($fp,$errstr.' - '.array_pop(explode('/',$errfile)).':'.$errline.' ('.$errno.')'."\n");
         fclose ($fp);
         $array = explode('/',$errfile);
+    //print error but dont die (only if fatal)
     echo '::<b>DEBUG</b>:: <i>'.$errstr.'</i> - '.array_pop($array).':'.$errline.' ('.$errno.')<br>';
     return;
 }
 
-// switch debug:normal
+// switch debugfull:debug:normal
 if($debug == 'debugfull'){
-    set_error_handler("exception_error_handler", -1);    //set handler
-    $debuger = new debughandler();
+    set_error_handler("exception_error_handler", -1);    //set fullhandler
+    $debuger = new debughandler();  //set for further debuging and backtracing debug-objekt
     }elseif($debug == 'debug'){
         set_error_handler("exception_error_handler", E_ALL^E_STRICT);    //set handler
-        $debuger = new debughandler();
+        $debuger = new debughandler();  //set for further debuging and backtracing debug-objekt
         }else{  //set no handler => no errors.
-            $debuger = new no_debughandler();
+            $debuger = new no_debughandler();   //set empty object to avoid debuging
             }
 
 function debug($type=0,$string=0){  //pipe to debug()
