@@ -1,5 +1,10 @@
 <?php
 //
+// config-file for Quassel Backlog Search
+//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//
+
+//
 // choose backend postgresql or sqlite (simple remove and/or add #)
 //
 
@@ -20,11 +25,11 @@ $timezone = "+0100";
 // needed if backend postgresql
 //
 
- $host = "localhost";
- $port = "5432";
- $user = "quassel";
- $password = "somepassword";
- $dbname = "quassel";
+$host = "localhost";
+$port = "5432";
+$user = "quassel";
+$password = "somepassword";
+$dbname = "quassel";
  
  
 //
@@ -38,7 +43,6 @@ $sqlitedb = "/path/to/quassel-storage.sqlite";
 
 
 //
-//
 //  debug (pro only)
 //
 //
@@ -46,6 +50,6 @@ $sqlitedb = "/path/to/quassel-storage.sqlite";
 //  throws out lots of messages and also logs error. just for testing not for use!
 //
 
-$debug = "normal"; // set to "debug" to enable debuging-class
+$debug = "release"; // set to "debug" to enable debuging-class
 
 ?>
