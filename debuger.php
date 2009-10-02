@@ -20,12 +20,15 @@ function exception_error_handler($errno, $errstr, $errfile, $errline) {
 }
 
 // switch debug:normal
-if($debug == 'debug'){
-    set_error_handler("exception_error_handler", E_ALL);    //set handler
+if($debug == 'debugfull'){
+    set_error_handler("exception_error_handler", -1);    //set handler
     $debuger = new debughandler();
-    }else{  //set no handler => no errors.
-        $debuger = new no_debughandler();
-        }
+    }elseif($debug == 'debug'){
+        set_error_handler("exception_error_handler", E_ALL^E_STRICT);    //set handler
+        $debuger = new debughandler();
+        }else{  //set no handler => no errors.
+            $debuger = new no_debughandler();
+            }
 
 function debug($type=0,$string=0){  //pipe to debug()
     $GLOBALS['debuger']->debug($type,$string);
