@@ -1,6 +1,6 @@
 <div style="width:100%; background: #6699cc;color:white;" >
 <!-- menu -->
-<a style="position:absolute; top:0px;right:0px;margin:10px;" href="javascript:Request('scontent','about.php');">about</a>
+<span style="position:absolute; top:0px;right:0px;margin:10px;"><a href="logout.php">logout</a>&nbsp;|&nbsp;<a href="javascript:Request('scontent','about.php');">about</a></span>
 <span id="load" style="display:none;position:absolute; top:5px;left:5px;z-index:99"><img src="style/loading.gif" style="border:1px solid black;"></span>
 <img style="position:relative;float:left;margin:10px;margin-bottom:-20px; margin-right:60px;" alt="" src="style/quassel.png">
 <div style="overflow:none; float:left; ">
