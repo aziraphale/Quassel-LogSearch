@@ -22,7 +22,7 @@
     require_once('classes/'.$backend.'.class.php');
     $backendclass=new backend();
     $array = $backendclass->bufferids($userid);
-
+$i = NULL;
 foreach($array as $string){
 $array2 = explode('||',$string);
 if(!empty($array2[0])){
@@ -30,7 +30,7 @@ if(!empty($array2[0])){
     echo '<optgroup label="'.$backendclass->networkname($array2[2]).'">';
     }
    echo '<option value="'.$array2[1].'">'.$array2[0].'</option>';
-   $i= $array2[2];    
+   $i = $array2[2];    
    }}
 
 ?>
