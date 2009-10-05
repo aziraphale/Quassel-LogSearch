@@ -6,7 +6,7 @@
         javascript:document.getElementById('input').focus();
     //-->
 </script>
-<br><select  title="Chat to search" style="float:left;position:relative;z-index:99;" id="buffer" name="buffername" size="1">
+<br><select title="Chat to search" style="float:left;position:relative;z-index:99;" id="buffer" name="buffername" size="1">
 <?php
 
     require("config.php");

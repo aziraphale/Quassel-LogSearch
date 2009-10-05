@@ -1,0 +1,1 @@
+<br><br><a href="logout.php">logout</a>&nbsp;|&nbsp;<a href="javascript:Request('scontent','about.php');">about</a></center></div></body></html>

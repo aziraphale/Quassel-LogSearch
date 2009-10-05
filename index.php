@@ -40,6 +40,10 @@ if(isset($_SESSION['pwdn']) OR !empty($_SESSION['pwdn'])){
                 include_once('loginform.php');
                 }
 
-include_once('style/footer.php');
-
+//mobile footer
+if($mobile){
+    include_once('style/footer.mobile.php');
+    }else{
+        include_once('style/footer.php');
+        }
 ?>
