@@ -10,12 +10,19 @@ if (session_id() == ""){
 }
 
 
+$mobile = FALSE;
 // mobile umleitung
 if(preg_match('/(IEMobile|Windows CE|NetFront|PlayStation|PLAYSTATION|like Mac OS X|MIDP|UP\.Browser|Symbian|Nintendo|Pocket|Mobile|Portable|Smartphone|SDA|PDA|Handheld|WAP|Palm|Avantgo|cHTML|BlackBerry|Opera\.Mini|Nokia)/', $_SERVER['HTTP_USER_AGENT'])){
-    die('Mobile version under construction!');
+    $mobile = TRUE;
+    $_SESSION['mobile'] = TRUE;
     }
 
-include_once('style/header.php');
+//mobile header
+if($mobile){
+    include_once('style/header.mobile.php');
+    }else{
+        include_once('style/header.php');
+        }
 
 // php not to old?
 if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OOP

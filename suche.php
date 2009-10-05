@@ -5,17 +5,22 @@
 //
 
 require_once('debuger.php');
+
     if(isset($_REQUEST['search'])){
-     $search = $_REQUEST['search'];}
-     if((!isset($userid)) or empty($userid)){
+         $search = $_REQUEST['search'];
+         }
+    if((!isset($userid)) or empty($userid)){
          if(isset($_REQUEST['userid'])){
          $userid = intval($_REQUEST['userid']);
          }}
 
-// startet searching?          
+// started searching?          
 if((!isset($search)) or empty($search)){
 
-    include('searchhead.php');
+    if((isset($mobile) OR isset($_SESSION['mobile'])) AND ($mobile == TRUE OR $_SESSION['mobile'] == TRUE)){
+        include('searchhead.mobile.php');
+        }else{
+            include('searchhead.php');}
 
 }else{
      $input = stripslashes($_REQUEST['string']);
