@@ -17,6 +17,11 @@ if(preg_match('/(IEMobile|Windows CE|NetFront|PlayStation|PLAYSTATION|like Mac O
     $_SESSION['mobile'] = TRUE;
     }
 
+// make sure both vars are set.
+if((isset($_SESSION['mobile'])) AND $_SESSION['mobile'] == TRUE){
+    $mobile = TRUE;
+    }
+
 //mobile header
 if($mobile){
     include_once('style/header.mobile.php');
