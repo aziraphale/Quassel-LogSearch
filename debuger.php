@@ -12,7 +12,7 @@ ini_set('html_errors', 0);
 // include classes
 require('config.php');
 require('classes/debug.class.php');
-//$debug = 'debugfull';
+
 // define error-handler
 function exception_error_handler($errno, $errstr, $errfile, $errline) {
         //log in hourly changing logfiles
