@@ -4,6 +4,7 @@
 //      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
+require_once('debuger.php');
 // start silent session
 if (session_id() == ""){
     @session_start();
@@ -20,7 +21,16 @@ if(preg_match('/(IEMobile|Windows CE|NetFront|PlayStation|PLAYSTATION|like Mac O
 // make sure both vars are set.
 if((isset($_SESSION['mobile'])) AND $_SESSION['mobile'] == TRUE){
     $mobile = TRUE;
+    }else{
+        $mobile = FALSE
+        }
+
+// want normal?
+if((isset($_REQUEST['force_standard'])) AND $_REQUEST['force_standard'] == TRUE){
+    $mobile = FALSE;
+    $_SESSION['mobile'] = FALSE;
     }
+
 
 //mobile header
 if($mobile){
@@ -35,7 +45,7 @@ if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OO
 }
 
 
-// active session or login-try?
+// active session or login-try or none?
 if(isset($_SESSION['pwdn']) OR !empty($_SESSION['pwdn'])){
     $sessions = 1;
     include_once('login.php');
