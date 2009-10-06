@@ -49,7 +49,7 @@ if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OO
 if(isset($_SESSION['pwdn']) OR !empty($_SESSION['pwdn'])){
     $sessions = 1;
     include_once('login.php');
-    }elseif($_REQUEST['login']==true){
+    }elseif((isset($_REQUEST['login'])) AND $_REQUEST['login'] == TRUE){
             include_once('login.php');
             }else{
                 include_once('loginform.php');
