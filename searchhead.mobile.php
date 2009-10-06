@@ -26,7 +26,7 @@ if(!empty($array2[0])){
 
 ?>
 </select>&nbsp;&nbsp;<input type="submit" value="Search!" class="button">
-<input type="hidden" id="number" name="number" value="100">
+<input type="hidden" id="number" name="number" value="50">
 <input type="hidden" id="time_start" name="time_start" value="">
 <input type="hidden" id="time_end" name="time_end" value="">
 <input type="checkbox" id="regexid" name="regexid" style="display:none;">
