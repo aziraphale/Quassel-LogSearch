@@ -48,8 +48,10 @@ if($userid == 0){
         }else{
     $_SESSION['usern'] = $usern;
     $_SESSION['pwdn'] = $pwdn;
+    $loggedin = TRUE;    
 
     include('suche.php');
+
     echo '<br><span id="footer">developed by <a href="http://m4yer.minad.de/?page=5" target="_blank" style="color:#33333">m4yer</a> 2009;</span><br>';
 }
 

@@ -1,1 +1,7 @@
-<a href="logout.php">logout</a>&nbsp;|&nbsp;<a href="index.php?force_standard=TRUE">standard</a>&nbsp;|&nbsp;<a href="javascript:Request('scontent','about.php');">about</a></center></div><br><br></body></html>
+<?php
+    if((isset($loggedin)) AND $loggedin == TRUE){
+        ?>
+<a href="logout.php">logout</a>&nbsp;|&nbsp;<a href="index.php?force_standard=TRUE">standard</a>&nbsp;|&nbsp;<a href="javascript:Request('scontent','about.php');">about</a>
+<?
+    }
+?></center></div><br><br></body></html>
