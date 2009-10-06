@@ -4,9 +4,23 @@
 //      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
+if (session_id() == ""){    //session, immer wichtig, va böse wenn man sie vergisst ...
+    @session_start();
+}
+    if((isset($_SESSION['mobile'])) AND $_SESSION['mobile'] == TRUE){ // externe vars für konstruktor
+        $mobile = TRUE;
+        }
+
 // message parsing-class
 class parser{
-    
+
+    var $mobile;
+
+    function __construct(){ //konstruktor prüft, ob mobile oder nicht
+        if(isset($GLOBALS['mobile'])){
+        $this->mobile=$GLOBALS['mobile'];
+        }}
+
     function make_link($text){
         //klickbare links
         $ret = ' ' . $text;
@@ -168,17 +182,18 @@ class parser{
              // böse, das kann theoretisch garnicht passieren ...
                 $error ='ERROR!';
             }        
-        
         if(!empty($error)){ // wenn kein fehler vorkommt kanns weitergehen, ansonsten wir keine ausgabe gemacht.
             $output = '';
             }else{
-            if($more == 0){ //hauptsuche oder more*
+            if($this->mobile == TRUE){ //mobile braucht kein datum und more usw ...
+                $output = $output1.'<br>';
+            }elseif($more == 0){ //hauptsuche oder more*
                 $output = $output . $output1.'</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';  //hauptsuche ende
                 }else{
                     $output = $output1;
                     }        
         }
-        
+
         return $output;
         }    
 
