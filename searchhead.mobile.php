@@ -1,5 +1,5 @@
 <div style="width:100%; background: #6699cc;color:white;" ><center><form onsubmit="javascript:such(); return false" action="#">
-<span style="font-size: 9pt;color:white;">Quassel Backlog Search</span><br><br>
+<span style="font-size: 11pt;font-weight:bold;color:white;margin:3px;">Quassel Backlog Search</span><br>
 <input value="" id="input" size="40" type="text"">
 <script type="text/javascript">
     <!--
@@ -25,6 +25,6 @@ if(!empty($array2[0])){
    }}
 
 ?>
-</select><br><input type="submit" value="Search!" class="button"></div>
+</select><br><input type="submit" value="Search!" class="button">
 </form></center></div>
 <div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 5px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center>Waiting for search ...</center></font></div></div>
