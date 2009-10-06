@@ -27,7 +27,7 @@ if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OO
     if((isset($_SESSION['mobile'])) AND $_SESSION['mobile'] == TRUE){
         $mobile = TRUE;
         }else{
-            $mobile = FALSE
+            $mobile = FALSE;
             }
     
     // want normal?
