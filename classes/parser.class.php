@@ -185,13 +185,16 @@ class parser{
         if(!empty($error)){ // wenn kein fehler vorkommt kanns weitergehen, ansonsten wir keine ausgabe gemacht.
             $output = '';
             }else{
-            if($this->mobile == TRUE){ //mobile braucht kein datum und more usw ...
-                $output = $output1.'<br>';
-            }elseif($more == 0){ //hauptsuche oder more*
-                $output = $output . $output1.'</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';  //hauptsuche ende
-                }else{
-                    $output = $output1;
-                    }        
+            if($more == 1){ // is more*?
+                $output = $output1;
+                if($this->mobile == TRUE){ // message in new line in more if mobile
+                    $output = '<br>'.$output;
+                    }
+                }elseif($this->mobile == TRUE){ //mobile braucht kein datum und more usw ...
+                    $output = '<div class="wrap" id="d'. $search_ary[0] .'"><span onclick="moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\');" title="show context">#&nbsp;</span>'.$output1.'</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';
+                    }else{ //hauptsuche
+                        $output = $output . $output1.'</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';  //hauptsuche ende
+                        }       
         }
 
         return $output;
