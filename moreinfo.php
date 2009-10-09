@@ -16,9 +16,9 @@
     $messageid = $_REQUEST['messageid'];
     $types = $_REQUEST['types'];
 ?>
-<div style="margin:5px;"><span title="hide context" onclick="document.getElementById('m<?=$messageid?>').style.display = 'none'; document.getElementById('d<?=$messageid?>').style.display = 'block';">#</span> <?php
-echo $backend ->buffername($bufferid);?><br><span onclick="moreup('<?=$messageid?>','<?=$bufferid?>','up','<?=$types?>')">&and; more</span><div id="wantmore<?=$messageid?>"><?
+<div style="margin:5px;"><a title="hide context" href="javascript:close_more(<?=$messageid?>)">#</a> <?php
+echo $backend ->buffername($bufferid);?><br><a href="javascript:moreup('<?=$messageid?>','<?=$bufferid?>','up','<?=$types?>')">&and; more</a><div id="wantmore<?=$messageid?>"><?
 
 echo $backend ->moreinfo($bufferid,$messageid,$types);
 
-?></div><span onclick="moredown('<?=$messageid?>','<?=$bufferid?>','down','<?=$types?>')">&or; more</span><div id="wantmore<?=$messageid?>"></div>
+?></div><a href="javascript:moredown('<?=$messageid?>','<?=$bufferid?>','down','<?=$types?>')">&or; more</a><div id="wantmore<?=$messageid?>"></div>

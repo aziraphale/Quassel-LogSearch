@@ -82,3 +82,7 @@
                 document.getElementById('buffer').size=4;
                 document.getElementById('buffer').multiple=true;
         }}
+
+      function close_more(messageid){
+        document.getElementById('m'+messageid).style.display = 'none';
+        document.getElementById('d'+messageid).style.display = 'block';}
