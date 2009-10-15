@@ -22,7 +22,7 @@
 
 
      function Request(divid,page)     {
-             document.getElementById(divid).innerHTML = '<span id="load" style="display:none;position:absolute; top:5px;left:5px;z-index:99"><img src="style/loading.gif" style="border:1px solid black;"></span>';
+             //document.getElementById(divid).innerHTML = '<span id="load" style="display:none;position:absolute; top:5px;left:5px;z-index:99"><img src="style/loading.gif" style="border:1px solid black;"></span>';
              new Ajax.Updater(divid, page, {asynchronous:true, evalScripts:true});}
 
 
@@ -34,7 +34,7 @@
             ary.push(document.getElementById('buffer').options[i].value);
         }     }
 
-             document.getElementById('scontent').innerHTML = '<center><img src="style/loading.gif"></center>';
+             //document.getElementById('scontent').innerHTML = '<center><img src="style/loading.gif"></center>';
              new Ajax.Updater('scontent', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked, {asynchronous:true, evalScripts:true});
              }
 
