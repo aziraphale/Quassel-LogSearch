@@ -192,7 +192,7 @@ class parser{
                         $hl = ' style="color:c3c3c3;"';}
                 $output = '<div class="wrap"><div class="cell"'.$hl.'><font class="date" style="color:inherit;">['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>&nbsp;</div>'.$output1.'</div>';
                 if($this->mobile == TRUE){ // message in new line in more if mobile
-                    $output = '<br>'.$output1;
+                    $output = '<font class="date" style="color:inherit;">['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>'.$output1;
                     }
                 }elseif($this->mobile == TRUE){ //mobile braucht kein datum und more usw ...
                     $output = '<div class="wrap" id="d'. $search_ary[0] .'"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\');" title="show context">#&nbsp;</a>'.$output1.'</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';

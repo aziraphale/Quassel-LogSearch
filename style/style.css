@@ -39,8 +39,7 @@ body {
 
 .nick {
     display:table-cell;
-    //max-width:100px;
-    min-width:100px;
+    min-width:120px;
     text-align:right;
     color:#0000ff;
     }
