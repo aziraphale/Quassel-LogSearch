@@ -20,6 +20,14 @@ $backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) requi
 
 $timezone = "+0100";
 
+
+//
+// dateformat
+// for help see: http://php.net/manual/en/function.date.php#format
+//
+
+$dateformat = "d.m.y H:i:s";
+
 //
 // postgresql data; (just examples, please edit)
 // needed if backend postgresql
