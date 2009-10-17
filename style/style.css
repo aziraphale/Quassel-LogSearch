@@ -30,6 +30,19 @@ body {
     white-space: -o-pre-wrap; /* Opera 7 */
     word-wrap: break-word; /* Internet Explorer 5.5+ */
     width: 99%;
+    display:table-row;
+    }
+
+.cell {
+    display:table-cell;
+    }
+
+.nick {
+    display:table-cell;
+    //max-width:100px;
+    min-width:100px;
+    text-align:right;
+    color:#0000ff;
     }
     
 .date{
