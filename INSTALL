@@ -7,8 +7,8 @@ To install simply copy the complete data to a folder reachable via http
 
 The php-version must be at least 5.1 and with PostgreSQL Support (pgsql) OR PDO Driver for SQLite 3.x. 
 
-To finish just configure the "config.php" for your system ( read the 
-comments there for help )
+To finish just generate and configure the "config.php" for your system. 
+There is a "config.php.sample", read the comments there for help.
 
 Now everything should run. Simply point your browser to the index.php, 
 enter your quassel login details and enjoy an easy way to search!
