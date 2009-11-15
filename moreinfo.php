@@ -25,8 +25,8 @@
             }
 ?>
 <div style="margin:5px;"><a title="hide context" href="javascript:close_more(<?=$messageid?>)">#</a> <?php
-echo $backend ->buffername($bufferid);?><br><a href="javascript:moreup('<?=$messageid?>','<?=$bufferid?>','<?=$up?>','<?=$types?>','<?=$sorting?>')">&and; more</a><div id="wantmore<?=$messageid?>"><?
+echo $backend ->buffername($bufferid);?><br><a href="javascript:moreup('<?=$messageid?>','<?=$bufferid?>','<?=$up?>','<?=$types?>','<?=$sorting?>')"><img style="float:left;" src="style/format-text-direction-rtl.png"> more</a><div style="clear:left;" id="wantmore<?=$messageid?>"><?
 
 echo $backend ->moreinfo($bufferid,$messageid,$types,$sorting);
 
-?></div><a href="javascript:moredown('<?=$messageid?>','<?=$bufferid?>','<?=$down?>','<?=$types?>','<?=$sorting?>')">&or; more</a><div id="wantmore<?=$messageid?>"></div>
+?></div><a href="javascript:moredown('<?=$messageid?>','<?=$bufferid?>','<?=$down?>','<?=$types?>','<?=$sorting?>')"><img style="float:left;" src="style/format-text-direction-ltr.png"> more</a><div style="clear:left;" id="wantmore<?=$messageid?>"></div>
