@@ -35,7 +35,7 @@
         }     }
 
              //document.getElementById('scontent').innerHTML = '<center><img src="style/loading.gif"></center>';
-             new Ajax.Updater('scontent', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked, {asynchronous:true, evalScripts:true});
+             new Ajax.Updater('scontent', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true});
              }
 
 
@@ -82,6 +82,7 @@
                 document.getElementById('buffer').size=4;
                 document.getElementById('buffer').multiple=true;
         }}
+        
 
       function close_more(messageid){
         document.getElementById('m'+messageid).style.display = 'none';

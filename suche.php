@@ -30,6 +30,7 @@ if((!isset($search)) or empty($search)){
      $time_end = trim($_REQUEST['time_end']);
      $regex = $_REQUEST['regexid'];
      $types = $_REQUEST['types'];
+     $sorting = $_REQUEST['sorting'];
     require_once('classes/search.class.php');
     $search=new searchengine(); 
 if($types == 'true'){
@@ -37,7 +38,11 @@ if($types == 'true'){
     }else{
         $types = 1;
         }
-        
+if($sorting == 'true'){
+    $sorting = 1;
+    }else{
+        $sorting = 0;
+        }        
 
 echo $search->search($bufferid, $input,$number,$time_start,$time_end,$regex,$types,$sorting);
 
