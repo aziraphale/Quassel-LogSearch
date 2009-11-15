@@ -48,7 +48,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
         while($search_ary = @pg_fetch_array($result)) { // jede zeile parsen und sender bestimmen
            $db_qry = @pg_execute($dbconn, 'sender', array($search_ary['senderid']));
            $user = explode ( '!', @pg_fetch_result ($db_qry, 0, 0) );
-           $output[] = $this->parse($search_ary,$user,$type);    //parse everything.
+           $output[] = $this->parse($search_ary,$user,$type,0,0,$sorting);    //parse everything.
            $i++; 
             }
     
@@ -106,8 +106,9 @@ function buffername($bufferid){
     }
 
 
-function moreinfo($bufferid,$messageid,$types){
-        $output = '';
+function moreinfo($bufferid,$messageid,$types,$sorting=0){
+        $output = NULL;
+        $output1 = NULL;
         //timezone support
         require('config.php');
              // summer || winter ?
@@ -145,7 +146,7 @@ function moreinfo($bufferid,$messageid,$types){
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
-           $output .= $this->parse($search_ary,$user,$types,1,$hl);   //parse
+           $output1[]= $this->parse($search_ary,$user,$types,1,$hl,$sorting);   //parse
         }
         
         
@@ -155,15 +156,18 @@ function moreinfo($bufferid,$messageid,$types){
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
-           $output .= $this->parse($search_ary,$user,$types,1);   //parse
+           $output1[]= $this->parse($search_ary,$user,$types,1,0,$sorting);   //parse
            $downid = $search_ary["messageid"];
     }
-    $output .= '<span style="display:none;" id="down'.$messageid.'">'.$downid.'</span>'; // more down
+        if($sorting == 1){
+        $output1 = array_reverse($output1);}
+        $output1 = implode('',$output1);
+    $output .= $output1.'<span style="display:none;" id="down'.$messageid.'">'.$downid.'</span>'; // more down
     return $output;
     pg_close($dbconn);
     }
 
-function moremore($bufferid,$messageid,$state,$types){
+function moremore($bufferid,$messageid,$state,$types,$sorting=0){
         $output = '';
         $lastid = '';
         if(empty($messageid)){
@@ -206,7 +210,7 @@ function moremore($bufferid,$messageid,$state,$types){
          $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
 
            $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
-           $output .= $this->parse($search_ary,$user,$types,1);   //parse
+           $output[] = $this->parse($search_ary,$user,$types,1);   //parse
         }}else{ // else want older
 
                 $result = @pg_query($dbconn,"SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid < $messageid order by messageid DESC limit 9");
@@ -215,10 +219,10 @@ function moremore($bufferid,$messageid,$state,$types){
                    $db_qry2 = pg_execute($dbconn, "sender", array($search_ary["senderid"]));
         
                    $user = explode ( '!', pg_fetch_result ($db_qry2, 0, 0) );
-                   $output .= $this->parse($search_ary,$user,$types,1);   //parse
+                   $output[] = $this->parse($search_ary,$user,$types,1);   //parse
                    $lastid = $search_ary["messageid"];
             }}
-    
+
     return array($output,$lastid);
     pg_close($dbconn);
     }

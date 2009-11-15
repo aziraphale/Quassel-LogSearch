@@ -15,10 +15,18 @@
     $bufferid = $_REQUEST['bufferid'];
     $messageid = $_REQUEST['messageid'];
     $types = $_REQUEST['types'];
+    $sorting = $_REQUEST['sorting'];
+    if($sorting == 1){
+        $down = 'up';
+        $up = 'down';
+        }else{
+            $down = 'down';
+            $up = 'up';
+            }
 ?>
 <div style="margin:5px;"><a title="hide context" href="javascript:close_more(<?=$messageid?>)">#</a> <?php
-echo $backend ->buffername($bufferid);?><br><a href="javascript:moreup('<?=$messageid?>','<?=$bufferid?>','up','<?=$types?>')">&and; more</a><div id="wantmore<?=$messageid?>"><?
+echo $backend ->buffername($bufferid);?><br><a href="javascript:moreup('<?=$messageid?>','<?=$bufferid?>','<?=$up?>','<?=$types?>','<?=$sorting?>')">&and; more</a><div id="wantmore<?=$messageid?>"><?
 
-echo $backend ->moreinfo($bufferid,$messageid,$types);
+echo $backend ->moreinfo($bufferid,$messageid,$types,$sorting);
 
-?></div><a href="javascript:moredown('<?=$messageid?>','<?=$bufferid?>','down','<?=$types?>')">&or; more</a><div id="wantmore<?=$messageid?>"></div>
+?></div><a href="javascript:moredown('<?=$messageid?>','<?=$bufferid?>','<?=$down?>','<?=$types?>','<?=$sorting?>')">&or; more</a><div id="wantmore<?=$messageid?>"></div>

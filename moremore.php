@@ -15,8 +15,13 @@
     $state = $_REQUEST['state'];
     $base = $_REQUEST['base'];
     $types = $_REQUEST['types'];
+    $sorting = $_REQUEST['sorting'];
         
 $array = $backend ->moremore($bufferid,$messageid,$state,$types);
+        if($sorting == 1){
+        $array[0] = array_reverse($array[0]);}
+        
+        $array[0] = implode('',$array[0]);
 echo $array[0];
 //echo $bufferid,$messageid,$state;
 ?>

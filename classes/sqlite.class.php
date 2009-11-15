@@ -52,7 +52,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
                 }
            $user = explode ( '!',$user);
            $search_ary['time'] = date("r",$search_ary['time']); // timeworkaround
-           $output[] = $this->parse($search_ary,$user,$type);    //parse everything
+           $output[] = $this->parse($search_ary,$user,$type,0,0,$sorting);    //parse everything
            $i++; 
            }
 
@@ -123,8 +123,9 @@ function buffername($bufferid){
     }
 
 
-function moreinfo($bufferid,$messageid,$types=0){
+function moreinfo($bufferid,$messageid,$types=0,$sorting=0){
         $output = '';
+        $output1 =NULL;
         $downid = '';
         //timezone support
         require('config.php');
@@ -159,7 +160,7 @@ function moreinfo($bufferid,$messageid,$types=0){
                 }
             $user = explode ( '!',$user);
            $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
-           $output .= $this->parse($search_ary,$user,$types,1,$hl);
+           $output1[] = $this->parse($search_ary,$user,$types,1,$hl);
         }
 
         $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 8");
@@ -170,15 +171,18 @@ function moreinfo($bufferid,$messageid,$types=0){
                 }
             $user = explode ( '!',$user);
             $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
-            $output .= $this->parse($search_ary,$user,$types,1);
+            $output1[] = $this->parse($search_ary,$user,$types,1);
             $downid = $search_ary["messageid"];
     }
-    $output .= '<span style="display:none;" id="down'.$messageid.'">'.$downid.'</span>'; // more down
+    if($sorting == 1){
+        $output1 = array_reverse($output1);}
+        $output1 = implode('',$output1);
+    $output .= $output1.'<span style="display:none;" id="down'.$messageid.'">'.$downid.'</span>'; // more down
     return $output;
     $dbconn = NULL;
     }
 
-function moremore($bufferid,$messageid,$state,$types=0){
+function moremore($bufferid,$messageid,$state,$types=0,$sorting=0){
         $output = '';
         $lastid = '';
         //timezone support
@@ -217,7 +221,7 @@ function moremore($bufferid,$messageid,$state,$types=0){
                 }
             $user = explode ( '!',$user);
            $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
-           $output .= $this->parse($search_ary,$user,$types,1);
+           $output[] = $this->parse($search_ary,$user,$types,1);
         }}else{ // else want older
 
 $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AND bufferid = $bufferid AND messageid < $messageid order by messageid DESC limit 9");
@@ -231,7 +235,7 @@ $result = $dbconn->query("SELECT * FROM backlog WHERE (type = 1 OR  type = 4) AN
                 }
             $user = explode ( '!',$user);
             $search_ary["time"] = date("r",$search_ary["time"]); // timeworkaround
-            $output .= $this->parse($search_ary,$user,$types,1);
+            $output[] = $this->parse($search_ary,$user,$types,1);
     $lastid = $search_ary["messageid"]; //more down
     }
 
