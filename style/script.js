@@ -20,6 +20,15 @@
      function leer(check){
      }
 
+    function readCookie(name) {
+    	var nameEQ = name + "=";
+    	var ca = document.cookie.split(';');
+    	for(var i=0;i < ca.length;i++) {
+    		var c = ca[i];
+    		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);}
+    	return null;}
+
 
      function Request(divid,page)     {
              //document.getElementById(divid).innerHTML = '<span id="load" style="display:none;position:absolute; top:5px;left:5px;z-index:99"><img src="style/loading.gif" style="border:1px solid black;"></span>';
@@ -36,6 +45,7 @@
 
              //document.getElementById('scontent').innerHTML = '<center><img src="style/loading.gif"></center>';
              new Ajax.Updater('scontent', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true});
+             document.cookie = 'saves=' + document.getElementById('regexid').checked +':'+ document.getElementById('types').checked +':'+ document.getElementById('sorting').checked;
              }
 
 
@@ -97,3 +107,28 @@
       function close_more(messageid){
         document.getElementById('m'+messageid).style.display = 'none';
         document.getElementById('d'+messageid).style.display = 'block';}
+
+
+     function loadconf(){
+        var saves = readCookie('saves');
+        if(saves != 'false:true:false'){
+            var saves = saves.split(':');
+            
+            for (var i = 0; i < saves.length; ++i){
+                if(saves[i] == "true"){
+                    saves[i] = true;
+                     }else{
+                        saves[i]= false;
+                        }
+                }
+            document.getElementById('regexid').checked = saves[0];
+            document.getElementById('types').checked = saves[1];
+            document.getElementById('sorting').checked = saves[2];
+            if(saves[2] = true){
+                document.getElementById('sortlink').src="style/view-sort-descending.png";
+                }
+            if(readCookie('saves') != 'false:true:true'){
+                show_a_search();
+                }
+            }
+        }

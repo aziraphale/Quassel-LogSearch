@@ -14,4 +14,4 @@
     <script type="text/javascript" src="style/prototype.js"></script>
     <script type="text/javascript" src="style/scriptaculous.js?load=effects,builder"></script>
     <script type="text/javascript" src="style/script.js"></script>
-</head><body onload="document.getElementById('input').focus();"><div id="bodyid">
+</head><body onload="document.getElementById('input').focus();loadconf();"><div id="bodyid">
