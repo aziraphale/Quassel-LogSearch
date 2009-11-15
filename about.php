@@ -1,5 +1,5 @@
 <div style="margin:-18px;float:right;height:50px; width:50px; right:0px;top:0px;position:relative;z-index:10;background-color:white;"><span style="float:right;margin: 3px;" onclick="javascript:document.getElementById('scontent').innerHTML = '<center>Waiting for search ...</center>';">[ x ]</span></div><center>
-<b style="font-size:13pt;">Quassel Backlog Search</b><br><br style="line-height:5pt;">
+<a style="font-size:13pt;" target="_blank" href="http://m4yer.minad.de/quassel/">Quassel Backlog Search</a><br><br style="line-height:5pt;">
 <?
 if(is_dir('.git')){
     echo 'Version: ';
@@ -21,9 +21,9 @@ $array[] = $file;
     echo '<br>on '.@exec('quasselcore --version');
 ?>
 <br><br><br><br>
-A webbased <b>Quassel-Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.
+A webbased <b>Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.
 <br>
-<b>Quassel Backlog Search</b> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">Creative Commons Licence</a>.
+<a target="_blank" href="http://m4yer.minad.de/quassel/">Quassel Backlog Search</a> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">Creative Commons Licence</a>.
 <br>developed and copyright 2009 by <a href="http://m4yer.minad.de/?page=5" target="_blank">m4yer</a>.
 <br><br><br><br>
 <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a> is a modern, cross-platform, distributed IRC client.<br>
