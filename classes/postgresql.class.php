@@ -25,9 +25,9 @@ function login(){
             }
     }
 
-function search_backend($input_string,$time_string,$search_zeug,$number,$type=0){   
+function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0){   
     $dbconn = $this->login();
-        $output = '';
+        $output = NULL;
         
         if($type == 0){ // choose type
             $type_string = ' AND "type" IN (1,4)';
@@ -48,9 +48,14 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
         while($search_ary = @pg_fetch_array($result)) { // jede zeile parsen und sender bestimmen
            $db_qry = @pg_execute($dbconn, 'sender', array($search_ary['senderid']));
            $user = explode ( '!', @pg_fetch_result ($db_qry, 0, 0) );
-           $output .= $this->parse($search_ary,$user,$type);    //parse everything.
+           $output[] = $this->parse($search_ary,$user,$type);    //parse everything.
            $i++; 
             }
+    
+    if($sorting == 1){
+        $output = array_reverse($output);}
+        
+    $output = implode('',$output);
     
     $outputary[0] = $output;
     $outputary[1] = $i;

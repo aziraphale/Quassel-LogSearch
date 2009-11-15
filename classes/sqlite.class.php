@@ -26,8 +26,8 @@ function login(){
     return $conn;
     }
 
-function search_backend($input_string,$time_string,$search_zeug,$number,$type=0){
-    $output = '';
+function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0){
+    $output = NULL;
     $search_ary = '';
     $dbconn = $this->login();
 
@@ -52,11 +52,14 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0)
                 }
            $user = explode ( '!',$user);
            $search_ary['time'] = date("r",$search_ary['time']); // timeworkaround
-           $output .= $this->parse($search_ary,$user,$type);    //parse everything
+           $output[] = $this->parse($search_ary,$user,$type);    //parse everything
            $i++; 
            }
 
-    $outputary[0] = $output;
+    if($sorting == 1){
+        $output = array_reverse($output);}
+        
+    $outputary[0] = implode('',$output);
     $outputary[1] = $i;
     if(!count($search_ary)){
         $outputary[2] = $search_ary['type'];

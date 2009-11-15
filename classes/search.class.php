@@ -18,7 +18,7 @@ function getmicrotime(){
         return ((float)$usec + (float)$sec);
     }
 
-function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=1){
+function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=1,$sorting=0){
     require("config.php");
      $Anfangszeit = $this->getmicrotime();
     if(empty($bufferid)){
@@ -87,7 +87,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
 
 
             // search with backend
-            $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types);
+            $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types,$sorting);
             
             $output = $outputary[0];
 

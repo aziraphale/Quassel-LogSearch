@@ -39,7 +39,7 @@ if($types == 'true'){
         }
         
 
-echo $search->search($bufferid, $input,$number,$time_start,$time_end,$regex,$types);
+echo $search->search($bufferid, $input,$number,$time_start,$time_end,$regex,$types,$sorting);
 
 }
 ?>    
