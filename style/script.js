@@ -87,11 +87,11 @@
             if(document.getElementById('sorting').checked == true){
                 document.getElementById('sorting').checked=false;
                 such();
-                document.getElementById('sortlink').innerHTML="asc";
+                document.getElementById('sortlink').src="style/view-sort-ascending.png";
             }else{
                 document.getElementById('sorting').checked=true;
                 such();
-                document.getElementById('sortlink').innerHTML="desc";
+                document.getElementById('sortlink').src="style/view-sort-descending.png";
         }}
 
       function close_more(messageid){
