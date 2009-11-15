@@ -43,8 +43,8 @@ if(!empty($array2[0])){
     <input title="Excepts any english timeformat" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
     <input title="Excepts any english timeformat" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
 <br>
-<label for="sorting"title="Switch between DESC and ASC-Sorting; Default: DESC">ASC sorting<input name="sorting" type="checkbox" id="sorting">
-<span onclick="multiple();" style="margin-right:0px;float:left;" title="Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once.">Switch multiple<input type="checkbox" style="visibility:hidden"></span>
+<label for="sorting">ASC sorting</label><input name="sorting" type="checkbox" id="sorting" title="Switch between DESC and ASC-Sorting; Default: DESC">
+<span onclick="multiple();" style="margin-left:15px;" title="Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once.">Switch multiple</span>
 <div style="clear:both;<? if($backend == "sqlite"){ echo ' display:none;"'; } ?>><label for="regexid">Regex:</label><input type="checkbox" name="regexid" id="regexid" title="search with regular expression" style="margin-right:15px;">
 <label for="types">Only messages:</label><input type="checkbox" name="types" id="types" title="search only messages - if _not_ checked joins,quits,... will be shown and searched" checked="checked"></div>
 
