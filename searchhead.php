@@ -43,11 +43,11 @@ if(!empty($array2[0])){
     <input title="Excepts any english timeformat" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
     <input title="Excepts any english timeformat" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
 <br>
-<label for="sorting">ASC sorting</label><input name="sorting" type="checkbox" id="sorting" title="Switch between DESC and ASC-Sorting; Default: DESC">
-<span onclick="multiple();" style="margin-left:15px;" title="Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once.">Switch multiple</span>
+<!--label for="sorting">ASC sorting</label--><input style="display:none;" name="sorting" type="checkbox" id="sorting" title="Switch between DESC and ASC-Sorting; Default: DESC">
+<span onclick="multiple();" style="margin-left:0px;" title="Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once.">Switch multiple</span>
 <div style="clear:both;<? if($backend == "sqlite"){ echo ' display:none;"'; } ?>><label for="regexid">Regex:</label><input type="checkbox" name="regexid" id="regexid" title="search with regular expression" style="margin-right:15px;">
 <label for="types">Only messages:</label><input type="checkbox" name="types" id="types" title="search only messages - if _not_ checked joins,quits,... will be shown and searched" checked="checked"></div>
 
 </div></form></div>
 </div><center>
-<div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 20px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center>Waiting for search ...</center></font></div></div>
+<div style="clear:both;width:100%;"><span onclick="sorting();" id="sortlink" style="position:absolute; right:3px;top:120px; z-index:9;">asc</span><div id="scontent" style="overflow:auto;padding: 20px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center>Waiting for search ...</center></font></div></div>

@@ -83,6 +83,16 @@
                 document.getElementById('buffer').multiple=true;
         }}
         
+     function sorting(){
+            if(document.getElementById('sorting').checked == true){
+                document.getElementById('sorting').checked=false;
+                such();
+                document.getElementById('sortlink').innerHTML="asc";
+            }else{
+                document.getElementById('sorting').checked=true;
+                such();
+                document.getElementById('sortlink').innerHTML="desc";
+        }}
 
       function close_more(messageid){
         document.getElementById('m'+messageid).style.display = 'none';

@@ -1,4 +1,4 @@
-<span style="float:right;margin: -10px;" onclick="javascript:document.getElementById('scontent').innerHTML = '<center>Waiting for search ...</center>';">[ x ]</span><center>
+<div style="margin:-18px;float:right;height:50px; width:50px; right:0px;top:0px;position:relative;z-index:10;background-color:white;"><span style="float:right;margin: 3px;" onclick="javascript:document.getElementById('scontent').innerHTML = '<center>Waiting for search ...</center>';">[ x ]</span></div><center>
 <b style="font-size:13pt;">Quassel Backlog Search</b><br><br style="line-height:5pt;">
 <?
 if(is_dir('.git')){
