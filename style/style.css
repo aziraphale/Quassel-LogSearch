@@ -31,10 +31,16 @@ body {
     word-wrap: break-word; /* Internet Explorer 5.5+ */
     width: 99%;
     display:table-row;
+    text-align:left;
     }
 
 .cell {
     display:table-cell;
+    text-align:left;
+    }
+    
+*.msg{
+    width:98%;
     }
 
 .nick {

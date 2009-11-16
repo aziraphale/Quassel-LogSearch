@@ -133,35 +133,35 @@ class parser{
                     $addtime = 36*$timezone;
                     }
 
-           $output = "\n".'<div style="display:table"><div class="wrap" id="d'. $search_ary[0] .'"><div class="cell"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="show context">#&nbsp;</a><font class="date" style="color:c3c3c3;">['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>&nbsp;</div>'; // hautpsuche
+           $output = "\n".'<div style="display:table;width:100%;"><div class="wrap" id="d'. $search_ary[0] .'"><div class="cell"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="show context">#&nbsp;</a><font class="date" style="color:c3c3c3;">['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>&nbsp;</div>'; // hautpsuche
            // alle unterstützten types: 1,4,8,32,128,64,256,1024,16384
            switch(intval($search_ary["type"])){
             //all
             case 1:
-                $output1 .= '<div class="nick">&nbsp;&lt;'.$usern[0].'&gt;&nbsp;</div><div class="cell">' . $this->format($search_ary["message"]).'</div>';
+                $output1 .= '<div class="nick">&nbsp;&lt;'.$usern[0].'&gt;&nbsp;</div><div class="msg cell"">' . $this->format($search_ary["message"]).'</div>';
                 break;
             // /me
             case 4:
-                $output1 .= '<div class="nick">&nbsp;-*-&nbsp;</div><div class="cell"><b>'.$usern[0].'</b> ' . $this->format($search_ary["message"]).'</div>';
+                $output1 .= '<div class="nick">&nbsp;-*-&nbsp;</div><div class="msg cell"><b>'.$usern[0].'</b> ' . $this->format($search_ary["message"]).'</div>';
                 break;
            //nickchange &lt;-&gt;
            case 8:
-                $output1 .= '<div class="nick">&lt;-&gt;&nbsp;</div><div class="cell"><b>'.$usern[0].'</b> is known as <b>' . $this->format($search_ary["message"]).'</b></div>';
+                $output1 .= '<div class="nick">&lt;-&gt;&nbsp;</div><div class="msg cell"><b>'.$usern[0].'</b> is known as <b>' . $this->format($search_ary["message"]).'</b></div>';
                 break;
             //join
             case 32:
-                $output1 .= '<div class="nick">--&gt;&nbsp;</div><div class="cell"><b>'.$usern[0].'</b> has joined ' . $this->format($search_ary["message"]).'</div>';
+                $output1 .= '<div class="nick">--&gt;&nbsp;</div><div class="msg cell"><b>'.$usern[0].'</b> has joined ' . $this->format($search_ary["message"]).'</div>';
                 break;
            //quit
             case 128:
-                $output1 .= '<div class="nick">&lt;--&nbsp;</div><div class="cell"><b>'.$usern[0].'</b> has quit (' . $this->format($search_ary["message"]).')</div>';
+                $output1 .= '<div class="nick">&lt;--&nbsp;</div><div class="msg cell"><b>'.$usern[0].'</b> has quit (' . $this->format($search_ary["message"]).')</div>';
                 break;
             case 64:
-                $output1 .= '<div class="nick">&lt;--&nbsp;</div><div class="cell"><b>'.$usern[0].'</b> has quit (' . $this->format($search_ary["message"]).')</div>';
+                $output1 .= '<div class="nick">&lt;--&nbsp;</div><div class="msg cell"><b>'.$usern[0].'</b> has quit (' . $this->format($search_ary["message"]).')</div>';
                 break;
            //kick
             case 256:
-                $output1 .= '<div class="nick">&lt;-*&nbsp;</div><div class="cell"><b>'.$usern[0].'</b> has kicked <b>'.substr($search_ary["message"],0,strpos($search_ary["message"]," ")).'</b> (' . str_replace('"','',substr($search_ary["message"],strpos($this->format($search_ary["message"]),' ')+1)).')</div>';
+                $output1 .= '<div class="nick">&lt;-*&nbsp;</div><div class="msg cell"><b>'.$usern[0].'</b> has kicked <b>'.substr($search_ary["message"],0,strpos($search_ary["message"]," ")).'</b> (' . str_replace('"','',substr($search_ary["message"],strpos($this->format($search_ary["message"]),' ')+1)).')</div>';
                 break;
             //topic  
             case 1024:
@@ -169,14 +169,14 @@ class parser{
                     $error ='ERROR!';
                     break;
                     }
-                $output1 .= '<div class="nick">&nbsp;*&nbsp;</div><div class="cell"><b>' .substr($search_ary["message"],0,strpos($search_ary["message"]," ")) . '</b> has changed the topic to: ' . $this->format(str_replace('"','',substr($search_ary["message"],strpos($search_ary["message"],'"')))).'</div>';
+                $output1 .= '<div class="nick">&nbsp;*&nbsp;</div><div class="msg cell"><b>' .substr($search_ary["message"],0,strpos($search_ary["message"]," ")) . '</b> has changed the topic to: ' . $this->format(str_replace('"','',substr($search_ary["message"],strpos($search_ary["message"],'"')))).'</div>';
                 break;
             case 16384:
                 if(trim(substr($search_ary["message"],0,strpos($search_ary["message"]," "))) == 'Topic' OR trim(substr($search_ary["message"],0,strpos($search_ary["message"]," "))) == 'Channel'){
                     $error ='ERROR!';
                     break;
                     }
-                $output1 .= '<div class="nick">&nbsp;*&nbsp;</div><div class="cell"><b>' .substr($search_ary["message"],0,strpos($search_ary["message"]," ")) . '</b> has changed the topic to: ' . $this->format(str_replace('"','',substr($search_ary["message"],strpos($search_ary["message"],'"')))).'</div>';
+                $output1 .= '<div class="nick">&nbsp;*&nbsp;</div><div class="msg cell"><b>' .substr($search_ary["message"],0,strpos($search_ary["message"]," ")) . '</b> has changed the topic to: ' . $this->format(str_replace('"','',substr($search_ary["message"],strpos($search_ary["message"],'"')))).'</div>';
                 break;
              default:
              // böse, das kann theoretisch garnicht passieren ...
