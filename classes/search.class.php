@@ -32,12 +32,17 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
         $search_zeug[] = $bufferid;
 
         $input_string = '';
+        $ssary = NULL;
         //regex braucht kein externes or, wer regex nutz, soll auch das or so machen ;)
         if($regex != 'true'){
              $method = 'ILIKE';
             $input_array = explode(' ',$input);
             $i=1;
             foreach($input_array AS $sonstwas){
+                if(preg_match_all("^((?<=(\S|.)ender=)|\n)[A-Za-z\_\|\^]+[A-Za-z0-9\_\|\^]*^",$sonstwas,$ssearch)){ //nicksuche?
+                    $ssary[] = '%'.$ssearch[0][0].'%';
+                    continue;
+                    }
                 $input_string  .= 'AND lower(message) '.$method.' $'. $i;
                 $search_zeug[] = '%'.$sonstwas.'%';
                 $i++;
@@ -76,7 +81,12 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
                 $input = strtolower($input); // sqlite workaround: also search caseinsensitive
             $i=1;
             $input_string = '';
+            $ssary = NULL;
             foreach($input_array AS $sonstwas){
+                if(preg_match_all("^((?<=(\S|.)ender=)|\n)[A-Za-z\_\|\^]+[A-Za-z0-9\_\|\^]*^",$sonstwas,$ssearch)){ //nicksuche?
+                    $ssary[] = '%'.$ssearch[0][0].'%';
+                    continue;
+                    }
                 $input_string  .= 'AND lower(message) '.$method.' "%'.$sonstwas.'%"';
                 $search_zeug[] = '%'.$sonstwas.'%';
                 $i++;
@@ -87,7 +97,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
 
 
             // search with backend
-            $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types,$sorting);
+            $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types,$sorting,$ssary);
             
             $output = $outputary[0];
 

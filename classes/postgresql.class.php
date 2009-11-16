@@ -25,7 +25,7 @@ function login(){
             }
     }
 
-function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0){   
+function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0,$ssary){
     $dbconn = $this->login();
         $output = NULL;
         
@@ -34,9 +34,24 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
             }else{
                 $type_string = ' AND "type" IN (1,4,8,32,64,128,256,512,1024,16384)';
                 }
+
+    $ssstring = NULL;
+    //nickssearch
+        if($ssary != NULL){
+            $result = pg_prepare($dbconn, 'senderids', 'SELECT senderid FROM sender WHERE sender ILIKE $1');
+            foreach($ssary as $sendernick){
+                $db_qry = pg_execute($dbconn, 'senderids', array($sendernick));
+                while($zwary = pg_fetch_array($db_qry)) {
+                    $ssstring[] = $zwary[0];
+                    }
+                }
+
+            $ssstring = ' AND senderid IN ('.implode(',',$ssstring).')';
+            }
+
         $buffers = array_shift($search_zeug);
     //prepare and execute search
-        $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE bufferid IN ('.$buffers.') '. $type_string. $input_string . $time_string .' order by messageid DESC limit ' . $number);
+        $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE bufferid IN ('.$buffers.') '. $type_string. $input_string . $time_string .$ssstring.' order by messageid DESC limit ' . $number);
         $result = pg_prepare($dbconn, 'sender', 'SELECT sender FROM sender WHERE senderid = $1');
         $i=0;
         $result = @pg_execute($dbconn, 'my_query', $search_zeug);

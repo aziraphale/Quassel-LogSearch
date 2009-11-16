@@ -26,7 +26,7 @@ function login(){
     return $conn;
     }
 
-function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0){
+function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0,$ssary){
     $output = NULL;
     $search_ary = '';
     $dbconn = $this->login();
@@ -40,8 +40,20 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
         if(!empty($timeary[1])){
             $time_string .= ' AND time < "' .strtotime($timeary[1]).'"';
         }
+    $ssstring = NULL;
+    //nickssearch
+        if($ssary != NULL){
+            foreach($ssary as $sendernick){
+                $db_qry = $dbconn->query('SELECT senderid FROM sender WHERE sender LIKE "'. $sendernick.'"');
+                foreach($db_qry as $zwary) {
+                    $ssstring[] = $zwary[0];
+                    }
+                }
+            $ssstring = ' AND senderid IN ('.implode(',',$ssstring).')';
+            }
+
         $buffers = array_shift($search_zeug);
-        $result = $dbconn->query('SELECT * FROM backlog WHERE ("type" = 1 OR  "type" = 4) AND bufferid IN ('.$buffers.') '. $input_string .$time_string. ' order by messageid DESC limit ' . $number);
+        $result = $dbconn->query('SELECT * FROM backlog WHERE ("type" = 1 OR  "type" = 4) AND bufferid IN ('.$buffers.') '. $input_string .$time_string.$ssstring. ' order by messageid DESC limit ' . $number);
         $i=0;
 
         foreach($result as $search_ary) {
