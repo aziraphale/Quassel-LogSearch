@@ -16,7 +16,7 @@ $array[] = $file;
     echo ' )';
     }else{
         //fallbackversion
-        echo 'Version: 0.4-rc1+';
+        echo 'Version: 0.4.1-rc1+';
         }
     echo '<br>on '.@exec('quasselcore --version');
 ?>
