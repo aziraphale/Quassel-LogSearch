@@ -197,7 +197,7 @@ class parser{
                 }elseif($this->mobile == TRUE){ //mobile braucht kein datum und more usw ...
                     $output = '<div class="wrap" id="d'. $search_ary[0] .'"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\');" title="show context">#&nbsp;</a>'.$output1.'</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div>';
                     }else{ //hauptsuche
-                        $output = $output . $output1.'</div></div><div style="display:table"><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div></div>';  //hauptsuche ende
+                        $output = $output . $output1.'</div></div><div style="display:table;width:100%;"><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">Loading...</div></div>';  //hauptsuche ende
                         }       
         }
 
