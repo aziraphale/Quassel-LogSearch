@@ -30,7 +30,7 @@ if($debug == 'debugfull'){
     set_error_handler("exception_error_handler", -1);    //set fullhandler
     $debuger = new debughandler();  //set for further debuging and backtracing debug-objekt
     }elseif($debug == 'debug'){
-        set_error_handler("exception_error_handler", E_ALL);    //set handler
+        set_error_handler("exception_error_handler", E_ALL & ~E_STRICT);    //set handler
         $debuger = new debughandler();  //set for further debuging and backtracing debug-objekt
         }else{  //set no handler => no errors.
             $debuger = new no_debughandler();   //set empty object to avoid debuging
