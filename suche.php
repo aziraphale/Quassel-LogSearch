@@ -17,7 +17,7 @@ require_once('debuger.php');
 // started searching?          
 if((!isset($search)) or empty($search)){
 
-    if((isset($mobile) OR isset($_SESSION['mobile'])) AND ($mobile == TRUE OR $_SESSION['mobile'] == TRUE)){
+    if((isset($mobile) OR isset($_SESSION['mobile'])) AND ($mobile == TRUE)){
         include('searchhead.mobile.php');
         }else{
             include('searchhead.php');}
