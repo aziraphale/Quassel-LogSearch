@@ -37,6 +37,10 @@ if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OO
         }
 
 
+// show design if everything is ready
+ob_start(); 
+
+
 //
 //  build design
 //
@@ -53,11 +57,14 @@ if($mobile){
 if(isset($_SESSION['pwdn']) OR !empty($_SESSION['pwdn'])){
     $sessions = 1;
     include_once('login.php');
-    }elseif((isset($_REQUEST['login'])) AND $_REQUEST['login'] == TRUE){
-            include_once('login.php');
-            }else{
-                include_once('loginform.php');
-                }
+    }elseif(isset($_COOKIE['login']) OR !empty($_COOKIE['login'])){
+        $sessions = 2;
+        include_once('login.php');
+        }elseif((isset($_REQUEST['login'])) AND $_REQUEST['login'] == TRUE){
+                include_once('login.php');
+                }else{
+                    include_once('loginform.php');
+                    }
 
 // mobile footer
 if($mobile){
@@ -65,4 +72,8 @@ if($mobile){
     }else{
         include_once('style/footer.php');
         }
+
+// now show design       
+ob_end_flush(); 
+
 ?>

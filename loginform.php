@@ -12,4 +12,6 @@ echo $usern;}
 ?>"><br>
 Passwort:<br>
 <input size="30" type="password" name="quasselpwd"><br>
-<input type="submit" value="Login" class="button"></form><br></div>
+<label for="cookie">remember me:</label><input type="checkbox" name="cookie"><br>
+<input type="submit" value="Login" class="button">
+<br></form><br></div>
