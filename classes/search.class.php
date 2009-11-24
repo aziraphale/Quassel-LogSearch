@@ -61,6 +61,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             debug(1,$time_end);
             $time_end = NULL;
             }
+            $time_string = NULL;
 
         if(!empty($time_start)){
             $time_string .= ' AND time > $'.$i.'AT TIME ZONE \'UTC\'';
@@ -73,10 +74,11 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_end));
             }
 
-        $time_string = '';
+       
 
         // sqlite workaround-block
         if($backend == "sqlite"){
+            $time_string = '';
                 $method = 'LIKE';
                 $input = strtolower($input); // sqlite workaround: also search caseinsensitive
             $i=1;
