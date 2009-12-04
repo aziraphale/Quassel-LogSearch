@@ -1,40 +1,39 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Quassel Backlog Search
+# developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 #
-#, fuzzy
+# de_DE
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Project-Id-Version: QBS\n"
+"Report-Msgid-Bugs-To: m4yer <m4yer@minad.de>\n"
 "POT-Creation-Date: 2009-12-04 18:07+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date:  2009-12-04 18:07+0100\n"
+"Last-Translator: m4yer <m4yer@minad.de>\n"
+"Language-Team: de_DE <m4yer@minad.de>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Language: de_DE\n"
 
 #: classes/search.class.php:25
 msgid "No results - please select a Chat."
-msgstr ""
+msgstr "Keine Ergebnisse - bitte Chat wählen."
 
 #: classes/search.class.php:27
 msgid "No results in "
-msgstr ""
+msgstr "Kein Ergebnis in "
 
 #: classes/search.class.php:27 classes/search.class.php:110
 msgid " seconds."
-msgstr ""
+msgstr " Sekunden."
 
 #: classes/search.class.php:107
 msgid "No results found for \""
-msgstr ""
+msgstr "Keine Ergebnisse für \""
 
 #: classes/search.class.php:110
 msgid " results in "
-msgstr ""
+msgstr " Erebnisse in "
 
 #: classes/postgresql.class.php:14
 msgid ""
@@ -50,8 +49,8 @@ msgstr ""
 
 #: classes/sqlite.class.php:15
 msgid ""
-"<b>Could not connect to database!<br>Could not find PDO Driver for SQLite 3."
-"x!<br>Please check your PHP and dependencies</b>"
+"<b>Could not connect to database!<br>Could not find PDO Driver for SQLite "
+"3.x!<br>Please check your PHP and dependencies</b>"
 msgstr ""
 
 #: classes/sqlite.class.php:23
@@ -60,109 +59,116 @@ msgstr ""
 
 #: style/header.php:11
 msgid "Quassel Backlog Search"
-msgstr ""
+msgstr "Quassel Backlog Suche"
 
 #: style/footer.mobile.php:4 searchhead.php:5
 msgid "logout"
-msgstr ""
+msgstr "Abmelden"
 
 #: style/footer.mobile.php:4
 msgid "standard"
-msgstr ""
+msgstr "Standart"
 
 #: style/footer.mobile.php:4 searchhead.php:5
 msgid "about"
-msgstr ""
+msgstr "Über"
 
 #: index.php:15
 msgid "<b>Your php-Version is too old - please update at least to 5.1!</b>"
 msgstr ""
+"<b>Ihre php-Version ist zu alt - es wird mindestens php-5.1 benötigt!</b>"
 
 #: login.php:37
 msgid ""
-"<b>There is no config.php - please reinstall Quassel Backlog Search!</"
-"b><br>For help read install and readme notes!"
+"<b>There is no config.php - please reinstall Quassel Backlog "
+"Search!</b><br>For help read install and readme notes!"
 msgstr ""
+"<b>config.php nicht gefunden - bitte Quassel Backlog Search "
+"konfigurieren/installieren!</b><br>Bitte README und INSTALL beachten!"
 
 #: login.php:43
 msgid ""
 "<b>Invalid backend chosen - please edit your config.php!</b><br>For help "
 "read install and readme notes!"
 msgstr ""
+"<b>Ungültiges Backend ausgewählt - bitte config.php "
+"konfigurieren!</b><br>Bitte README und INSTALL beachten!"
 
 #: login.php:53
 msgid "<b>Username and Password do not match!</b><br>"
-msgstr ""
+msgstr "<b>Benutzername und Passwort stimmen nicht überein!</b><br>"
 
 #: loginform.php:8
 msgid "Quasseluser:"
-msgstr ""
+msgstr "Quasselbenutzer:"
 
 #: loginform.php:13
 msgid "Password:"
-msgstr ""
+msgstr "Passwort:"
 
 #: loginform.php:15
 msgid "remember me:"
-msgstr ""
+msgstr "merken:"
 
 #: moreinfo.php:28 moreinfo.php:32
 msgid "more"
-msgstr ""
+msgstr "mehr"
 
 #: searchhead.php:5
 msgid "faq"
-msgstr ""
+msgstr "FAQ"
 
 #: searchhead.php:13
 msgid "Start searching!"
-msgstr ""
+msgstr "suchen!"
 
 #: searchhead.php:14
 msgid "Buffer to search"
-msgstr ""
+msgstr "Zu durchsuchender Chat"
 
 #: searchhead.php:20
 msgid "Chat to search"
-msgstr ""
+msgstr "Zu durchsuchender Chat"
 
 #: searchhead.php:39
 msgid "Number of results"
-msgstr ""
+msgstr "Anzahl der Ergebnisse"
 
 #: searchhead.php:40
 msgid "Show advanced search"
-msgstr ""
+msgstr "Erweiterte Suche anzeigen"
 
 #: searchhead.php:40 searchhead.php:43
 msgid "Advanced search"
-msgstr ""
+msgstr "Erweiterte Suche"
 
 #: searchhead.php:43
 msgid "Close"
-msgstr ""
+msgstr "Beenden"
 
 #: searchhead.php:44
 msgid "Search in a timeperiod:"
-msgstr ""
+msgstr "Zeitperiode durchsuchen:"
 
 #: searchhead.php:45 searchhead.php:46
 msgid "Excepts any english timeformat"
-msgstr ""
+msgstr "Akzepitert jedes englische Zeitformat"
 
 #: searchhead.php:48
 msgid "Switch between DESC and ASC-Sorting; Default: DESC"
 msgstr ""
+"Zwischen absteigendender und aufsteigend Sortierung umschalten; Standart: "
+"absteigend"
 
 #: searchhead.php:49
 msgid ""
 "Switch between multi-search and single-search; Multisearch allows to search "
 "more than one Chat at once."
-msgstr ""
+msgstr "Zwischen Suche in mehreren/einem Chat umschalten (Multichat)."
 
 #: searchhead.php:49
 msgid "Switch multiple"
-msgstr ""
+msgstr "Multichatsuche"
 
 #: searchhead.php:50
 msgid "Regex:"
@@ -170,18 +176,20 @@ msgstr ""
 
 #: searchhead.php:50
 msgid "search with regular expression"
-msgstr ""
+msgstr "Mit regulären Ausdrücken suchen"
 
 #: searchhead.php:51
 msgid "Only messages:"
-msgstr ""
+msgstr "Nur Nachrichten:"
 
 #: searchhead.php:51
 msgid ""
 "search only messages - if _not_ checked joins,quits,... will be shown and "
 "searched"
 msgstr ""
+"Nur Nachrichten durchsuchen - Wenn deaktiviert, werden auch Join-, Quit- ... "
+"Meldungen angezeigt und durchsucht"
 
 #: searchhead.php:55 searchhead.mobile.php:35
 msgid "Waiting for search ..."
-msgstr ""
+msgstr "Warte auf Suche ..."
