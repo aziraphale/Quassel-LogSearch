@@ -22,10 +22,11 @@ $timezone = "+0100";
 
 //
 // language
-// see supported languages in locale/
+// see supported languages in i18n/
+// Default: en_US
 //
 
-$language = "de_DE";
+$language = "en_US";
 
 //
 // dateformat
