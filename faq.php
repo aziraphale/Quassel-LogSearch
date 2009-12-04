@@ -1,7 +1,7 @@
 <div style="margin:-18px;float:right;height:50px; width:50px; right:0px;top:0px;position:relative;z-index:10;background-color:white;"><span style="float:right;margin: 3px;" onclick="javascript:document.getElementById('scontent').innerHTML = '<center>Waiting for search ...</center>';">[ x ]</span></div><center>
 <span style="font-size:13pt;">Frequently Asked Questions</span></center>
 <?php require_once('config.php'); ?>
-<div style="padding-left:150px;">
+<div style="padding-left:150px;text-align:justify;">
 <br><br><span><a name="andor" style="margin-left:-40px;">Can I search for multiple strings with AND/OR?</a></span><br>
 No, not with the syntax <b>AND</b>/<b>OR</b>.<br>
 But whitespaces will automaticly interpreted as <b>AND</b>.<br>
