@@ -12,7 +12,7 @@ function login(){
     require("config.php");
 
         if(!class_exists('PDO')){ // no pdo no sqlite3
-            echo '<b>Could not connect to database!<br>Could not find PDO Driver for SQLite 3.x!<br>Please check your PHP and dependencies</b>';
+            echo _('<b>Could not connect to database!<br>Could not find PDO Driver for SQLite 3.x!<br>Please check your PHP and dependencies</b>');
             exit();
             }
   
@@ -20,7 +20,7 @@ function login(){
     $conn = new PDO("sqlite:$sqlitedb");
     }
     catch(PDOException $e) {    // getMessage (human readable)
-        echo '<b>Could not connect to database!<br>&nbsp;&nbsp;&nbsp;PHP-error: '.$e->getMessage().'!<br>Please edit/check your config.php - wrong backend chosen or wrong database-path - and check dependencies!</b>';
+        echo _('<b>Could not connect to database!<br>&nbsp;&nbsp;&nbsp;PHP-error: '.$e->getMessage().'!<br>Please edit/check your config.php - wrong backend chosen or wrong database-path - and check dependencies!</b>');
         exit;
     }
     return $conn;

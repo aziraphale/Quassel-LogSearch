@@ -22,9 +22,9 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
     require("config.php");
      $Anfangszeit = $this->getmicrotime();
     if(empty($bufferid)){
-            echo '<center>No results - please select a Chat.</center>';
+            echo '<center>'._('No results - please select a Chat.').'</center>';
             $Endzeit = $this->getmicrotime();
-            echo '<br><br><div style="font-size:6pt;text-align:center;">No results in ' . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . ' seconds.</div>';
+            echo '<br><br><div style="font-size:6pt;text-align:center;">'._('No results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
             die(1);
         }
 
@@ -104,10 +104,10 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             $output = $outputary[0];
 
             if($outputary[1] == 0){
-                $output .=  '<center>No results found for "'.$input.'" - please try another searchstring.</center>';}
+                $output .=  '<center>'._('No results found for "').$input.-('" - please try another searchstring.').'</center>';}
 
     $Endzeit = $this->getmicrotime();   //zeit berechnen
-    $output .= '<br><br><div style="font-size:6pt;text-align:center;">'.$outputary[1].' results in ' . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . ' seconds.</div>';
+    $output .= '<br><br><div style="font-size:6pt;text-align:center;">'.$outputary[1]._(' results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
 
   return $output;
   } 

@@ -11,14 +11,14 @@ class backend extends parser{
 function login(){
     require("config.php");
     if(!function_exists('pg_connect')){ // no connect no postgres
-        echo '<b>Could not connect to database!<br>Could not find PostgreSQL Support (pgsql)!<br>Please check your PHP and install PostgreSQL Support (pgsql)</b>';
+        echo _('<b>Could not connect to database!<br>Could not find PostgreSQL Support (pgsql)!<br>Please check your PHP and install PostgreSQL Support (pgsql)</b>');
         exit();
         }
 
     $conn = @pg_connect ("dbname=$dbname user=$user password='$password' port=$port host=$host"); // suppress error and parse later
     
     if($conn === false){    // parse error human readable
-        echo '<b>Could not connect to database!<br>Connection failed!<br>Please edit/check your config.php - wrong backend chosen or wrong database-infos!</b>';
+        echo _('<b>Could not connect to database!<br>Connection failed!<br>Please edit/check your config.php - wrong backend chosen or wrong database-infos!</b>');
         exit;
         }else{
             return $conn;

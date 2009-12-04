@@ -12,7 +12,7 @@ if (session_id() == ""){
 
 // php not to old?
 if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OOP
-     die('<b>Your php-Version is too old - please update at least to 5.1!</b>');
+     die(_('<b>Your php-Version is too old - please update at least to 5.1!</b>'));
 }
 
 // mobile-redirection

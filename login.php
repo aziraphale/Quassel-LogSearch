@@ -34,13 +34,13 @@ if($sessions == 1){
     if(is_file('config.php')){  // gibts die config?
     require('config.php');        
         }else{
-            echo '<b>There is no config.php - please reinstall Quassel Backlog Search!</b><br>For help read install and readme notes!';
+            echo _('<b>There is no config.php - please reinstall Quassel Backlog Search!</b><br>For help read install and readme notes!');
             exit;
             }
     if(is_file('classes/'.$backend.'.class.php')){  // steht ein existierendes backend in der config?
             require_once('classes/'.$backend.'.class.php');
         }else{
-            echo '<b>Invalid backend chosen - please edit your config.php!</b><br>For help read install and readme notes!';
+            echo _('<b>Invalid backend chosen - please edit your config.php!</b><br>For help read install and readme notes!');
             exit;
             }
 
@@ -50,7 +50,7 @@ if($sessions == 1){
 $userid = intval($userid);
 // userid = valid?
 if($userid == 0){
-    $error='<b>Username and Password do not match!</b><br>';
+    $error=_('<b>Username and Password do not match!</b><br>');
     include('loginform.php');
         }else{
     $_SESSION['usern'] = $usern;

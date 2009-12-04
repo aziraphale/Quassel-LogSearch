@@ -32,4 +32,4 @@ if(!empty($array2[0])){
 <input type="checkbox" id="regexid" name="regexid" style="display:none;">
 <input type="checkbox" id="types" name="types" style="display:none;" checked="checked">
 </form></center></div>
-<div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 5px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center>Waiting for search ...</center></font></div></div><center>
+<div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 5px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center><?=_('Waiting for search ...')?></center></font></div></div><center>
