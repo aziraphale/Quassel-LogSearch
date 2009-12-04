@@ -52,4 +52,5 @@ class no_debughandler {
 
     }
 
+require_once('classes/gettext.class.php');
 ?>
