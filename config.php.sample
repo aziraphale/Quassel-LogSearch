@@ -20,6 +20,12 @@ $backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) requi
 
 $timezone = "+0100";
 
+//
+// language
+// see supported languages in locale/
+//
+
+$language = "de_DE";
 
 //
 // dateformat
