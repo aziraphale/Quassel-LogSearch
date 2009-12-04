@@ -13,5 +13,5 @@ echo $usern;}
 <?=_('Password:')?><br>
 <input size="30" type="password" name="quasselpwd"><br>
 <label for="cookie"><?=_('remember me:')?></label><input type="checkbox" name="cookie"><br>
-<input type="submit" value="Login" class="button">
+<input type="submit" value="<?=_('Login'); ?>" class="button">
 <br></form><br></div>

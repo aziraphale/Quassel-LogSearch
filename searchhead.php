@@ -9,7 +9,7 @@ require_once('classes/gettext.class.php');
 
 <form onsubmit="javascript:such(); return false" action="#">
 <div style="padding: 20px; float:left; ">
-<span style="font-size: 20pt;color:white;">Quassel Backlog Search</span><br><br>
+<span style="font-size: 20pt;color:white;"><?=_('Quassel Backlog Search'); ?></span><br><br>
 <input value="" id="input" size="60" type="text"">&nbsp;<input type="submit" value="<?=_('Start searching!'); ?>" class="button">
 <br><label for="buffername"><img src="style/channel.png" style="z-index:1;position:relative;margin:2px;float:left;" alt="Buffer" title="<?=_('Buffer to search'); ?>"></label>
 <script type="text/javascript">

@@ -110,6 +110,10 @@ msgstr "Passwort:"
 msgid "remember me:"
 msgstr "merken:"
 
+#: loginform.php:16
+msgid "Login"
+msgstr "Anmelden"
+
 #: moreinfo.php:28 moreinfo.php:32
 msgid "more"
 msgstr "mehr"
@@ -117,6 +121,10 @@ msgstr "mehr"
 #: searchhead.php:5
 msgid "faq"
 msgstr "FAQ"
+
+#: searchhead.php:12
+msgid "Quassel Backlog Suche"
+msgstr ""
 
 #: searchhead.php:13
 msgid "Start searching!"
