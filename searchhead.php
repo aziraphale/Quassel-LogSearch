@@ -36,7 +36,7 @@ if(!empty($array2[0])){
    }}
 
 ?>
-</select><label for="number"><img src="style/lines.png" title="<?=_('Number of results'); ?>" alt="Lines" style="margin:2px; margin-left:20px;float:left;"></label><input name="number" title="<?=_('Number of results'); ?>" value="100" id="number" size="3" type="text" maxlength="4"  autocomplete="off">
+</select><label for="number"><img src="style/lines.png" title="<?=_('Number of results'); ?>" alt="Lines" style="margin:2px; margin-left:20px;float:left;"></label><input name="number" title="<?=_('Number of results'); ?>" value="50" id="number" size="3" type="text" maxlength="4" style="text-align:right" autocomplete="off">
 <span id="asearch" onclick="show_a_search();" style="font-size:7pt;margin-left:20px;" title="<?=_('Show advanced search'); ?>">[ <?=_('Advanced search'); ?> ]</span>
 <br> </div>
 <div id="advanced" style="margin: 5px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">
