@@ -4,7 +4,7 @@
 //      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
-//gettext class - optional
+//gettext class - optional (requiers php with gettext support)
 
 
 //return default-string, if no gettext is installed.
@@ -21,13 +21,13 @@ if(!function_exists('gettext')){
         }
 // set gettext infos
 setlocale(LC_MESSAGES,$language);
-// ./locale/$language/LC_MESSAGES/qbs.mo
+// ./i18n/$language/LC_MESSAGES/qbs.mo
 bindtextdomain("qbs", "./i18n");
 bind_textdomain_codeset("qbs", "UTF-8");
 textdomain("qbs");
 }
 
-//build _ alias, if not installed.
+// set _() alias, if not installed.
 if(!function_exists('_')){
     function _($string){
         return gettext($string);

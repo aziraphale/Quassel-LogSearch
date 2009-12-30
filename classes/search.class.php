@@ -96,7 +96,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             $time_string = $time_start . '||' . $time_end;  //zusammenwurschten
             }
 
-
+            echo '::DEBUG::'.$input.'<br><br>';
 
             // search with backend
             $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types,$sorting,$ssary);
@@ -104,7 +104,7 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             $output = $outputary[0];
 
             if($outputary[1] == 0){
-                $output .=  '<center>'._('No results found for "').$input.-('" - please try another searchstring.').'</center>';}
+                $output .=  '<center>'._('No results found for "').$input._('" - please try another searchstring.').'</center>';}
 
     $Endzeit = $this->getmicrotime();   //zeit berechnen
     $output .= '<br><br><div style="font-size:6pt;text-align:center;">'.$outputary[1]._(' results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
