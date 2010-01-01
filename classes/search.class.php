@@ -96,7 +96,6 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             $time_string = $time_start . '||' . $time_end;  //zusammenwurschten
             }
 
-            echo '::DEBUG::'.$input.'<br><br>';
 
             // search with backend
             $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types,$sorting,$ssary);
