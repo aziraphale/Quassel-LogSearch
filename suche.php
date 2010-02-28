@@ -47,22 +47,23 @@ if($types == 'true'){
         }
 if($sorting == 'true'){
     $sorting = 1;
+    $sortingpic = 'view-sort-descending.png';
     }else{
         $sorting = 0;
+        $sortingpic = 'view-sort-ascending.png';
         }        
 
-    echo '<div id="innersearch">';
-    echo $search->search($searchid,$bufferid, $input,$number,$time_start,$time_end,$regex,$types,$sorting);
-    echo '</div>';
-
-
 if($searchid == 0){
-    echo '<span id="searchid" style="display:none;">0</span><span onclick="such_more('.$sorting.');" style="position:absolute; right:5px;top:152px; z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span>';
+    echo '<span id="searchid" style="display:none;">0</span><span onclick="such_more('.$sorting.');" style="position:absolute; right:5px;top:152px; z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span><span onclick="sorting();" title="'._('Change sorting-direction').'" style="position:absolute; right:3px;top:125px; z-index:9;"><img id="sortlink" src="style/'.$sortingpic.'"></span>';
     }
 
         echo '<script language="javascript" type="text/javascript">',
              'document.getElementById(\'searchid\').innerHTML=',
              intval($searchid)+1,
              '</script>';
+             
+    echo '<div id="innersearch">';
+    echo $search->search($searchid,$bufferid, $input,$number,$time_start,$time_end,$regex,$types,$sorting);
+    echo '</div>';
 }
 ?>
