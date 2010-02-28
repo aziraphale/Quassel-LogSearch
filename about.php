@@ -26,7 +26,9 @@ $array[] = $file;
         //fallbackversion
         echo 'Version: 0.4.1-rc1+';
         }
-    echo '<br>'._('on').' '.@exec('quasselcore --version');
+        
+    if(@exec('quasselcore --version') != ''){
+    echo '<br>'._('on').' '.@exec('quasselcore --version');}
 ?>
 <br><br><br><br>
 <?=_('A webbased <b>Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.')?>

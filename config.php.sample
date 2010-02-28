@@ -13,12 +13,11 @@ $backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) requi
 
 //
 //  timezone
-//  Difference to Greenwich time (GMT) in hours
-//  Example: +0100 = MET
+//  your timezone, eg. 'Europe/Berlin'
 //  summertime will be choosen automaticly by the server.
 //
 
-$timezone = "+0100";
+$timezone = 'GMT';
 
 //
 // language
@@ -67,4 +66,15 @@ $sqlitedb = "/path/to/quassel-storage.sqlite";
 
 $debug = "release"; // set to "debug" to enable debuging-class
 
+
+
+#################################################################
+#
+# parse timezone, please do not edit anything below here!
+#
+
+$dateTimeZone= new DateTimeZone($timezone);
+$dateTime = new DateTime("now", $dateTimeZone);
+ini_set('date.timezone', $timezone);
+$timezone = $dateTimeZone->getOffset($dateTime)/36;
 ?>
