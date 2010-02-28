@@ -9,19 +9,11 @@
 <div style="margin:-18px;float:right;height:50px; width:50px; right:0px;top:0px;position:relative;z-index:10;background-color:white;"><span style="float:right;margin: 3px;" onclick="javascript:document.getElementById('scontent').innerHTML = '<center><?=_('Waiting for search ...')?></center>';">[ x ]</span></div><center>
 <a style="font-size:13pt;" target="_blank" href="http://m4yer.minad.de/quassel/"><?=_('Quassel Backlog Search')?></a><br><br style="line-height:5pt;">
 <?
-if(is_dir('.git')){
+if(is_file('version.txt')){
     echo _('Version: ');
     
-if($verzeichnis=opendir('.git/refs/tags')){
-while ($file = @readdir ($verzeichnis)) {
-$array[] = $file;
-}}
-    natsort($array);
-    $array = array_reverse($array);
-    echo $array[0] . '+'. exec("git log --tags $array[0].. --oneline | wc -l");
-    echo ' ( git - ';
-    include('.git/refs/heads/master');
-    echo ' )';
+include('version.txt');
+
     }else{
         //fallbackversion
         echo 'Version: 0.4.1-rc1+';

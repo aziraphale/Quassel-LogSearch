@@ -60,7 +60,7 @@ $sqlitedb = "/path/to/quassel-storage.sqlite";
 //  only needed, if you want the core-version
 //
 
-$corebinary = "/usr/bin/quasselcore"
+$corebinary = "/usr/bin/quasselcore";
 
 //
 //  debug (pro only)
