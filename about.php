@@ -27,7 +27,7 @@ $array[] = $file;
         echo 'Version: 0.4.1-rc1+';
         }
         
-    if(@exec('quasselcore --version') != ''){
+    if(@exec($corebinary.' --version') != ''){
     echo '<br>'._('on').' '.@exec('quasselcore --version');}
 ?>
 <br><br><br><br>
