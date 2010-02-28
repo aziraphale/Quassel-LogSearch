@@ -68,12 +68,16 @@ input,textarea,select {
     }    
     
 
-a,img {
+img {
      text-decoration: none;
      border: 0px solid white;
 }
 
-
+a {
+    text-decoration: none;
+    border: 0px solid white;
+    background: inherit !important;
+}
 
 a:link,a:visited,a:active,.link, span{
      color: #4a4a4a;
