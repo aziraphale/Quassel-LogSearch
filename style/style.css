@@ -41,6 +41,8 @@ body {
     
 *.msg{
     width:98%;
+    color: #4a4a4a !important;
+    background: #ffffff !important;
     }
 
 .nick {
