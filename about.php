@@ -26,7 +26,7 @@ include('version.txt');
 <?=_('A webbased <b>Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.')?>
 <br>
 <?=_('<a target="_blank" href="http://m4yer.minad.de/quassel/">Quassel Backlog Search</a> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">Creative Commons Licence</a>.')?>
-<?=_('<br>developed and copyright 2009 by <a href="http://m4yer.minad.de/?page=5" target="_blank">m4yer</a>.')?>
+<?=_('<br>developed and copyright 2009-2010 by <a href="http://m4yer.minad.de/?page=5" target="_blank">m4yer</a>.')?>
 <br><br><br><br>
 <?=_('<a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a> is a modern, cross-platform, distributed IRC client.<br>')?>
 <?=_('&copy;2005-2009 by the Quassel Project.<br>')?>
