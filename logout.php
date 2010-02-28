@@ -8,5 +8,5 @@ require_once('debuger.php');
 session_start();
 session_destroy();
 setcookie('login', 0, time()-60);
-header('Location: /');
+header('Location: ./index.php');
 ?>
