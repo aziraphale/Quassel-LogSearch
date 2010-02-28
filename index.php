@@ -34,6 +34,9 @@ if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OO
     if((isset($_REQUEST['force_standard'])) AND $_REQUEST['force_standard'] == TRUE){
         $mobile = FALSE;
         $_SESSION['mobile'] = FALSE;
+        }elseif((isset($_REQUEST['force_mobile'])) AND $_REQUEST['force_mobile'] == TRUE){
+        $mobile = TRUE;
+        $_SESSION['mobile'] = TRUE;
         }
 
 

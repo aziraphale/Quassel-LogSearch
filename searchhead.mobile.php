@@ -25,11 +25,12 @@ if(!empty($array2[0])){
    }}
 
 ?>
-</select>&nbsp;&nbsp;<input type="submit" value="Search!" class="button">
+</select>&nbsp;&nbsp;<input type="submit" value="<?=_('Search!'); ?>" class="button">
 <input type="hidden" id="number" name="number" value="30">
 <input type="hidden" id="time_start" name="time_start" value="">
 <input type="hidden" id="time_end" name="time_end" value="">
 <input type="checkbox" id="regexid" name="regexid" style="display:none;">
 <input type="checkbox" id="types" name="types" style="display:none;" checked="checked">
+<input style="display:none;" name="sorting" type="checkbox" id="sorting" title="<?=_('Switch between DESC and ASC-Sorting; Default: DESC'); ?>">
 </form></center></div>
 <div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 5px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center><?=_('Waiting for search ...')?></center></font></div></div><center>

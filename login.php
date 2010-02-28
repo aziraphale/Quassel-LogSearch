@@ -47,7 +47,7 @@ if($sessions == 1){
     $backend=new backend();
 
     $userid = $backend->login_backend($usern,$pwdn);
-$userid = intval($userid);
+    $userid = intval($userid);
 // userid = valid?
 if($userid == 0){
     $error=_('<b>Username and Password do not match!</b><br>');
