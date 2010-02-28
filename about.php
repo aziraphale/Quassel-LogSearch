@@ -16,7 +16,7 @@ include('version.txt');
 
     }else{
         //fallbackversion
-        echo 'Version: 0.4.1-rc1+';
+        echo 'Version: 0.5+';
         }
         
     if(@exec($corebinary.' --version') != ''){
