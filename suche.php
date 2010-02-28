@@ -9,6 +9,13 @@ require_once('debuger.php');
     if(isset($_REQUEST['search'])){
          $search = $_REQUEST['search'];
          }
+
+    if(isset($_REQUEST['searchid'])){
+         $searchid = $_REQUEST['searchid'];
+         }else{
+            $searchid = 0;
+            }
+
     if((!isset($userid)) or empty($userid)){
          if(isset($_REQUEST['userid'])){
          $userid = intval($_REQUEST['userid']);
@@ -44,7 +51,18 @@ if($sorting == 'true'){
         $sorting = 0;
         }        
 
-echo $search->search($bufferid, $input,$number,$time_start,$time_end,$regex,$types,$sorting);
-
+    echo '<div id="innersearch">';
+    echo $search->search($searchid,$bufferid, $input,$number,$time_start,$time_end,$regex,$types,$sorting);
+    echo '</div>';
 }
-?>    
+
+if($searchid == 0){
+    echo '<span id="searchid" style="display:none;">0</span>';
+    }
+        $next = intval($searchid)+1;
+        echo '<script language="javascript" type="text/javascript">',
+             'document.getElementById(\'searchid\').innerHTML=',
+             $next,
+             '</script>';
+
+?>

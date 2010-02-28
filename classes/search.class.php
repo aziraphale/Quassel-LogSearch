@@ -18,7 +18,7 @@ function getmicrotime(){
         return ((float)$usec + (float)$sec);
     }
 
-function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=1,$sorting=0){
+function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=1,$sorting=0){
     require("config.php");
      $Anfangszeit = $this->getmicrotime();
     if(empty($bufferid)){
@@ -27,7 +27,6 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             echo '<br><br><div style="font-size:6pt;text-align:center;">'._('No results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
             die(1);
         }
-
         //prepare vars
         $search_zeug[] = $bufferid;
 
@@ -74,7 +73,6 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_end));
             }
 
-       
 
         // sqlite workaround-block
         if($backend == "sqlite"){
@@ -98,16 +96,21 @@ function search($bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=
 
 
             // search with backend
-            $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types,$sorting,$ssary);
+            $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types,$sorting,$ssary,$searchid);
             
             $output = $outputary[0];
 
             if($outputary[1] == 0){
-                $output .=  '<center>'._('No results found for "').$input._('" - please try another searchstring.').'</center>';}
+                if($searchid == 0){
+                    $output .=  '<center>'._('No results found for "').$input._('" - please try another searchstring.').'</center>';
+                    }else{
+                        $output .=  '<center>'._('No further results found for "').$input.'"</center>';
+                        }}
 
+if($searchid != 1000){
     $Endzeit = $this->getmicrotime();   //zeit berechnen
-    $output .= '<br><br><div style="font-size:6pt;text-align:center;">'.$outputary[1]._(' results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
-
+    $output .= '<div style="font-size:6pt;text-align:center;">'.$outputary[1]._(' results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
+}
   return $output;
   } 
 }

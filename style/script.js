@@ -49,6 +49,20 @@
              }
 
 
+     function such_more()     {
+        //alert(document.getElementById('searchid').innerHTML);
+        var ary = new Array();
+
+        for(i = 0; i < document.getElementById('buffer').options.length; i++) {
+        if(document.getElementById('buffer').options[i].selected) {
+            ary.push(document.getElementById('buffer').options[i].value);
+        }     }
+
+             new Ajax.Updater('innersearch', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&searchid=' + encodeURIComponent(document.getElementById('searchid').innerHTML) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true, insertion: Insertion.Bottom});
+             document.cookie = 'saves=' + document.getElementById('regexid').checked +':'+ document.getElementById('types').checked +':'+ document.getElementById('sorting').checked;
+             }
+
+
      function moreinfo(divid,bufferid,types,sorting)     {
              document.getElementById('d'+divid).style.display = 'none';
              document.getElementById('m'+divid).style.display = 'block';

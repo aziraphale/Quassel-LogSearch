@@ -25,10 +25,11 @@ function login(){
             }
     }
 
-function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0,$ssary){
+function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0,$ssary,$searchid){
     $dbconn = $this->login();
         $output = NULL;
-        
+         $searchid = $searchid * $number;
+
         if($type == 0){ // choose type
             $type_string = ' AND "type" IN (1,4)';
             }else{
@@ -51,7 +52,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
 
         $buffers = array_shift($search_zeug);
     //prepare and execute search
-        $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE bufferid IN ('.$buffers.') '. $type_string. $input_string . $time_string .$ssstring.' order by messageid DESC limit ' . $number);
+        $result = pg_prepare($dbconn, 'my_query', 'SELECT * FROM backlog WHERE bufferid IN ('.$buffers.') '. $type_string. $input_string . $time_string .$ssstring.' order by messageid DESC LIMIT ' . $number.' OFFSET '.$searchid);
         $result = pg_prepare($dbconn, 'sender', 'SELECT sender FROM sender WHERE senderid = $1');
         $i=0;
         $result = @pg_execute($dbconn, 'my_query', $search_zeug);
