@@ -47,7 +47,7 @@ if(!empty($array2[0])){
 <br>
 <!--label for="sorting">ASC sorting</label--><input style="display:none;" name="sorting" type="checkbox" id="sorting" title="<?=_('Switch between DESC and ASC-Sorting; Default: DESC'); ?>">
 <span onclick="multiple();" style="margin-left:0px;" title="<?=_('Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once.'); ?>"><?=_('Switch multiple'); ?></span>
-<div style="clear:both;<? if($backend == "sqlite"){ echo ' display:none;"'; } ?>><label for="regexid"><?=_('Regex:'); ?></label><input type="checkbox" name="regexid" id="regexid" title="<?=_('search with regular expression'); ?>" style="margin-right:15px;">
+<div style="clear:both;<? if($backend == "sqlite"){ echo ' display:none;'; } ?>"><label for="regexid"><?=_('Regex:'); ?></label><input type="checkbox" name="regexid" id="regexid" title="<?=_('search with regular expression'); ?>" style="margin-right:15px;">
 <label for="types"><?=_('Only messages:'); ?></label><input type="checkbox" name="types" id="types" title="<?=_('search only messages - if _not_ checked joins,quits,... will be shown and searched'); ?>" checked="checked"></div>
 
 </div></form></div>

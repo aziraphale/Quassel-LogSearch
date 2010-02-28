@@ -3,15 +3,15 @@
 <html>
 <head>
 <!-- Quassel Backlog Search -->
-<!-- developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0 -->
+<!-- developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0 -->
 <!-- mobile version -->
           <meta name="robots" content="index,follow">
-          <meta http-equiv="Content-Language" content="en">
+          <meta http-equiv="Content-Language" content="<?=$language;?>">
           <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
           <meta http-equiv="Content-Style-Type" content="text/css">
           <!-- mobile header -->
     <link rel="shortcut icon" href="style/bluemarine_favicon_0.png" type="image/x-icon">
-          <title>Quassel Backlog Search</title>
+          <title><?=_('Quassel Backlog Search')?></title>
     <base target="_self">
     <link rel="stylesheet" href="style/style.mobile.css" type="text/css">
     <script type="text/javascript" src="style/prototype.js"></script>

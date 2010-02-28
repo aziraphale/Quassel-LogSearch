@@ -1,12 +1,12 @@
 <div style="width:100%; background: #6699cc;color:white;" ><center><form onsubmit="javascript:such(); return false" action="#">
-<span style="font-size: 11pt;font-weight:bold;color:white;margin:3px;">Quassel Backlog Search</span><br>
+<span style="font-size: 11pt;font-weight:bold;color:white;margin:3px;"><?=_('Quassel Backlog Search')?></span><br>
 <input value="" id="input" size="40" type="text"">
 <script type="text/javascript">
     <!--
         javascript:document.getElementById('input').focus();
     //-->
 </script>
-<br><select title="Chat to search" id="buffer" name="buffername" size="1">
+<br><select title="<?=_('Chat to search')?>" id="buffer" name="buffername" size="1">
 <?php
 
     require("config.php");
@@ -31,6 +31,6 @@ if(!empty($array2[0])){
 <input type="hidden" id="time_end" name="time_end" value="">
 <input type="checkbox" id="regexid" name="regexid" style="display:none;">
 <input type="checkbox" id="types" name="types" style="display:none;" checked="checked">
-<input style="display:none;" name="sorting" type="checkbox" id="sorting" title="<?=_('Switch between DESC and ASC-Sorting; Default: DESC'); ?>">
+<input style="display:none;" name="sorting" type="checkbox" id="sorting">
 </form></center></div>
 <div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 5px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center><?=_('Waiting for search ...')?></center></font></div></div><center>
