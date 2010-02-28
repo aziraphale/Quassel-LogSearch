@@ -1,7 +1,7 @@
 <?php
 //
 // config-file for Quassel Backlog Search
-//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 //
@@ -14,6 +14,8 @@ $backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) requi
 //
 //  timezone
 //  your timezone, eg. 'Europe/Berlin'
+//  supported timezones see here: http://php.net/manual/en/timezones.php
+//
 //  summertime will be choosen automaticly by the server.
 //
 
@@ -57,7 +59,7 @@ $sqlitedb = "/path/to/quassel-storage.sqlite";
 
 //
 //  path to the quasselcore binary
-//  only needed, if you want the core-version
+//  only required, if you want the Quasselcore-version in your about-page
 //
 
 $corebinary = "/usr/bin/quasselcore";
@@ -76,11 +78,9 @@ $debug = "release"; // set to "debug" to enable debuging-class
 
 #################################################################
 #
-# parse timezone, please do not edit anything below here!
+# parse config, please do not edit anything below here!
 #
 
-$dateTimeZone= new DateTimeZone($timezone);
-$dateTime = new DateTime("now", $dateTimeZone);
-ini_set('date.timezone', $timezone);
-$timezone = $dateTimeZone->getOffset($dateTime)/36;
+require('parseconf.php');
+
 ?>
