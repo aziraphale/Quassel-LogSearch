@@ -20,7 +20,7 @@ include('version.txt');
         }
         
     if(@exec($corebinary.' --version') != ''){
-    echo '<br>'._('on').' '.@exec('quasselcore --version');}
+    echo '<br>'._('on').' '.@exec($corebinary.' --version');}
 ?>
 <br><br><br><br>
 <?=_('A webbased <b>Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.')?>
