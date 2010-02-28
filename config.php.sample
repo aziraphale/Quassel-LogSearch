@@ -55,6 +55,12 @@ $dbname = "quassel";
 
 $sqlitedb = "/path/to/quassel-storage.sqlite";
 
+//
+//  path to the quasselcore binary
+//  only needed, if you want the core-version
+//
+
+$corebinary = "/usr/bin/quasselcore"
 
 //
 //  debug (pro only)
