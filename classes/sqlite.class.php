@@ -26,9 +26,10 @@ function login(){
     return $conn;
     }
 
-function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0,$ssary){
+function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0,$ssary,$searchid){
     $output = NULL;
     $search_ary = '';
+    $searchid = $searchid * $number;
     $dbconn = $this->login();
 
         $timeary = explode ('||',$time_string);
@@ -53,7 +54,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
             }
 
         $buffers = array_shift($search_zeug);
-        $result = $dbconn->query('SELECT * FROM backlog WHERE ("type" = 1 OR  "type" = 4) AND bufferid IN ('.$buffers.') '. $input_string .$time_string.$ssstring. ' order by messageid DESC limit ' . $number);
+        $result = $dbconn->query('SELECT * FROM backlog WHERE ("type" = 1 OR  "type" = 4) AND bufferid IN ('.$buffers.') '. $input_string .$time_string.$ssstring. ' order by messageid DESC limit ' . $searchid.', '.$number);
         $i=0;
 
         foreach($result as $search_ary) {

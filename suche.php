@@ -54,15 +54,15 @@ if($sorting == 'true'){
     echo '<div id="innersearch">';
     echo $search->search($searchid,$bufferid, $input,$number,$time_start,$time_end,$regex,$types,$sorting);
     echo '</div>';
-}
+
 
 if($searchid == 0){
-    echo '<span id="searchid" style="display:none;">0</span>';
+    echo '<span id="searchid" style="display:none;">0</span><span onclick="such_more('.$sorting.');" style="position:absolute; right:5px;top:152px; z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span>';
     }
-        $next = intval($searchid)+1;
+
         echo '<script language="javascript" type="text/javascript">',
              'document.getElementById(\'searchid\').innerHTML=',
-             $next,
+             intval($searchid)+1,
              '</script>';
-
+}
 ?>

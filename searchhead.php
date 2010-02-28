@@ -52,4 +52,4 @@ if(!empty($array2[0])){
 
 </div></form></div>
 </div><center>
-<div style="clear:both;width:100%;"><span onclick="sorting();" style="position:absolute; right:3px;top:125px; z-index:9;"><img id="sortlink" src="style/view-sort-ascending.png"></span><div id="scontent" style="overflow:auto;padding: 20px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center><?=_('Waiting for search ...'); ?></center></font></div></div>
+<div style="clear:both;width:100%;"><span onclick="sorting();" title="<?=_('Change sorting-direction')?>" style="position:absolute; right:3px;top:125px; z-index:9;"><img id="sortlink" src="style/view-sort-ascending.png"></span><div id="scontent" style="overflow:auto;padding: 20px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center><?=_('Waiting for search ...'); ?></center></font></div></div>
