@@ -1,3 +1,4 @@
+<span id="load" style="display:none;position:absolute; top:54px;left:50%;margin:-35px;z-index:99"><img src="style/loading.gif" style="border:1px solid black;"></span>
 <div style="width:100%; background: #6699cc;color:white;" ><center><form onsubmit="javascript:such(); return false" action="#">
 <span style="font-size: 11pt;font-weight:bold;color:white;margin:3px;"><?=_('Quassel Backlog Search')?></span><br>
 <input value="" id="input" size="40" type="text"">
@@ -26,7 +27,7 @@ if(!empty($array2[0])){
 
 ?>
 </select>&nbsp;&nbsp;<input type="submit" value="<?=_('Search!'); ?>" class="button">
-<input type="hidden" id="number" name="number" value="30">
+<input type="hidden" id="number" name="number" value="20">
 <input type="hidden" id="time_start" name="time_start" value="">
 <input type="hidden" id="time_end" name="time_end" value="">
 <input type="checkbox" id="regexid" name="regexid" style="display:none;">
