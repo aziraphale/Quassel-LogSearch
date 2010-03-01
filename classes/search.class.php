@@ -1,11 +1,11 @@
 <?php
 //
 //      Quassel Backlog Search - classes
-//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 // main search.class
-    require("config.php");
+    require('config.php');
     require_once('parser.class.php');
     require_once($backend.'.class.php');
 
@@ -20,7 +20,7 @@ function getmicrotime(){
 
 function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$regex=0,$types=1,$sorting=0){
     require("config.php");
-     $Anfangszeit = $this->getmicrotime();
+    $Anfangszeit = $this->getmicrotime();
     if(empty($bufferid)){
             echo '<center>'._('No results - please select a Chat.').'</center>';
             $Endzeit = $this->getmicrotime();
@@ -32,7 +32,7 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
 
         $input_string = '';
         $ssary = NULL;
-        //regex braucht kein externes or, wer regex nutz, soll auch das or so machen ;)
+        //regex braucht kein externes or, wer regex nutzt, soll auch das or so machen ;)
         if($regex != 'true'){
              $method = 'ILIKE';
             $input_array = explode(' ',$input);
@@ -107,10 +107,8 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
                         $output .=  '<center>'._('No further results found for "').$input.'"</center>';
                         }}
 
-if($searchid != 1000){
     $Endzeit = $this->getmicrotime();   //zeit berechnen
     $output .= '<div style="font-size:6pt;text-align:center;color: #4a4a4a;">'.$outputary[1]._(' results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
-}
   return $output;
   } 
 }

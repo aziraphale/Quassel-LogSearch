@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search - classes
-//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 //debug class - optional
@@ -18,8 +18,9 @@ class debughandler {
         }
         
     function timeerror($string){
+            if($GLOBALS['debug']=='debugfull'){
                 echo '::<b>DEBUG</b>:: Invalid timeformat given in <i>'.$string.'</i> - will be ignored!<br>';
-        }
+        }}
         
     function debug($type=0,$string=0) {
         // nimmt fehler auf, leitet richtig weiter und gibt aus
