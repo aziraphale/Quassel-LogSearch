@@ -1,5 +1,7 @@
-<br><br><br><br><br><br><br><br><br><br><br><br><br><center><div id="login" style="height: 200px;">
-<form id="postform" action="index.php" method="post"><!-- onsubmit="Request('bodyid','login.php?'+$(this).serialize()); return false"-->
+<br><br><br><br><br><br><br><br><br><br><br><center>
+<span style="font-size: 11pt;font-weight:bold;color:white;margin:3px;"><?=_('Quassel Backlog Search')?></span><br><br>
+<div id="login" style="height: 130px;">
+<form id="postform" action="index.php" method="post">
 <?
 if(isset($error)){
 echo $error;}
@@ -15,3 +17,4 @@ echo $usern;}
 <label for="cookie"><?=_('remember me:')?></label><input type="checkbox" name="cookie"><br>
 <input type="submit" value="<?=_('Login'); ?>" class="button">
 <br></form><br></div>
+<br><span id="footer"><?=_('developed by')?> <a href="http://m4yer.minad.de/?page=5" target="_blank" style="color:#33333">m4yer</a> 2009-2010</span><br>
