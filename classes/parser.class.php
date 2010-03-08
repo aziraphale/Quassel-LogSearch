@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search - classes
-//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 if (session_id() == ""){    //session, immer wichtig, va böse wenn man sie vergisst ...
@@ -192,10 +192,14 @@ class parser{
                         $hl = ' style="color:c3c3c3;"';}
                 $output = '<div class="wrap"><div class="cell"'.$hl.'><font class="date" style="color:inherit;">['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>&nbsp;</div>'.$output1.'</div>';
                 if($this->mobile == TRUE){ // message in new line in more if mobile
-                    $output = '<font class="date" style="color:inherit;">['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>'.$output1;
+                    if($hl == 1){
+                        $hl = ' style="color:black;"';
+                        }else{
+                            $hl = ' style="color:#c6c6c6;"';}
+                    $output = '<font class="date"'.$hl.'>['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>'.$output1;
                     }
                 }elseif($this->mobile == TRUE){ //mobile braucht kein datum und more usw ...
-                    $output = '<div class="wrap" id="d'. $search_ary[0] .'"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\');" title="'._('show context').'">#&nbsp;</a>'.$output1.'</div><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">'._('Loading...').'</div>';
+                    $output = "\n".'<div style="display:table;width:100%;"><div style="text-align:left;float:left;" class="wrap" id="d'. $search_ary[0] .'"><div class="cell"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="'._('show context').'">#&nbsp;</a></div>'.$output1.'</div></div><div style="display:table;width:100%;"><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">'._('Loading...').'</div></div>';
                     }else{ //hauptsuche
                         $output = $output . $output1.'</div></div><div style="display:table;width:100%;"><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">'._('Loading...').'</div></div>';  //hauptsuche ende
                         }       
