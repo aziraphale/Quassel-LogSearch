@@ -93,6 +93,8 @@
             document.getElementById('regexid').checked = false;
             document.getElementById('types').checked = true;
             document.getElementById('asearch').style.display='inline';
+            document.getElementById('time_start').style.border= '0px';
+            document.getElementById('time_end').style.border= '0px';
         }
 
 
@@ -151,4 +153,26 @@
                 show_a_search();
                 }
             }
+        }
+
+    function validtime_start(){
+        var times = document.getElementById('time_start').value;
+        new Ajax.Updater('starttime', 'parsetime.php?time='+times, {onComplete: function(){
+        if(document.getElementById('starttime').innerHTML==0){
+            document.getElementById('time_start').style.border= '2px solid red';
+        }else{
+            document.getElementById('time_start').style.border= '0px';
+        }
+        },asynchronous:true, evalScripts:true}); 
+        }
+
+    function validtime_end(){
+        var times = document.getElementById('time_end').value;
+        new Ajax.Updater('endtime', 'parsetime.php?time='+times, {onComplete: function(){
+            if(document.getElementById('endtime').innerHTML==0){
+                document.getElementById('time_end').style.border= '2px solid red';
+            }else{
+                document.getElementById('time_end').style.border= '0px';
+            }
+        },asynchronous:true, evalScripts:true}); 
         }

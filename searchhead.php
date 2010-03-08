@@ -1,4 +1,8 @@
 <?php
+//
+//      Quassel Backlog Search
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//
 require_once('classes/gettext.class.php');
 ?><div style="width:100%; background: #6699cc;color:white;" >
 <!-- menu -->
@@ -42,8 +46,9 @@ if(!empty($array2[0])){
 <div id="advanced" style="margin: 5px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">
     <span onclick="hide_a_search();" style="margin-left:-10px;" title="<?=_('Close'); ?>">[ <?=_('Advanced search'); ?> ]</span><br>
     <?=_('Search in a timeperiod:'); ?><br>
-    <input title="<?=_('Excepts any english timeformat'); ?>" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
-    <input title="<?=_('Excepts any english timeformat'); ?>" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
+    <input onchange="validtime_start()" title="<?=_('Excepts any english timeformat'); ?>" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
+    <input onchange="validtime_end()" title="<?=_('Excepts any english timeformat'); ?>" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
+    <span id="starttime" style="display:none;"></span><span id="endtime" style="display:none;"></span>
 <br>
 <!--label for="sorting">ASC sorting</label--><input style="display:none;" name="sorting" type="checkbox" id="sorting" title="<?=_('Switch between DESC and ASC-Sorting; Default: DESC'); ?>">
 <span onclick="multiple();" style="margin-left:0px;" title="<?=_('Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once.'); ?>"><?=_('Switch multiple'); ?></span>
