@@ -54,7 +54,12 @@ if($sorting == 'true'){
         }        
 
 if($searchid == 0){
-    echo '<span id="searchid" style="display:none;">0</span><span onclick="such_more('.$sorting.');" style="position:absolute; right:5px;top:152px; z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span><span onclick="sorting();" title="'._('Change sorting-direction').'" style="position:absolute; right:3px;top:125px; z-index:9;"><img id="sortlink" src="style/'.$sortingpic.'"></span>';
+    if((isset($mobile) OR isset($_SESSION['mobile'])) AND ($mobile == TRUE)){
+        echo '<div style="text-align:right;positon:relative;z-index:9;margin-bottom:-27px;margin-right:10px;margin-top:10px;">';
+        }else{
+            echo '<div style="text-align:right;positon:relative;z-index:9;margin-bottom:-20px;">';
+            }
+    echo '<span id="searchid" style="display:none;">0</span><span onclick="such_more('.$sorting.');" style="position:relative;right:-35px; top:17px;;z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span><span onclick="sorting();" title="'._('Change sorting-direction').'" style="position:relative; right:-15px;top:-10px; z-index:9;"><img id="sortlink" src="style/'.$sortingpic.'"></span></div>';
     }
 
         echo '<script language="javascript" type="text/javascript">',

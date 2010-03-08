@@ -4,11 +4,11 @@ require_once('classes/gettext.class.php');
 <!-- menu -->
 <span style="position:absolute; top:0px;right:0px;margin:10px;"><a href="logout.php"><?=_('logout'); ?></a>&nbsp;|&nbsp;<a href="javascript:Request('scontent','faq.php');"><?=_('faq'); ?></a>&nbsp;|&nbsp;<a href="javascript:Request('scontent','about.php');"><?=_('about'); ?></a></span>
 <span id="load" style="display:none;position:absolute; top:5px;left:5px;z-index:99"><img src="style/loading.gif" style="border:1px solid black;"></span>
-<img style="position:relative;float:left;margin:10px;margin-bottom:-20px; margin-right:60px;" alt="" src="style/quassel.png">
-<div style="overflow:none; float:left; ">
+<img style="position:relative;float:left;margin:10px;margin-bottom:-20px; margin-right:0px;" alt="" src="style/quassel.png">
+<div style="overflow:none; float:left;">
 
 <form onsubmit="javascript:such(); return false" action="#">
-<div style="padding: 20px; float:left; ">
+<div style="padding: 20px; float:left;">
 <span style="font-size: 20pt;color:white;"><?=_('Quassel Backlog Search'); ?></span><br><br>
 <input value="" id="input" size="60" type="text"">&nbsp;<input type="submit" value="<?=_('Start searching!'); ?>" class="button">
 <br><label for="buffername"><img src="style/channel.png" style="z-index:1;position:relative;margin:2px;float:left;" alt="Buffer" title="<?=_('Buffer to search'); ?>"></label>
@@ -36,7 +36,7 @@ if(!empty($array2[0])){
    }}
 
 ?>
-</select><label for="number"><img src="style/lines.png" title="<?=_('Number of results'); ?>" alt="Lines" style="margin:2px; margin-left:20px;float:left;"></label><input name="number" title="<?=_('Number of results'); ?>" value="50" id="number" size="3" type="text" maxlength="4" style="text-align:right" autocomplete="off">
+</select><label for="number"><img src="style/lines.png" title="<?=_('Number of results'); ?>" alt="Lines" style="margin:2px; margin-left:20px;float:left;"></label><input name="number" title="<?=_('Number of results'); ?>" value="<?=$defaultnr?>" id="number" size="3" type="text" maxlength="4" style="text-align:right" autocomplete="off">
 <span id="asearch" onclick="show_a_search();" style="font-size:7pt;margin-left:20px;" title="<?=_('Show advanced search'); ?>">[ <?=_('Advanced search'); ?> ]</span>
 <br> </div>
 <div id="advanced" style="margin: 5px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">

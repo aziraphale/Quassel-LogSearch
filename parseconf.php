@@ -7,9 +7,10 @@
 
 // parse timezone
     $dateTimeZone= new DateTimeZone($timezone);
-    $dateTime = new DateTime("now", $dateTimeZone);
+    $dateTime = new DateTime('now', $dateTimeZone);
     ini_set('date.timezone', $timezone);
     $timezone = $dateTimeZone->getOffset($dateTime)/36;
 
+$defaultnr = 20;
  
 ?>
