@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search
-//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
  require_once('config.php'); 
  require_once('classes/gettext.class.php');
@@ -10,13 +10,13 @@
 <a style="font-size:13pt;" target="_blank" href="http://m4yer.minad.de/quassel/"><?=_('Quassel Backlog Search')?></a><br><br style="line-height:5pt;">
 <?
 if(is_file('version.txt')){
-    echo _('Version: ');
+    echo _('Version:  ');
     
 include('version.txt');
 
     }else{
         //fallbackversion
-        echo 'Version: 0.5+';
+        echo 'Version: 0.5.1+';
         }
         
     if(@exec($corebinary.' --version') != ''){
