@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search
-//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
     require_once('debuger.php');
@@ -24,8 +24,8 @@
             $up = 'up';
             }
 ?>
-<div style="margin:5px;"><a title="<?=_('hide context')?>" href="javascript:close_more(<?=$messageid?>)">#</a> <?php
-echo $backend ->buffername($bufferid);?><br><a href="javascript:moreup('<?=$messageid?>','<?=$bufferid?>','<?=$up?>','<?=$types?>','<?=$sorting?>')" style="color:#4a4a4a !important; background: white !important;"><img style="float:left;" src="style/format-text-direction-rtl.png"> <?=_('more')?></a><div style="clear:left;" id="wantmore<?=$messageid?>"><?
+<div style="margin:5px;"><span style="color:#4a4a4a !important; background: white !important;"><a title="<?=_('hide context')?>" href="javascript:close_more(<?=$messageid?>)">#</a> <?php
+echo $backend ->buffername($bufferid);?></span><br><a href="javascript:moreup('<?=$messageid?>','<?=$bufferid?>','<?=$up?>','<?=$types?>','<?=$sorting?>')" style="color:#4a4a4a !important; background: white !important;"><img style="float:left;" src="style/format-text-direction-rtl.png"> <?=_('more')?></a><div style="clear:left;" id="wantmore<?=$messageid?>"><?
 
 echo $backend ->moreinfo($bufferid,$messageid,$types,$sorting);
 
