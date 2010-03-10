@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-03-11 00:34+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: classes/parser.class.php:136 classes/parser.class.php:202
+msgid "show context"
+msgstr ""
+
+#: classes/parser.class.php:149
+msgid "is known as"
+msgstr ""
+
+#: classes/parser.class.php:153
+msgid "has joined"
+msgstr ""
+
+#: classes/parser.class.php:157 classes/parser.class.php:160
+msgid "has quit"
+msgstr ""
+
+#: classes/parser.class.php:164
+msgid "has kicked"
+msgstr ""
+
+#: classes/parser.class.php:164
+msgid " "
+msgstr ""
+
+#: classes/parser.class.php:172 classes/parser.class.php:179
+msgid "has changed the topic to:"
+msgstr ""
+
+#: classes/parser.class.php:202 classes/parser.class.php:204
+msgid "Loading..."
+msgstr ""
+
+#: classes/postgresql.class.php:14
+msgid "<b>Could not connect to database!<br>Could not find PostgreSQL Support (pgsql)!<br>Please check your PHP and install PostgreSQL Support (pgsql)</b>"
+msgstr ""
+
+#: classes/postgresql.class.php:21
+msgid "<b>Could not connect to database!<br>Connection failed!<br>Please edit/check your config.php - wrong backend chosen or wrong database-infos!</b>"
+msgstr ""
+
+#: classes/search.class.php:25
+msgid "No results - please select a Chat."
+msgstr ""
+
+#: classes/search.class.php:27
+msgid "No results in "
+msgstr ""
+
+#: classes/search.class.php:27 classes/search.class.php:111
+msgid " seconds."
+msgstr ""
+
+#: classes/search.class.php:105
+msgid "No results found for \""
+msgstr ""
+
+#: classes/search.class.php:105
+msgid "\" - please try another searchstring."
+msgstr ""
+
+#: classes/search.class.php:107
+msgid "No further results found for \""
+msgstr ""
+
+#: classes/search.class.php:111
+msgid " results in "
+msgstr ""
+
+#: classes/sqlite.class.php:15
+msgid "<b>Could not connect to database!<br>Could not find PDO Driver for SQLite 3.x!<br>Please check your PHP and dependencies</b>"
+msgstr ""
+
+#: classes/sqlite.class.php:23
+msgid "<b>Could not connect to database!<br>&nbsp;&nbsp;&nbsp;PHP-error: "
+msgstr ""
