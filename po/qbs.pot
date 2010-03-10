@@ -8,13 +8,268 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-11 00:34+0100\n"
+"POT-Creation-Date: 2010-03-11 00:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: about.php:9 searchhead.mobile.php:37 searchhead.php:60
+msgid "Waiting for search ..."
+msgstr ""
+
+#: about.php:10 loginform.php:2 searchhead.mobile.php:3 searchhead.php:16
+#: style/header.mobile.php:14 style/header.php:11
+msgid "Quassel Backlog Search"
+msgstr ""
+
+#: about.php:13
+msgid "Version:  "
+msgstr ""
+
+#: about.php:23
+msgid "on"
+msgstr ""
+
+#: about.php:26
+msgid "A webbased <b>Search-Engine</b> for <a target=\"_blank\" href=\"http://quassel-irc.org/\">Quassel IRC</a>."
+msgstr ""
+
+#: about.php:28
+msgid "<a target=\"_blank\" href=\"http://m4yer.minad.de/quassel/\">Quassel Backlog Search</a> is licensed under a <a href=\"http://creativecommons.org/licenses/by-nc-sa/3.0/\" target=\"_blank\">Creative Commons Licence</a>."
+msgstr ""
+
+#: about.php:29
+msgid "<br>developed and copyright 2009-2010 by <a href=\"http://m4yer.minad.de/?page=5\" target=\"_blank\">m4yer</a>."
+msgstr ""
+
+#: about.php:31
+msgid "<a target=\"_blank\" href=\"http://quassel-irc.org/\">Quassel IRC</a> is a modern, cross-platform, distributed IRC client.<br>"
+msgstr ""
+
+#: about.php:32
+msgid "&copy;2005-2009 by the Quassel Project.<br>"
+msgstr ""
+
+#: about.php:35
+msgid "Most icons are &copy; by the <a href=\"http://www.oxygen-icons.org/\" target=\"_blank\">Oxygen Team</a>, used under <a href=\"http://www.gnu.org/licenses/lgpl.html\" target=\"_blank\">LGPL</a> and adopted from <a target=\"_blank\" href=\"http://quassel-irc.org/\">Quassel IRC</a>."
+msgstr ""
+
+#: about.php:36
+msgid "Special thanks go to:"
+msgstr ""
+
+#: faq.php:10
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: faq.php:13
+msgid "Can I search for multiple strings with AND/OR?"
+msgstr ""
+
+#: faq.php:14
+msgid "No, not with the syntax <b>AND</b>/<b>OR</b>."
+msgstr ""
+
+#: faq.php:15
+msgid "But whitespaces will automaticly interpreted as <b>AND</b>."
+msgstr ""
+
+#: faq.php:17
+msgid "In addition AND/OR can be searche via <b>regex</b>."
+msgstr ""
+
+#: faq.php:19
+msgid "e.g.: \"foo bar\" will search for every line that contains \"foo\" <b>AND</b> \"bar\"."
+msgstr ""
+
+#: faq.php:21
+msgid "Can I search for messages from specific nick/sender?"
+msgstr ""
+
+#: faq.php:22
+msgid "Yes, the syntax <b>sender=</b> will search for messages from the specific sender (or nicks that contain the given sender).<br>Mulitple <i>sender-syntax</i> can be given in one search."
+msgstr ""
+
+#: faq.php:23
+msgid "e.g.: \"sender=foo sender=bar foobar\" searches lines from \"foo\" or \"bar\" that contains the string \"foobar\"."
+msgstr ""
+
+#: faq.php:25
+msgid "Can I search for multiple chats at once?"
+msgstr ""
+
+#: faq.php:26
+msgid "Yes, the botton <b>switch multiple</b> in <i>advanced search</i> turns the <i>chat selection</i> into multiline,<br> so more than one chat can be selected and searched."
+msgstr ""
+
+#: faq.php:29
+msgid "Can I search with <i>regex</i>?"
+msgstr ""
+
+#: faq.php:30
+msgid "Yes, the checkbox <b>regex</b> in <i>advanced search</i> turns the support of <i>regex-strings</i> on."
+msgstr ""
+
+#: faq.php:32
+msgid "Can I only search for messages?"
+msgstr ""
+
+#: faq.php:33
+msgid ""
+"Or in other words: <b>Can I also search for quits, joins, topic-changes, kicks ...?</b><br>\n"
+"The <i>only messages filter</i> can be turned of in <i>advanced search</i>."
+msgstr ""
+
+#: faq.php:37
+msgid "Can I search messages just in a given timeperiod?"
+msgstr ""
+
+#: faq.php:38
+msgid ""
+"Yes, in <i>advanced search</i> there are two inputboxes where a starttime and a endtime can be given.<br>\n"
+"<u>Empty</u> or <u>wrong</u> input will be ignored.<br>\n"
+"The input can contain <u>any</u> <b>US English</b> timeformat. (For help please take a look at the <a href=\"http://php.net/manual/function.strtotime.php\" target=\"_blank\">php-manual</a>)<br>\n"
+"e.g.: \"yesterday\", \"today\", \"last week\", \"march\", \"12/24/2009\""
+msgstr ""
+
+#: index.php:15
+msgid "<b>Your php-Version is too old - please update at least to 5.1!</b>"
+msgstr ""
+
+#: login.php:37
+msgid "<b>There is no config.php - please reinstall Quassel Backlog Search!</b><br>For help read install and readme notes!"
+msgstr ""
+
+#: login.php:43
+msgid "<b>Invalid backend chosen - please edit your config.php!</b><br>For help read install and readme notes!"
+msgstr ""
+
+#: login.php:53
+msgid "<b>Username and Password do not match!</b><br>"
+msgstr ""
+
+#: loginform.php:10
+msgid "Quasseluser:"
+msgstr ""
+
+#: loginform.php:15
+msgid "Password:"
+msgstr ""
+
+#: loginform.php:17
+msgid "remember me:"
+msgstr ""
+
+#: loginform.php:18
+msgid "Login"
+msgstr ""
+
+#: loginform.php:20
+msgid "developed by"
+msgstr ""
+
+#: moreinfo.php:27
+msgid "hide context"
+msgstr ""
+
+#: moreinfo.php:28 moreinfo.php:32
+msgid "more"
+msgstr ""
+
+#: searchhead.mobile.php:10 searchhead.php:24
+msgid "Chat to search"
+msgstr ""
+
+#: searchhead.mobile.php:29
+msgid "Search!"
+msgstr ""
+
+#: searchhead.php:9 style/footer.mobile.php:4
+msgid "logout"
+msgstr ""
+
+#: searchhead.php:9
+msgid "faq"
+msgstr ""
+
+#: searchhead.php:9 style/footer.mobile.php:4
+msgid "about"
+msgstr ""
+
+#: searchhead.php:17
+msgid "Start searching!"
+msgstr ""
+
+#: searchhead.php:18
+msgid "Buffer to search"
+msgstr ""
+
+#: searchhead.php:43
+msgid "Number of results"
+msgstr ""
+
+#: searchhead.php:44
+msgid "Show advanced search"
+msgstr ""
+
+#: searchhead.php:44 searchhead.php:47
+msgid "Advanced search"
+msgstr ""
+
+#: searchhead.php:47
+msgid "Close"
+msgstr ""
+
+#: searchhead.php:48
+msgid "Search in a timeperiod:"
+msgstr ""
+
+#: searchhead.php:49 searchhead.php:50
+msgid "Excepts any english timeformat"
+msgstr ""
+
+#: searchhead.php:53
+msgid "Switch between DESC and ASC-Sorting; Default: DESC"
+msgstr ""
+
+#: searchhead.php:54
+msgid "Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once."
+msgstr ""
+
+#: searchhead.php:54
+msgid "Switch multiple"
+msgstr ""
+
+#: searchhead.php:55
+msgid "Regex:"
+msgstr ""
+
+#: searchhead.php:55
+msgid "search with regular expression"
+msgstr ""
+
+#: searchhead.php:56
+msgid "Only messages:"
+msgstr ""
+
+#: searchhead.php:56
+msgid "search only messages - if _not_ checked joins,quits,... will be shown and searched"
+msgstr ""
+
+#: suche.php:62
+msgid "Search further!"
+msgstr ""
+
+#: suche.php:62
+msgid "Change sorting-direction"
+msgstr ""
+
+#: style/footer.mobile.php:4
+msgid "standard"
+msgstr ""
 
 #: classes/parser.class.php:136 classes/parser.class.php:202
 msgid "show context"
