@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search
-//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 require_once('classes/gettext.class.php');
 require_once('debuger.php');
@@ -30,20 +30,6 @@ if($sessions == 1){
         }
 }
 
-// errorhandling (vllt n bissl spät)
-    if(is_file('config.php')){  // gibts die config?
-    require('config.php');        
-        }else{
-            echo _('<b>There is no config.php - please reinstall Quassel Backlog Search!</b><br>For help read install and readme notes!');
-            exit;
-            }
-    if(is_file('classes/'.$backend.'.class.php')){  // steht ein existierendes backend in der config?
-            require_once('classes/'.$backend.'.class.php');
-        }else{
-            echo _('<b>Invalid backend chosen - please edit your config.php!</b><br>For help read install and readme notes!');
-            exit;
-            }
-
     $backend=new backend();
 
     $userid = $backend->login_backend($usern,$pwdn);
@@ -64,7 +50,7 @@ if($userid == 0){
     
     include('suche.php');
 
-    echo '<br><span id="footer">developed by <a href="http://m4yer.minad.de/?page=5" target="_blank" style="color:#33333">m4yer</a> 2009-2010</span><br>';
+    echo '<br><span id="footer">'._('developed by').' <a href="http://m4yer.minad.de/?page=5" target="_blank" style="color:#33333">m4yer</a> 2009-2010</span><br>';
 }
 
 ?>

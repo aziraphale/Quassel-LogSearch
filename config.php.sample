@@ -80,7 +80,7 @@ $debug = "release"; // set to "debug" to enable debuging-class
 #
 # parse config, please do not edit anything below here!
 #
-
+$config_version = '1.0';
 require('parseconf.php');
 
 ?>

@@ -1,19 +1,37 @@
 <?php
 //
 //      Quassel Backlog Search
-//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
-require_once('debuger.php');
 // start silent session
 if (session_id() == ""){
     @session_start();
 }
 
-// php not to old?
-if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OOP
-     die(_('<b>Your php-Version is too old - please update at least to 5.1!</b>'));
-}
+// errorhandling
+    // php not to old?
+    if (version_compare(PHP_VERSION, $required_php_version) !== 1) {  // 5.1 ist notwenig wegen OOP
+         die(_('<b>Your <u>php-Version</u> is too old - please update at least to 5.1!</b>'));
+    }
+    if(is_file('config.php')){  // gibts die config?
+    require('config.php');
+        }else{
+            echo _('<b>There is no config.php - please reinstall Quassel Backlog Search!</b><br>For help read install and readme notes!');
+            exit;
+            }
+    if(is_file('classes/'.$backend.'.class.php')){  // steht ein existierendes backend in der config?
+            require_once('classes/'.$backend.'.class.php');
+        }else{
+            echo _('<b>Invalid backend chosen - please edit your config.php!</b><br>For help read install and readme notes!');
+            exit;
+            }
+    if (version_compare($config_version, $config_version2) < 0) {
+         die(_('<b>Your <u>config-Version</u> is too old - please update your config.php!</b><br>Take a look at config.php.sample what changed! (Unix-hint: diff)'));
+    }
+
+// most things should be fine now
+require_once('debuger.php');
 
 // mobile-redirection
     $mobile = FALSE;
@@ -30,7 +48,7 @@ if (version_compare(PHP_VERSION, '5.1.0') !== 1) {  // 5.1 ist notwenig wegen OO
             $mobile = FALSE;
             }
     
-    // want normal?
+    // force?
     if((isset($_REQUEST['force_standard'])) AND $_REQUEST['force_standard'] == TRUE){
         $mobile = FALSE;
         $_SESSION['mobile'] = FALSE;

@@ -11,6 +11,9 @@
     ini_set('date.timezone', $timezone);
     $timezone = $dateTimeZone->getOffset($dateTime)/36;
 
+// hidden configs
 $defaultnr = 20;
+$config_version2 = '1.0';
+$required_php_version = '5.1.0';
  
 ?>
