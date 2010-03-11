@@ -24,9 +24,9 @@
             $up = 'up';
             }
 ?>
-<div style="margin:5px;"><span style="color:#4a4a4a !important; background: white !important;"><a title="<?=_('hide context')?>" href="javascript:close_more(<?=$messageid?>)">#</a> <?php
-echo $backend ->buffername($bufferid);?></span><br><a href="javascript:moreup('<?=$messageid?>','<?=$bufferid?>','<?=$up?>','<?=$types?>','<?=$sorting?>')" style="color:#4a4a4a !important; background: white !important;"><img style="float:left;" src="style/format-text-direction-rtl.png"> <?=_('more')?></a><div style="clear:left;" id="wantmore<?=$messageid?>"><?
+<div style="margin:5px;"><span style="color:#4a4a4a !important; background: white !important;"><a title="<?php echo _('hide context')?>" href="javascript:close_more(<?php echo $messageid?>)">#</a> <?php
+echo $backend ->buffername($bufferid);?></span><br><a href="javascript:moreup('<?php echo $messageid?>','<?php echo $bufferid?>','<?php echo $up?>','<?php echo $types?>','<?php echo $sorting?>')" style="color:#4a4a4a !important; background: white !important;"><img style="float:left;" src="style/format-text-direction-rtl.png"> <?php echo_('more')?></a><div style="clear:left;" id="wantmore<?php echo $messageid?>"><?php
 
 echo $backend ->moreinfo($bufferid,$messageid,$types,$sorting);
 
-?></div><a href="javascript:moredown('<?=$messageid?>','<?=$bufferid?>','<?=$down?>','<?=$types?>','<?=$sorting?>')" style="color:#4a4a4a !important; background: white !important;"><img style="float:left;" src="style/format-text-direction-ltr.png"> <?=_('more')?></a><div style="clear:left;" id="wantmore<?=$messageid?>"></div>
+?></div><a href="javascript:moredown('<?php echo $messageid?>','<?php echo $bufferid?>','<?php echo $down?>','<?php echo $types?>','<?php echo $sorting?>')" style="color:#4a4a4a !important; background: white !important;"><img style="float:left;" src="style/format-text-direction-ltr.png"> <?php echo _('more')?></a><div style="clear:left;" id="wantmore<?php echo $messageid?>"></div>

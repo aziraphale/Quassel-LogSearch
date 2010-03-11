@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search
-//      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
     require_once('debuger.php');
@@ -26,5 +26,5 @@ echo $array[0];
 //echo $bufferid,$messageid,$state;
 ?>
 <script type="text/javascript">
-document.getElementById('<?=$state.$base?>').innerHTML = "<?=$array[1]?>";
+document.getElementById('<?php echo $state.$base?>').innerHTML = "<?php echo $array[1]?>";
 </script>

@@ -1,13 +1,13 @@
 <span id="load" style="display:none;position:absolute; top:54px;left:50%;margin:-35px;z-index:99"><img src="style/loading.gif" style="border:1px solid black;"></span>
 <div style="width:100%; background: #6699cc;color:white;" ><center><form onsubmit="javascript:such(); return false" action="#">
-<span style="font-size: 11pt;font-weight:bold;color:white;margin:3px;"><?=_('Quassel Backlog Search')?></span><br>
+<span style="font-size: 11pt;font-weight:bold;color:white;margin:3px;"><?php echo _('Quassel Backlog Search')?></span><br>
 <input value="" id="input" size="40" type="text"">
 <script type="text/javascript">
     <!--
         javascript:document.getElementById('input').focus();
     //-->
 </script>
-<br><select title="<?=_('Chat to search')?>" id="buffer" name="buffername" size="1">
+<br><select title="<?php echo _('Chat to search')?>" id="buffer" name="buffername" size="1">
 <?php
 
     require("config.php");
@@ -26,7 +26,7 @@ if(!empty($array2[0])){
    }}
 
 ?>
-</select>&nbsp;&nbsp;<input type="submit" value="<?=_('Search!'); ?>" class="button">
+</select>&nbsp;&nbsp;<input type="submit" value="<?php echo _('Search!'); ?>" class="button">
 <input type="hidden" id="number" name="number" value="20">
 <input type="hidden" id="time_start" name="time_start" value="">
 <input type="hidden" id="time_end" name="time_end" value="">
@@ -34,4 +34,4 @@ if(!empty($array2[0])){
 <input type="checkbox" id="types" name="types" style="display:none;" checked="checked">
 <input style="display:none;" name="sorting" type="checkbox" id="sorting">
 </form></center></div>
-<div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 5px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center><?=_('Waiting for search ...')?></center></font></div></div><center>
+<div style="clear:both;width:100%;"><div id="scontent" style="overflow:auto;padding: 5px; text-align:left; vertical-align:top;"><font style="font-size:8pt;"><center><?php echo _('Waiting for search ...')?></center></font></div></div><center>
