@@ -14,7 +14,7 @@ echo $usern;}
 ?>"><br>
 <?php echo _('Password:')?><br>
 <input size="30" type="password" name="quasselpwd"><br>
-<label for="cookie"><?php echo _('remember me:')?></label><input type="checkbox" name="cookie"><br>
+<label for="cookie"><?php echo _('remember me:')?></label><input type="checkbox" name="cookie" id="cookie"><br>
 <input type="submit" value="<?php echo _('Login'); ?>" class="button">
 <br></form><br></div>
 <br><span id="footer"><?php echo _('developed by')?> <a href="http://m4yer.minad.de/?page=5" target="_blank" style="color:#33333">m4yer</a> 2009-2010</span><br>
