@@ -93,8 +93,8 @@
             document.getElementById('regexid').checked = false;
             document.getElementById('types').checked = true;
             document.getElementById('asearch').style.display='inline';
-            document.getElementById('time_start').style.border= '0px';
-            document.getElementById('time_end').style.border= '0px';
+            document.getElementById('time_start').style.border= '1px solid black';
+            document.getElementById('time_end').style.border= '1px solid black';
         }
 
 
@@ -161,7 +161,7 @@
         if(document.getElementById('starttime').innerHTML==0){
             document.getElementById('time_start').style.border= '2px solid red';
         }else{
-            document.getElementById('time_start').style.border= '0px';
+            document.getElementById('time_start').style.border= '1px solid black';
         }
         },asynchronous:true, evalScripts:true}); 
         }
@@ -172,7 +172,7 @@
             if(document.getElementById('endtime').innerHTML==0){
                 document.getElementById('time_end').style.border= '2px solid red';
             }else{
-                document.getElementById('time_end').style.border= '0px';
+                document.getElementById('time_end').style.border= '1px solid black';
             }
         },asynchronous:true, evalScripts:true}); 
         }

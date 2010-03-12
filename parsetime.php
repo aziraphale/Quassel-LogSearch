@@ -10,8 +10,8 @@
             echo 1;
             exit();
             }
-
-    if(strtotime($time) === false){
+    $time = trim($time);
+    if(strtotime($time) === false AND $time != ''){
         echo 0;
         }else{
             echo 1;
