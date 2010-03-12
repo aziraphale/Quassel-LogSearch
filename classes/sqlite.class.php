@@ -88,8 +88,9 @@ function login_backend($usern,$pwdn){
 
     // login
     $result = $dbconn->query("SELECT userid FROM quasseluser WHERE username = '$usern' AND password = '$pwdn';");
+    $userid = ""
     foreach($result as $search_ary) {
-    $userid = $search_ary[0];
+	$userid = $search_ary[0];
     }
     return $userid;
     $dbconn = NULL;
