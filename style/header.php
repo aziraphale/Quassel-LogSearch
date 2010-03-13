@@ -11,7 +11,7 @@
           <title><?php echo _('Quassel Backlog Search')?></title>
     <base target="_self">
     <link rel="stylesheet" href="style/style.css" media="screen,projection" type="text/css">
-    <!--[if IE 5.5]>
+    <!--[if IE]>
     <link rel="stylesheet" href="style/style.ie.css" media="screen,projection" type="text/css">
     <![endif]-->
     <script type="text/javascript" src="style/prototype.js"></script>

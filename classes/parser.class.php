@@ -133,7 +133,7 @@ class parser{
                     $addtime = 36*$timezone;
                     }
 
-           $output = "\n".'<div style="display:table;width:100%;"><div class="wrap" id="d'. $search_ary[0] .'"><div class="cell"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="'._('show context').'">#&nbsp;</a><font class="date" style="color:c3c3c3;">['.date($dateformat,$addtime +@strtotime($search_ary["time"])).']</font>&nbsp;</div>'; // hautpsuche
+           $output = "\n".'<div style="display:table;width:100%;"><div class="wrap" id="d'. $search_ary[0] .'"><div class="date2 cell"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="'._('show context').'">#&nbsp;</a><font class="date" style="color:c3c3c3;">['.date($dateformat,$addtime +@strtotime($search_ary["time"])).']</font>&nbsp;</div>'; // hautpsuche
            // alle unterstützten types: 1,4,8,32,128,64,256,1024,16384
            switch(intval($search_ary["type"])){
             //all
@@ -190,7 +190,7 @@ class parser{
                     $hl = ' style="color:black;"';
                     }else{
                         $hl = ' style="color:c3c3c3;"';}
-                $output = '<div class="wrap"><div class="cell"'.$hl.'><font class="date" style="color:inherit;">['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>&nbsp;</div>'.$output1.'</div>';
+                $output = '<div class="wrap"><div class="date2 cell"'.$hl.'><font class="date" style="color:inherit;">['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>&nbsp;</div>'.$output1.'</div>';
                 if($this->mobile == TRUE){ // message in new line in more if mobile
                     if($hl == 1){
                         $hl = ' style="color:black;"';
