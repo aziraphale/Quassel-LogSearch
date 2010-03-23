@@ -1,4 +1,7 @@
 //
+//      Quassel Backlog Search
+//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//
 //
 //  quasselbacklogsearchjs - dunno how but it works :P
 //  here is all the magic ...
@@ -15,7 +18,9 @@
      });
 
      function stopError(){
-     return true;} 
+        return true;} 
+
+     onerror = stopError;
 
      function leer(check){
      }
@@ -31,7 +36,6 @@
 
 
      function Request(divid,page)     {
-             //document.getElementById(divid).innerHTML = '<span id="load" style="display:none;position:absolute; top:5px;left:5px;z-index:99"><img src="style/loading.gif" style="border:1px solid black;"></span>';
              new Ajax.Updater(divid, page, {asynchronous:true, evalScripts:true});}
 
 
@@ -43,14 +47,13 @@
             ary.push(document.getElementById('buffer').options[i].value);
         }     }
 
-             //document.getElementById('scontent').innerHTML = '<center><img src="style/loading.gif"></center>';
              new Ajax.Updater('scontent', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true});
              document.cookie = 'saves=' + document.getElementById('regexid').checked +':'+ document.getElementById('types').checked +':'+ document.getElementById('sorting').checked;
              }
 
 
      function such_more(sorting)     {
-        //alert(document.getElementById('searchid').innerHTML);
+        document.getElementById('morespan').style.visibility = 'hidden';
         var ary = new Array();
 
         for(i = 0; i < document.getElementById('buffer').options.length; i++) {
@@ -59,13 +62,14 @@
         }     }
         
         if(sorting == 0){
-             new Ajax.Updater('innersearch', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&searchid=' + encodeURIComponent(document.getElementById('searchid').innerHTML) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true, insertion: Insertion.Bottom});
+             new Ajax.Updater('innersearch', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&searchid=' + encodeURIComponent(document.getElementById('searchid').innerHTML) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true, insertion: Insertion.Bottom, onComplete: function(){document.getElementById('morespan').style.visibility = 'visible';}});
         }else{
-             new Ajax.Updater('innersearch', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&searchid=' + encodeURIComponent(document.getElementById('searchid').innerHTML) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true, insertion: Insertion.Top});      
+             new Ajax.Updater('innersearch', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&searchid=' + encodeURIComponent(document.getElementById('searchid').innerHTML) + '&buffername=' + ary + '&number=' + document.getElementById('number').value + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true, insertion: Insertion.Top, onComplete: function(){document.getElementById('morespan').style.visibility = 'visible';}});      
         }
         
         
         document.cookie = 'saves=' + document.getElementById('regexid').checked +':'+ document.getElementById('types').checked +':'+ document.getElementById('sorting').checked;
+        
              }
 
 
