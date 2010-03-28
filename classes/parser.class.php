@@ -126,12 +126,9 @@ class parser{
         $output1 = '';
         //timezone support
         require('config.php');
-             // summer || winter ?
-             if(@date('I')){
-                $addtime = 36*($timezone+100);
-                }else{
-                    $addtime = 36*$timezone;
-                    }
+
+           // summer || winter ?
+           $addtime = 36*$timezone;
 
            $output = "\n".'<div style="display:table;width:100%;"><div class="wrap" id="d'. $search_ary[0] .'"><div class="date2 cell"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="'._('show context').'">#&nbsp;</a><font class="date" style="color:c3c3c3;">['.date($dateformat,$addtime +@strtotime($search_ary["time"])).']</font>&nbsp;</div>'; // hautpsuche
            // alle unterstützten types: 1,4,8,32,128,64,256,1024,16384
