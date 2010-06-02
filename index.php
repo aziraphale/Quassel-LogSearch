@@ -11,8 +11,8 @@ if (session_id() == ""){
 
 // errorhandling
     // php not to old?
-    if (version_compare(PHP_VERSION, $required_php_version) !== 1) {  // 5.1 ist notwenig wegen OOP
-         die(_('<b>Your <u>php-Version</u> is too old - please update at least to 5.1!</b>'));
+    if (version_compare(PHP_VERSION, $required_php_version) !== 1) {  // 5.2 ist notwenig wegen OOP
+         die(_('<b>Your <u>php-Version</u> is too old - please update at least to '.$required_php_version.'!</b>'));
     }
     if(is_file('config.php')){  // gibts die config?
     require('config.php');
