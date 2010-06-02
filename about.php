@@ -21,6 +21,12 @@ include('version.txt');
         
     if(@exec($corebinary.' --version') != ''){
     echo '<br>'._('on').' '.@exec($corebinary.' --version');}
+
+// recommended_php_version warning
+if (version_compare(PHP_VERSION, $recommended_php_version) !== 1) {
+    echo '<br><br><span style="color:red">'._('Your php-version is below the recommended php-version ').$recommended_php_version.'<br>'._('Please try to update to be able to use all features!<br>The support for your php-version is depreciated and will be removed in future releases!').'</span>';
+    }
+    
 ?>
 <br><br><br><br>
 <?php echo _('A webbased <b>Search-Engine</b> for <a target="_blank" href="http://quassel-irc.org/">Quassel IRC</a>.')?>
