@@ -10,10 +10,8 @@ if (session_id() == ""){
 }
 
 // errorhandling
-    // php not to old?
-    if (version_compare(PHP_VERSION, $required_php_version) !== 1) {
-         die(_('<b>Your <u>php-Version</u> is too old - please update at least to '.$required_php_version.'!</b>'));
-    }
+    require('parseconf.php');
+    
     if(is_file('config.php')){  // gibts die config?
     require('config.php');
         }else{

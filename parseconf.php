@@ -12,8 +12,14 @@ $required_php_version = '5.1.0';
 $recommended_php_version = '5.2.0';
  
 
+    // check php-version
+    if(version_compare(PHP_VERSION, $required_php_version) !== 1) {
+         die(_('<b>Your <u>php-Version</u> is too old - please update at least to '.$required_php_version.'!</b>'));
+    }
+
 // parse timezone
 
+if(isset($timezone)){
     // workaround to get required to 5.1.0
     if (version_compare(PHP_VERSION, $recommended_php_version) !== 1) {
         if(date('I')){
@@ -25,7 +31,7 @@ $recommended_php_version = '5.2.0';
             $dateTime = new DateTime('now', $dateTimeZone);
             ini_set('date.timezone', $timezone);
             $timezone = $dateTimeZone->getOffset($dateTime)/36;
-            }
+            }}
 
 
 
