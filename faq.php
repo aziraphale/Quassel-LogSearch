@@ -11,7 +11,13 @@
 
 <div style="padding-left:150px;text-align:justify;">
 <br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I show some context?')?></a></span><br>
-<?php echo _('Yes, just click the <b>[&#8230;]</b> and some context will be shown, to show even more just click the <b>more</b> buttons.');?><br>
+<?php echo _('Yes, just click the <b>[&#8230;]</b> (right to the line) and some context will be shown, to show even more just click the <b>more</b> buttons.');?><br>
+
+<br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I search for further results?')?></a></span><br>
+<?php echo _('Yes, just click <img src="style/archive-insert.png"> (right-upper corner) to get further results.<br><i>Hint</i>: It\'s way faster to search <u>often</u> <u>few lines</u> instead of searching lots of lines at once.');?><br>
+
+<br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I change the sorting-direction?')?></a></span><br>
+<?php echo _('Yes, just click <img src="style/view-sort-ascending.png"> (right-upper corner).');?><br>
 
 <br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I search for multiple strings with AND/OR?')?></a></span><br>
 <?php echo _('No, not with the syntax <b>AND</b>/<b>OR</b>.')?><br>
