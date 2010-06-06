@@ -10,6 +10,9 @@
 <span style="font-size:13pt;"><?php echo _('Frequently Asked Questions')?></span></center>
 
 <div style="padding-left:150px;text-align:justify;">
+<br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I show some context?')?></a></span><br>
+<?php echo _('Yes, just click the <b>[&#8230;]</b> and some context will be shown, to show even more just click the <b>more</b> buttons.');?><br>
+
 <br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I search for multiple strings with AND/OR?')?></a></span><br>
 <?php echo _('No, not with the syntax <b>AND</b>/<b>OR</b>.')?><br>
 <?php echo _('But whitespaces will automaticly interpreted as <b>AND</b>.')?><br>

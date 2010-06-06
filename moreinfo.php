@@ -24,7 +24,7 @@
             $up = 'up';
             }
 ?>
-<div style="margin:5px;"><span style="color:#4a4a4a !important; background: white !important;"><a title="<?php echo _('hide context')?>" href="javascript:close_more(<?php echo $messageid;?>)">#</a> <?php
+<div style="margin:5px;"><span style="color:#4a4a4a !important; background: white !important;"><a title="<?php echo _('hide context')?>" href="javascript:close_more(<?php echo $messageid;?>)" style="font-size:7pt;">[&#8230;]</a> <?php
 echo $backend->buffername($bufferid);?></span><br><a href="javascript:moreup('<?php echo $messageid;?>','<?php echo $bufferid;?>','<?php echo $up;?>','<?php echo $types;?>','<?php echo $sorting;?>')" style="color:#4a4a4a !important; background: white !important;"><img style="float:left;" src="style/format-text-direction-rtl.png"> <?php echo _('more')?></a><div style="clear:left;" id="wantmore<?php echo $messageid?>"><?php
 
 echo $backend->moreinfo($bufferid,$messageid,$types,$sorting);
