@@ -52,8 +52,8 @@ if(!empty($array2[0])){
 <br>
 <!--label for="sorting">ASC sorting</label--><input style="display:none;" name="sorting" type="checkbox" id="sorting" title="<?php echo _('Switch between DESC and ASC-Sorting; Default: DESC'); ?>">
 <span onclick="multiple();" style="margin-left:0px;" title="<?php echo _('Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once.'); ?>"><?php echo _('Switch multiple'); ?></span>
-<div style="clear:both;<?php if($backend == "sqlite"){ echo ' display:none;'; } ?>"><label for="regexid"><?php echo _('Regex:'); ?></label><input type="checkbox" name="regexid" id="regexid" title="<?php echo _('search with regular expression'); ?>" style="margin-right:15px;">
-<label for="types"><?php echo _('Only messages:'); ?></label><input type="checkbox" name="types" id="types" title="<?php echo _('search only messages - if _not_ checked joins,quits,... will be shown and searched'); ?>" checked="checked"></div>
+<div style="clear:both;"><label for="regexid"><?php echo _('Regex:'); ?></label><input type="checkbox" name="regexid" id="regexid" title="<?php echo _('search with regular expression'); ?>" style="margin-right:15px;">
+<div style="display:inline;<?php if($backend == "sqlite"){ echo ' display:none;'; } ?>"><label for="types"><?php echo _('Only messages:'); ?></label><input type="checkbox" name="types" id="types" title="<?php echo _('search only messages - if _not_ checked joins,quits,... will be shown and searched'); ?>" checked="checked"></div></div>
 
 </div></form></div>
 </div><center>

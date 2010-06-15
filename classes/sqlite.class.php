@@ -23,14 +23,30 @@ function login(){
         echo _('<b>Could not connect to database!<br>&nbsp;&nbsp;&nbsp;PHP-error: '.$e->getMessage().'!<br>Please edit/check your config.php - wrong backend chosen or wrong database-path - and check dependencies!</b>');
         exit;
     }
+    
     return $conn;
     }
+
 
 function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,$sorting=0,$ssary,$searchid){
     $output = NULL;
     $search_ary = '';
     $searchid = $searchid * $number;
     $dbconn = $this->login();
+
+    if(end($search_zeug) == 'regex'){    // regex
+        array_pop($search_zeug);
+        function regex($pattern,$subject){    
+            preg_match($pattern,$subject,$matches);
+            if($matches != 0){
+                return preg_match($pattern,$subject);
+                }else{
+                    die('<center>'._('Wrong regular expression! - Please try again.').'</center><br><br>'); // kill to avoid million errors ;)
+                    }
+            }
+        $dbconn->sqliteCreateFunction("regex", "regex", 2);
+        }
+
 
         $timeary = explode ('||',$time_string);
         $time_string ='';        

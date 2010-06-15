@@ -34,10 +34,10 @@
 <br><br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I search for multiple chats at once?')?></a></span><br>
 <?php echo _('Yes, the botton <b>switch multiple</b> in <i>advanced search</i> turns the <i>chat selection</i> into multiline,<br> so more than one chat can be selected and searched.')?>
 
-<?php if($backend == "postgresql"){ ?>
 <br><br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I search with <i>regex</i>?')?></a></span><br>
 <?php echo _('Yes, the checkbox <b>regex</b> in <i>advanced search</i> turns the support of <i>regex-strings</i> on.')?>
 
+<?php if($backend == "postgresql"){ ?>
 <br><br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I only search for messages?')?></a></span><br>
 <?php echo _('Or in other words: <b>Can I also search for quits, joins, topic-changes, kicks ...?</b><br>
 The <i>only messages filter</i> can be turned of in <i>advanced search</i>.')?>

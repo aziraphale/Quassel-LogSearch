@@ -33,7 +33,7 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
         $input_string = '';
         $ssary = NULL;
         //regex braucht kein externes or, wer regex nutzt, soll auch das or so machen ;)
-        if($regex != 'true'){
+        if($regex != 'true' OR $input == ''){
              $method = 'ILIKE';
             $input_array = explode(' ',$input);
             $i=1;
@@ -77,20 +77,27 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
         // sqlite workaround-block
         if($backend == "sqlite"){
             $time_string = '';
-                $method = 'LIKE';
-                $input = strtolower($input); // sqlite workaround: also search caseinsensitive
-            $i=1;
-            $input_string = '';
-            $ssary = NULL;
-            foreach($input_array AS $sonstwas){
-                if(preg_match_all("^((?<=(\S|.)ender=)|\n)[A-Za-z\_\|\^]+[A-Za-z0-9\_\|\^]*^",$sonstwas,$ssearch)){ //nicksuche?
-                    $ssary[] = '%'.$ssearch[0][0].'%';
-                    continue;
-                    }
-                $input_string  .= 'AND lower(message) '.$method.' "%'.$sonstwas.'%"';
-                $search_zeug[] = '%'.$sonstwas.'%';
-                $i++;
-            }
+            if($regex != 'true' OR $input == ""){
+                    $method = 'LIKE';
+                    $input = strtolower($input); // sqlite workaround: also search caseinsensitive
+                $i=1;
+                $input_string = '';
+                $ssary = NULL;
+                foreach($input_array AS $sonstwas){
+                    if(preg_match_all("^((?<=(\S|.)ender=)|\n)[A-Za-z\_\|\^]+[A-Za-z0-9\_\|\^]*^",$sonstwas,$ssearch)){ //nicksuche?
+                        $ssary[] = '%'.$ssearch[0][0].'%';
+                        continue;
+                        }
+                    $input_string  .= 'AND lower(message) '.$method.' "%'.$sonstwas.'%"';
+                    $search_zeug[] = '%'.$sonstwas.'%';
+                    $i++;
+                }
+                
+                    }else{
+                    $input_string  = 'AND regex("'.$input.'", message)';
+                    $search_zeug[] = $input;
+                    $search_zeug[] = 'regex';
+                        }
             $time_string = $time_start . '||' . $time_end;  //zusammenwurschten
             }
 

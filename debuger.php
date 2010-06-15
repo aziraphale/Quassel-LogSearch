@@ -12,7 +12,7 @@ ini_set('html_errors', 0);
 // include classes
 require('config.php');
 require('classes/debug.class.php');
-
+$GLOBALS['errorcount'] = 0;
 // define error-handler
 function exception_error_handler($errno, $errstr, $errfile, $errline) {
         //log in hourly changing logfiles
@@ -21,7 +21,8 @@ function exception_error_handler($errno, $errstr, $errfile, $errline) {
         fclose ($fp);
         $array = explode('/',$errfile);
     //print error but dont die (only if fatal)
-    echo '::<b>DEBUG</b>:: <i>'.$errstr.'</i> - '.array_pop($array).':'.$errline.' ('.$errno.')<br>';
+    $GLOBALS['errorcount']= $GLOBALS['errorcount']+1;
+    echo '::<b>DEBUG</b>:: '.$GLOBALS['errorcount'].' :: <i>'.$errstr.'</i> - '.array_pop($array).':'.$errline.' ('.$errno.')<br>';
     return;
 }
 
