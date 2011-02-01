@@ -1,15 +1,18 @@
 <?php
 //
 // config-file for Quassel Backlog Search
-//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2011 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 //
-// choose backend postgresql or sqlite (simple remove and/or add #)
+// choose backend postgresql, sqlite or mysql (simple remove and/or add #)
 //
 
 $backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) required
 #$backend = "sqlite";   // php-version with PDO Driver for SQLite 3.x required
+#$backend = "mysql";    // php-version with mysqli support required
+// WARNING: please edit databaseinformations below.
+
 
 //
 //  timezone
@@ -56,6 +59,18 @@ $dbname = "quassel";
 //
 
 $sqlitedb = "/path/to/quassel-storage.sqlite";
+
+
+//
+// mysql data; (just examples, please edit)
+// needed if backend mysql
+//
+
+$sql_host = "localhost";
+$sql_port = "3306";
+$sql_user = "quassel";
+$sql_password = "somepassword";
+$sql_dbname = "quassel";
 
 //
 //  path to the quasselcore binary

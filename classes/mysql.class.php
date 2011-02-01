@@ -3,6 +3,8 @@
 //      Quassel Backlog Search - classes
 //      developed 2009 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
+//      mysql-backend developed 2011 by kode54
+//
 
 // backend-class for mysql support
 require_once('classes/parser.class.php');
@@ -15,7 +17,7 @@ function login(){
         exit();
         }
 
-    $conn = mysqli_connect ($host, $user, $password, $dbname, $port); // suppress error and parse later
+    $conn = mysqli_connect ($sql_host, $sql_user, $sql_password, $sql_dbname, $sql_port); // suppress error and parse later
     
     if(mysqli_connect_errno()){    // parse error human readable
         echo _('<b>Could not connect to database!<br>Connection failed!<br>Please edit/check your config.php - wrong backend chosen or wrong database-infos!</b>');
