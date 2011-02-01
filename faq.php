@@ -22,7 +22,7 @@
 <br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I search for multiple strings with AND/OR?')?></a></span><br>
 <?php echo _('No, not with the syntax <b>AND</b>/<b>OR</b>.')?><br>
 <?php echo _('But whitespaces will automaticly interpreted as <b>AND</b>.')?><br>
-<?php if($backend == "postgresql"){ ?>
+<?php if($backend == "postgresql" || $backend == "mysql"){ ?>
 <?php echo _('In addition AND/OR can be searche via <b>regex</b>.')?><br>
 <?php } ?>
 <?php echo _('e.g.: "foo bar" will search for every line that contains "foo" <b>AND</b> "bar".')?>
@@ -37,7 +37,7 @@
 <br><br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I search with <i>regex</i>?')?></a></span><br>
 <?php echo _('Yes, the checkbox <b>regex</b> in <i>advanced search</i> turns the support of <i>regex-strings</i> on.')?>
 
-<?php if($backend == "postgresql"){ ?>
+<?php if($backend == "postgresql" || $backend == "mysql"){ ?>
 <br><br><br><span><a name="andor" style="margin-left:-40px;"><?php echo _('Can I only search for messages?')?></a></span><br>
 <?php echo _('Or in other words: <b>Can I also search for quits, joins, topic-changes, kicks ...?</b><br>
 The <i>only messages filter</i> can be turned of in <i>advanced search</i>.')?>

@@ -34,7 +34,10 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
         $ssary = NULL;
         //regex braucht kein externes or, wer regex nutzt, soll auch das or so machen ;)
         if($regex != 'true' OR $input == ''){
-             $method = 'ILIKE';
+             if ($backend == "mysql")
+               $method = 'LIKE';
+             else
+               $method = 'ILIKE';
             $input_array = explode(' ',$input);
             $i=1;
             foreach($input_array AS $sonstwas){
@@ -42,12 +45,15 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
                     $ssary[] = '%'.$ssearch[0][0].'%';
                     continue;
                     }
-                $input_string  .= 'AND lower(message) '.$method.' $'. $i;
+                $input_string  .= 'AND lower(message) '.$method;
+                if ($backend == "mysql") $input_string .= ' ?';
+                else $input_string .= ' $'. $i;
                 $search_zeug[] = '%'.$sonstwas.'%';
                 $i++;
             }
          }else{ // regex
-            $input_string  .= 'AND message ~* $1';
+            if ($backend == "mysql") $input_string  .= 'AND message REGEXP ?';
+            else $input_string  .= 'AND message ~* $1';
             $search_zeug[] = $input;
             }
 
@@ -62,13 +68,17 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
             }
             $time_string = NULL;
 
+        if ($backend == "mysql")
+            $param = "?";
+        else
+            $param = "$".$i;
         if(!empty($time_start)){
-            $time_string .= ' AND time > $'.$i.'AT TIME ZONE \'UTC\'';
+            $time_string .= ' AND time > '.$param.'AT TIME ZONE \'UTC\'';
             $i++;
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_start));
             }
         if(!empty($time_end)){
-            $time_string .= ' AND time < $'.$i.'AT TIME ZONE \'UTC\'';
+            $time_string .= ' AND time < '.$param.'AT TIME ZONE \'UTC\'';
             $i++;
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_end));
             }
