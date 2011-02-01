@@ -22,6 +22,8 @@ include('version.txt');
     if(@exec($corebinary.' --version') != ''){
     echo '<br>'._('on').' '.@exec($corebinary.' --version');}
 
+    echo '<br><br><b>'.$backend.'</b>-'._('backend').' '._('on') .' PHP-<b>'.substr(phpversion(),0,strpos(phpversion(), '-')).'</b>';
+
 // recommended_php_version warning
 if (version_compare(PHP_VERSION, $recommended_php_version) !== 1) {
     echo '<br><br><span style="color:red">'._('Your php-version is below the recommended php-version ').$recommended_php_version.'<br>'._('Please try to update to be able to use all features!<br>The support for your php-version is depreciated and will be removed in future releases!').'</span>';

@@ -80,11 +80,11 @@ $sql_dbname = "quassel";
 $corebinary = "/usr/bin/quasselcore";
 
 //
-//  debug (pro only)
+//  debug (experimental use only)
 //
 //
-//  enable debuger, if errors occure to get full php-error-output; for normal users default-error-handling should do it
-//  throws out lots of messages and also logs error. just for testing not for use!
+//  enable debuger, if errors occure to get full php-error-output; for normal users default-error-handling should do it.
+//  debug throws out LOTS of messages and also logs error. just for testing not for use!
 //
 
 $debug = "release"; // set to "debug" to enable debuging-class
@@ -95,7 +95,7 @@ $debug = "release"; // set to "debug" to enable debuging-class
 #
 # parse config, please do not edit anything below here!
 #
-$config_version = '1.0';
+$config_version = '1.1';
 require('parseconf.php');
 
 ?>
