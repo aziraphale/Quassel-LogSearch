@@ -42,7 +42,7 @@ if (version_compare(PHP_VERSION, $recommended_php_version) !== 1) {
 <br><br><br><br><b><?php echo _('Special thanks go to:')?></b><br>
 <b>brot</b> for bugfixing, testing, helping, finding features and bugs, building the environment, advertising, motivating and a lot more.<br>
 <b>kode54</b> for the mySQL-backend.<br>
-<b>Dirk Rettschlag</b> for bugfixing</b>
+<b>Dirk Rettschlag</b> for bugfixing.<br>
 <b>The Quassel IRC Community</b> for feedback, finding bugs and using.<br>
 <b><a target="_blank" href="http://quassel-irc.org/">The Quassel IRC Team</a></b> for developing such a great IRC-Client.<br><br>
 
