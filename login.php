@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search
-//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2011 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 require_once('classes/gettext.class.php');
 require_once('debuger.php');
@@ -50,7 +50,7 @@ if($userid == 0){
     
     include('suche.php');
 
-    echo '<br><span id="footer">'._('developed by').' <a href="http://m4yer.minad.de/?page=5" target="_blank" style="color:#33333">m4yer</a> 2009-2010</span><br>';
+    echo '<br><span id="footer">'._('developed by').' <a href="http://m4yer.minad.de/?page=5" target="_blank" style="color:#33333">m4yer</a> 2009-'.date('Y').'</span><br>';
 }
 
 ?>
