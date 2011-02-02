@@ -23,6 +23,7 @@ function login(){
         echo _('<b>Could not connect to database!<br>Connection failed!<br>Please edit/check your config.php - wrong backend chosen or wrong database-infos!</b>');
         exit;
         }else{
+            $conn->set_charset( "utf8" );
             return $conn;
             }
     }
