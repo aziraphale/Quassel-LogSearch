@@ -42,7 +42,7 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
     $ssstring = NULL;
     //nickssearch
         if($ssary != NULL){
-            $stmt = $dbconn->prepare('SELECT senderid FROM sender WHERE sender ILIKE ?');
+            $stmt = $dbconn->prepare('SELECT senderid FROM sender WHERE sender LIKE ?');
             foreach($ssary as $sendernick){
                 $stmt->bind_param("s", $sendernick);
                 $db_qry = $stmt->execute();
@@ -124,7 +124,7 @@ function login_backend($usern,$pwdn){
 function bufferids($userid){
    $dbconn = $this->login();
     // get bufferids und buffernames for user 
-   $result = $dbconn->query("SELECT buffername,bufferid,networkid FROM buffer WHERE userid = $userid AND buffername!='' order by networkid ASC,buffername ASC");
+   $result = $dbconn->query("SELECT buffername,bufferid,networkid FROM buffer WHERE userid = $userid AND buffername!='' order by networkid ASC,buffername COLLATE utf8_general_ci ASC");
 
     while($search_ary = $result->fetch_row()) {
         $array[] = $search_ary[0] .'||'. $search_ary[1].'||'.$search_ary[2];
