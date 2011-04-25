@@ -40,7 +40,7 @@ if(!empty($array2[0])){
    }}
 
 ?>
-</select><label for="number"><img src="style/lines.png" title="<?php echo _('Number of results'); ?>" alt="Lines" style="margin:2px; margin-left:20px;float:left;"></label><input name="number" title="<?php echo _('Number of results'); ?>" value="<?php echo $defaultnr?>" id="number" size="3" type="text" maxlength="4" style="text-align:right" autocomplete="off">
+</select><label for="number"><img src="style/lines.png" title="<?php echo _('Number of results'); ?>" alt="Lines" style="margin:2px; margin-left:20px;float:left;"></label><input name="number" title="<?php echo _('Number of results'); ?>" value="<?php echo $defaultnr?>" id="number" size="5" step="5" min="5" oninvalid="roundthis(this);" type="number" max="100" style="text-align:right" autocomplete="off">
 <span id="asearch" onclick="show_a_search();" style="font-size:7pt;margin-left:20px;" title="<?php echo _('Show advanced search'); ?>">[ <?php echo _('Advanced search'); ?> ]</span>
 <br> </div>
 <div id="advanced" style="margin: 5px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">

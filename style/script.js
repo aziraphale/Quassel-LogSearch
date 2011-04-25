@@ -22,6 +22,11 @@
 
      onerror = stopError;
 
+	function roundthis(target){
+		target.value = Math.round(target.value / 5) * 5;
+		return true;
+		}
+
      function leer(check){
      }
 
