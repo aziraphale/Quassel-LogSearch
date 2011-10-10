@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search - classes
-//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2011 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 if (session_id() == ""){    //session, immer wichtig, va böse wenn man sie vergisst ...
@@ -30,7 +30,135 @@ class parser{
         return($ret);
         }
     
+
     function mirc($line){
+	$line = ' '.$line. "\x0F ";  // regexworkaround
+	$lock = array('b'=>Null,'i'=>Null,'u'=>Null,'c'=>Null,'f'=>Null);
+	$start = 1;
+	$classes = Null;
+	while($start != 0){
+		$pos = Null;
+
+		$pos['b'] = strpos($line,"\x02",$start);
+		$pos['i'] = strpos($line,"\x1D",$start);
+		$pos['u'] = strpos($line,"\x1F",$start);
+		$pos['c'] = strpos($line,"\x03",$start);
+		$pos['f'] = strpos($line,"\x0F",$start);
+	$pos_2 = array_filter($pos);	
+
+	if($pos_2){
+	$start = min($pos_2);
+//parse.
+switch($start){
+case $pos['b']:
+	if($lock['b'] == 0){
+$classes['b'] = 'fett';
+$strclasses = '<span class="'.implode(' ',$classes).'">';
+	$line = preg_replace('/\x02/', $strclasses, $line,1);
+	$lock['b'] = 1;
+	}else{
+	unset($classes['b']);
+	if($classes){
+$strclasses = '</span><span class="'.implode(' ',$classes).'">';
+	$line = preg_replace('/\x02/', $strclasses, $line,1);
+	}else{
+	$line = preg_replace('/\x02/', '</span>', $line,1);
+	}
+	$lock['b'] = 0;
+	}
+	break;
+case $pos['i']:
+	if($lock['i'] == 0){
+$classes['i'] = 'it';
+$strclasses = '<span class="'.implode(' ',$classes).'">';
+	$line = preg_replace('/\x1D/', $strclasses, $line,1);
+	$lock['i'] = 1;
+	}else{
+	unset($classes['i']);
+	if($classes){
+$strclasses = '</span><span class="'.implode(' ',$classes).'">';
+	$line = preg_replace('/\x1D/', $strclasses, $line,1);
+	}else{
+	$line = preg_replace('/\x1D/', '</span>', $line,1);
+	}
+	$lock['i'] = 0;
+	}
+	break;
+case $pos['u']:
+	if($lock['u'] == 0){
+$classes['u'] = 'un';
+$strclasses = '<span class="'.implode(' ',$classes).'">';
+	$line = preg_replace('/\x1F/', $strclasses, $line,1);
+	$lock['u'] = 1;
+	}else{
+	unset($classes['u']);
+	if($classes){
+$strclasses = '</span><span class="'.implode(' ',$classes).'">';
+	$line = preg_replace('/\x1F/', $strclasses, $line,1);
+	}else{
+	$line = preg_replace('/\x1F/', '</span>', $line,1);
+	}
+	$lock['u'] = 0;
+	}
+	break;
+case $pos['c']:
+	if($lock['c'] == 0){
+$classes['c'] = "mirc\\1";
+$strclasses = '<span class="'.implode(' ',$classes).'">';
+	                    //farbe
+                    $line = preg_replace('/(((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}((\,)|\n)[0-9a-fA-F]{1,2}|((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}+)/', $strclasses, $line,1,$n);
+                        //bgcolor
+                        $line = preg_replace('/((?<=(\S|.)mirc[0-9a-fA-F]{2})|\n)(?!([0-9a-fA-F]{2})),/', ' mircbg\\1', $line,1,$p);
+                    $line = preg_replace('/\x03/', '', $line,1,$i); // aufräumen
+	$lock['c'] = 1;
+	}else{
+	unset($classes['c']);
+	if($classes){
+$strclasses = '</span><span class="'.implode(' ',$classes).'">';
+	$line = preg_replace('/\x03/', $strclasses, $line,1);
+	}else{
+	$line = preg_replace('/\x03/', '</span>', $line,1);
+	}
+	$lock['c'] = 0;
+	}
+	break;
+case $pos['f']:
+	$ref_f = 0;
+	if($lock['b']==1){
+	$ref_f = 1;
+	$lock['b'] = 0;
+	}
+	if($lock['i']==1){
+	$ref_f = 1;
+	$lock['i'] = 0;
+	}
+	if($lock['u']==1){
+	$ref_f = 1;
+	$lock['u'] = 0;
+	}
+	if($lock['c']==1){
+	$ref_f = 1;
+	$lock['c'] = 0;
+	}
+	if($ref_f == 1){
+	$ref_f = '</span>';
+	}else{
+	$ref_f = '';}
+	$classes = Null;
+	$line = preg_replace('/\x0F/', $ref_f, $line,1);
+
+	break;
+}
+	$start++;
+	}else{
+	$start = 0;}			
+	}
+	return trim($line);
+	}
+
+
+
+    function mirc_alt($line){
         // mirc-formatierung - evil!
         $line = ' '.$line.' ';  // regexworkaround
         //vars,vars,vars ...
@@ -77,9 +205,9 @@ class parser{
                     $j++;
                 }elseif($posfa < $posfe AND $posfa < $posen){
                     //farbe
-                    $line = preg_replace('/(((?<=(\S|.))|\n)[0-9a-fA-F]{2}((\,)|\n)[0-9a-fA-F]{2}|((?<=(\S|.))|\n)[0-9a-fA-F]{2}+)/', $refa, $line,1,$n);
+                    $line = preg_replace('/(((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}((\,)|\n)[0-9a-fA-F]{1,2}|((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}+)/', $refa, $line,1,$n);
                         //bgcolor
-                        $line = preg_replace('/((?<=(\S|.)mirc[0-9a-fA-F]{2})|\n)(?!([0-9a-fA-F]{2})),/', ' mircbg\\1', $line,1,$p);
+                        $line = preg_replace('/((?<=(\S|.)mirc[0-9a-fA-F]{1,2})|\n)(?!([0-9a-fA-F]{1,2})),/', ' mircbg\\1', $line,1,$p);
                     $line = preg_replace('//', '', $line,1,$i); // aufräumen
                         $n++;
                     }else{
@@ -135,7 +263,7 @@ class parser{
            switch(intval($search_ary["type"])){
             //all
             case 1:
-                $output1 .= '<div class="nick">&nbsp;&lt;'.$usern[0].'&gt;&nbsp;</div><div class="msg cell"">' . $this->format($search_ary["message"]).'</div>';
+                $output1 .= '<div class="nick">&nbsp;&lt;'.$usern[0].'&gt;&nbsp;</div><div class="msg cell">' . $this->format($search_ary["message"]).'</div>';
                 break;
             // /me
             case 4:

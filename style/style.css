@@ -84,7 +84,7 @@ a {
     background: inherit !important;
 }
 
-a:link,a:visited,a:active,.link, span{
+a:link,a:visited,a:active,.link{
      color: #4a4a4a;
      cursor: pointer; 
      text-decoration: none;
@@ -108,10 +108,16 @@ a.links:hover {
      color: #0044CC;
      cursor: pointer; 
      text-decoration: underline;
-     font-weight: normal;    
+     font-weight: normal;   
     }
     
 //mircfarben
+.test{font-weight: 700 !important;}
+
+.fett {font-weight: 700 !important;}
+*.it {font-style: italic;}
+*.un {text-decoration: underline;}
+
 *.mirc00 { color: #ffffff; }
 *.mirc01 { color: #000000; }
 *.mirc02 { color: #000080; }
