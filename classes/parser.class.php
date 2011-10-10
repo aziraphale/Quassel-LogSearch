@@ -48,107 +48,107 @@ class parser{
 
 	if($pos_2){
 	$start = min($pos_2);
-//parse.
-switch($start){
-case $pos['b']:
-	if($lock['b'] == 0){
-$classes['b'] = 'fett';
-$strclasses = '<span class="'.implode(' ',$classes).'">';
-	$line = preg_replace('/\x02/', $strclasses, $line,1);
-	$lock['b'] = 1;
-	}else{
-	unset($classes['b']);
-	if($classes){
-$strclasses = '</span><span class="'.implode(' ',$classes).'">';
-	$line = preg_replace('/\x02/', $strclasses, $line,1);
-	}else{
-	$line = preg_replace('/\x02/', '</span>', $line,1);
-	}
-	$lock['b'] = 0;
-	}
-	break;
-case $pos['i']:
-	if($lock['i'] == 0){
-$classes['i'] = 'it';
-$strclasses = '<span class="'.implode(' ',$classes).'">';
-	$line = preg_replace('/\x1D/', $strclasses, $line,1);
-	$lock['i'] = 1;
-	}else{
-	unset($classes['i']);
-	if($classes){
-$strclasses = '</span><span class="'.implode(' ',$classes).'">';
-	$line = preg_replace('/\x1D/', $strclasses, $line,1);
-	}else{
-	$line = preg_replace('/\x1D/', '</span>', $line,1);
-	}
-	$lock['i'] = 0;
-	}
-	break;
-case $pos['u']:
-	if($lock['u'] == 0){
-$classes['u'] = 'un';
-$strclasses = '<span class="'.implode(' ',$classes).'">';
-	$line = preg_replace('/\x1F/', $strclasses, $line,1);
-	$lock['u'] = 1;
-	}else{
-	unset($classes['u']);
-	if($classes){
-$strclasses = '</span><span class="'.implode(' ',$classes).'">';
-	$line = preg_replace('/\x1F/', $strclasses, $line,1);
-	}else{
-	$line = preg_replace('/\x1F/', '</span>', $line,1);
-	}
-	$lock['u'] = 0;
-	}
-	break;
-case $pos['c']:
-	if($lock['c'] == 0){
-$classes['c'] = "mirc\\1";
-$strclasses = '<span class="'.implode(' ',$classes).'">';
-	                    //farbe
-                    $line = preg_replace('/(((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}((\,)|\n)[0-9a-fA-F]{1,2}|((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}+)/', $strclasses, $line,1,$n);
-                        //bgcolor
-                        $line = preg_replace('/((?<=(\S|.)mirc[0-9a-fA-F]{2})|\n)(?!([0-9a-fA-F]{2})),/', ' mircbg\\1', $line,1,$p);
-                    $line = preg_replace('/\x03/', '', $line,1,$i); // aufräumen
-	$lock['c'] = 1;
-	}else{
-	unset($classes['c']);
-	if($classes){
-$strclasses = '</span><span class="'.implode(' ',$classes).'">';
-	$line = preg_replace('/\x03/', $strclasses, $line,1);
-	}else{
-	$line = preg_replace('/\x03/', '</span>', $line,1);
-	}
-	$lock['c'] = 0;
-	}
-	break;
-case $pos['f']:
-	$ref_f = 0;
-	if($lock['b']==1){
-	$ref_f = 1;
-	$lock['b'] = 0;
-	}
-	if($lock['i']==1){
-	$ref_f = 1;
-	$lock['i'] = 0;
-	}
-	if($lock['u']==1){
-	$ref_f = 1;
-	$lock['u'] = 0;
-	}
-	if($lock['c']==1){
-	$ref_f = 1;
-	$lock['c'] = 0;
-	}
-	if($ref_f == 1){
-	$ref_f = '</span>';
-	}else{
-	$ref_f = '';}
-	$classes = Null;
-	$line = preg_replace('/\x0F/', $ref_f, $line,1);
+	//parse.
+	switch($start){
+	case $pos['b']:
+		if($lock['b'] == 0){
+	$classes['b'] = 'fett';
+	$strclasses = '<span class="'.implode(' ',$classes).'">';
+		$line = preg_replace('/\x02/', $strclasses, $line,1);
+		$lock['b'] = 1;
+		}else{
+		unset($classes['b']);
+		if($classes){
+	$strclasses = '</span><span class="'.implode(' ',$classes).'">';
+		$line = preg_replace('/\x02/', $strclasses, $line,1);
+		}else{
+		$line = preg_replace('/\x02/', '</span>', $line,1);
+		}
+		$lock['b'] = 0;
+		}
+		break;
+	case $pos['i']:
+		if($lock['i'] == 0){
+	$classes['i'] = 'it';
+	$strclasses = '<span class="'.implode(' ',$classes).'">';
+		$line = preg_replace('/\x1D/', $strclasses, $line,1);
+		$lock['i'] = 1;
+		}else{
+		unset($classes['i']);
+		if($classes){
+	$strclasses = '</span><span class="'.implode(' ',$classes).'">';
+		$line = preg_replace('/\x1D/', $strclasses, $line,1);
+		}else{
+		$line = preg_replace('/\x1D/', '</span>', $line,1);
+		}
+		$lock['i'] = 0;
+		}
+		break;
+	case $pos['u']:
+		if($lock['u'] == 0){
+	$classes['u'] = 'un';
+	$strclasses = '<span class="'.implode(' ',$classes).'">';
+		$line = preg_replace('/\x1F/', $strclasses, $line,1);
+		$lock['u'] = 1;
+		}else{
+		unset($classes['u']);
+		if($classes){
+	$strclasses = '</span><span class="'.implode(' ',$classes).'">';
+		$line = preg_replace('/\x1F/', $strclasses, $line,1);
+		}else{
+		$line = preg_replace('/\x1F/', '</span>', $line,1);
+		}
+		$lock['u'] = 0;
+		}
+		break;
+	case $pos['c']:
+		if($lock['c'] == 0){
+	$classes['c'] = "mirc\\1";
+	$strclasses = '<span class="'.implode(' ',$classes).'">';
+			            //farbe
+		            $line = preg_replace('/(((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}((\,)|\n)[0-9a-fA-F]{1,2}|((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}+)/', $strclasses, $line,1,$n);
+		                //bgcolor
+		                $line = preg_replace('/((?<=(\S|.)mirc[0-9a-fA-F]{2})|\n)(?!([0-9a-fA-F]{2})),/', ' mircbg\\1', $line,1,$p);
+		            $line = preg_replace('/\x03/', '', $line,1,$i); // aufräumen
+		$lock['c'] = 1;
+		}else{
+		unset($classes['c']);
+		if($classes){
+	$strclasses = '</span><span class="'.implode(' ',$classes).'">';
+		$line = preg_replace('/\x03/', $strclasses, $line,1);
+		}else{
+		$line = preg_replace('/\x03/', '</span>', $line,1);
+		}
+		$lock['c'] = 0;
+		}
+		break;
+	case $pos['f']:
+		$ref_f = 0;
+		if($lock['b']==1){
+		$ref_f = 1;
+		$lock['b'] = 0;
+		}
+		if($lock['i']==1){
+		$ref_f = 1;
+		$lock['i'] = 0;
+		}
+		if($lock['u']==1){
+		$ref_f = 1;
+		$lock['u'] = 0;
+		}
+		if($lock['c']==1){
+		$ref_f = 1;
+		$lock['c'] = 0;
+		}
+		if($ref_f == 1){
+		$ref_f = '</span>';
+		}else{
+		$ref_f = '';}
+		$classes = Null;
+		$line = preg_replace('/\x0F/', $ref_f, $line,1);
 
-	break;
-}
+		break;
+	}
 	$start++;
 	}else{
 	$start = 0;}			
@@ -156,89 +156,6 @@ case $pos['f']:
 	return trim($line);
 	}
 
-
-
-    function mirc_alt($line){
-        // mirc-formatierung - evil!
-        $line = ' '.$line.' ';  // regexworkaround
-        //vars,vars,vars ...
-        $i = 1;
-        $m = 1;
-        $l = 1;
-        $j = 1;
-        $n = 1;
-        $lock = 0;
-        while($i!=0 OR $m !=0){
-            $lock++;
-            if($lock == 100){   // endlosschleife verhindern, sollte nicht passieren, aber sicher ist sicher
-                //DEBUG echo 'ENDLOS!!!';
-                break;
-                }
-            if($j%2 == 0){
-                $refe = '</b>';
-                }else{
-                    $refe = '<b>';
-                    }
-            if($n%2 == 0){
-               //neue farbe anfangen
-               $refa = "</font><font class=\"mirc\\1\">";
-                }else{
-                    $refa = "<font class=\"mirc\\1\">";
-                    }
-            $posfe = strpos($line,'',0);
-            $posfa = strpos($line,'',0);
-            $posen = strpos($line,'',0);
-                // weitermachen, selbst wenn eins 0 ist.
-                if($posfe === FALSE){
-                    $i = 0;
-                    $posfe = 1001;}
-                if($posfa === FALSE){
-                    $m = 0;
-                    $posfa = 1001;}
-                if($posen === FALSE){
-                    $l = 0;
-                    $posen = 1000;}
-              //DEBUG echo $posfe.'!'.$posfa.'!'.$posen.'!'.$i.'!'.$m.'<br>';
-            if($posfe < $posfa AND $posfe < $posen){
-                //fett
-                $line = preg_replace('//', $refe, $line,1,$i);
-                    $j++;
-                }elseif($posfa < $posfe AND $posfa < $posen){
-                    //farbe
-                    $line = preg_replace('/(((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}((\,)|\n)[0-9a-fA-F]{1,2}|((?<=(\S|.)\x03)|\n)[0-9a-fA-F]{1,2}+)/', $refa, $line,1,$n);
-                        //bgcolor
-                        $line = preg_replace('/((?<=(\S|.)mirc[0-9a-fA-F]{1,2})|\n)(?!([0-9a-fA-F]{1,2})),/', ' mircbg\\1', $line,1,$p);
-                    $line = preg_replace('//', '', $line,1,$i); // aufräumen
-                        $n++;
-                    }else{
-                        if($j%2 == 0 AND $n%2 == 0){    // beide schließen
-                            $line = preg_replace('//', '</b></font>', $line,1,$l);
-                            if($l == 1){
-                                $j++;
-                                $n++;
-                                continue;
-                                }
-                            }elseif($j%2 == 0){ //nur fett
-                                $line = preg_replace('//', '</b>', $line,1,$l);
-                                if($l == 1){
-                                    $j++;
-                                    continue;
-                                    }
-                                }elseif($n%2 == 0){ //nur farbe
-                                    $line = preg_replace('//', '</font>', $line,1,$l);
-                                    if($l == 1){
-                                        $n++;
-                                        continue;
-        }}}}
-        if($j%2 == 0){  // noch was offen?
-            $line = $line.'</b>';
-            }
-        if($n%2 == 0){  //noch was offen?
-            $line = $line.'</font>';
-            }
-
-        return trim($line);
-        }
 
       
     function format($line){
