@@ -7,7 +7,9 @@
  require_once('classes/gettext.class.php');
 ?>
 <div style="margin:-18px;float:right;height:70px; width:50px; right:0px;top:0px;position:relative;z-index:10;background-color:white;"><span style="float:right;margin: 3px;" onclick="javascript:document.getElementById('scontent').innerHTML = '<center><?php echo _('Waiting for search ...')?></center>';">[ x ]</span></div><center>
-<a style="font-size:13pt;" target="_blank" href="http://m4yer.minad.de/quassel/"><?php echo _('Quassel Backlog Search')?></a><br><br style="line-height:5pt;">
+<a style="font-size:13pt;" target="_blank" href="http://m4yer.minad.de/quassel/"><?php echo _('Quassel Backlog Search')?>
+</a>
+<br><br style="line-height:5pt;">
 <?php
 if(is_file('version.txt')){
     echo _('Version:  ');
@@ -26,7 +28,9 @@ include('version.txt');
 
 // recommended_php_version warning
 if (version_compare(PHP_VERSION, $recommended_php_version) !== 1) {
-    echo '<br><br><span style="color:red">'._('Your php-version is below the recommended php-version ').$recommended_php_version.'<br>'._('Please try to update to be able to use all features!<br>The support for your php-version is depreciated and will be removed in future releases!').'</span>';
+    echo '<br><br><span 
+style="color:red">'._('Your php-version is below the recommended php-version 
+').$recommended_php_version.'<br>'._('Please try to update to be able to use all features!<br>The support for your php-version is depreciated and will be removed in future releases!').'</span>';
     }
     
 ?>

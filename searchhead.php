@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search
-//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2011 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 require_once('classes/gettext.class.php');
 ?><div style="width:100%; background: #6699cc;color:white;" >
@@ -13,8 +13,8 @@ require_once('classes/gettext.class.php');
 
 <form onsubmit="javascript:such(); return false" action="#">
 <div style="padding: 20px; float:left;">
-<span style="font-size: 20pt;color:white;"><?php echo _('Quassel Backlog Search'); ?></span><br><br>
-<input value="" id="input" size="60" type="text"">&nbsp;<input type="submit" value="<?php echo _('Start searching!'); ?>" class="button">
+<span class="link" style="font-size: 20pt;color:white;"><?php echo _('Quassel Backlog Search'); ?></span><br><br>
+<input value="" id="input" size="60" type="search" x-webkit-speech />&nbsp;<input type="submit" value="<?php echo _('Start searching!'); ?>" class="button">
 <br><label for="buffername"><img src="style/channel.png" style="z-index:1;position:relative;margin:2px;float:left;" alt="Buffer" title="<?php echo _('Buffer to search'); ?>"></label>
 <script type="text/javascript">
     <!--
@@ -41,10 +41,10 @@ if(!empty($array2[0])){
 
 ?>
 </select><label for="number"><img src="style/lines.png" title="<?php echo _('Number of results'); ?>" alt="Lines" style="margin:2px; margin-left:20px;float:left;"></label><input name="number" title="<?php echo _('Number of results'); ?>" value="<?php echo $defaultnr?>" id="number" size="5" step="5" min="5" oninvalid="roundthis(this);" type="number" max="100" style="text-align:right" autocomplete="off">
-<span id="asearch" onclick="show_a_search();" style="font-size:7pt;margin-left:20px;" title="<?php echo _('Show advanced search'); ?>">[ <?php echo _('Advanced search'); ?> ]</span>
+<span id="asearch" onclick="show_a_search();" style="font-size:7pt;margin-left:20px;" class="link" title="<?php echo _('Show advanced search'); ?>">[ <?php echo _('Advanced search'); ?> ]</span>
 <br> </div>
 <div id="advanced" style="margin: 5px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">
-    <span onclick="hide_a_search();" style="margin-left:-10px;" title="<?php echo _('Close'); ?>">[ <?php echo _('Advanced search'); ?> ]</span><br>
+    <span onclick="hide_a_search();" style="margin-left:-10px;" class="link" title="<?php echo _('Close'); ?>">[ <?php echo _('Advanced search'); ?> ]</span><br>
     <?php echo _('Search in a timeperiod:'); ?><br>
     <input onchange="validtime_start();" title="<?php echo _('Excepts any english timeformat'); ?>" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
     <input onchange="validtime_end();" title="<?php echo _('Excepts any english timeformat'); ?>" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
