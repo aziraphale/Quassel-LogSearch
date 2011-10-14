@@ -1,6 +1,6 @@
 //
 //      Quassel Backlog Search
-//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2011 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 //
 //  quasselbacklogsearchjs - dunno how but it works :P
@@ -113,17 +113,20 @@
         }
 
 
-     function multiple(){
-            if(document.getElementById('buffer').multiple == true){
-                document.getElementById('buffer').style.marginBottom= '0px';
-                document.getElementById('buffer').size=1;
-                document.getElementById('buffer').multiple=false;
+     function multiplejs(){
+            if($('buffer').multiple == true){
+                $('buffer').style.marginBottom= '0px';
+                $('buffer').size=1;
+                $('buffer').multiple=false;
+                $('multipleide').checked=false;
             }else{
-                document.getElementById('buffer').style.marginBottom= '-43px';
-                document.getElementById('buffer').size=4;
-                document.getElementById('buffer').multiple=true;
+                $('buffer').style.marginBottom= '-43px';
+                $('buffer').size=5;
+                $('buffer').multiple=true;
+		$('multipleide').checked=true;
         }}
-        
+
+       
      function sorting(){
             if(document.getElementById('sorting').checked == true){
                 document.getElementById('sorting').checked=false;

@@ -1,20 +1,31 @@
 body {
      margin: 0px;
+     height: 100%;
      color: #4a4a4a;
      font: 9pt/10pt Verdana, Arial, Helvetica, Sans-Serif;
      vertical-align: top;
      text-align: justify;
      background: #6699cc;
      overflow-x: hidden;}
+
      
-      
 #footer {
     font: 6pt/7pt Verdana, Arial, Helvetica, Sans-Serif;
     color: white;
     }
 
-#login,#postform,#bodyid {
+#login,#postform {
     background: #6699cc;
+    }
+
+#loginform {
+    margin:auto;
+    margin-top:-100px;
+    height: 200px;
+    width:250px;
+    text-align:center;
+    top:50%;
+    position:relative;
     }
     
 #scontent{
@@ -62,6 +73,7 @@ body {
     white-space: -moz-nowrap !important; /* Mozilla, seit 1999 */
     white-space: -nowrap; /* Opera 4-6 */
     white-space: -o-nowrap; /* Opera 7 */
+    padding-left: 6px;
     }    
     
     

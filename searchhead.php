@@ -44,15 +44,18 @@ if(!empty($array2[0])){
 <span id="asearch" onclick="show_a_search();" style="font-size:7pt;margin-left:20px;" class="link" title="<?php echo _('Show advanced search'); ?>">[ <?php echo _('Advanced search'); ?> ]</span>
 <br> </div>
 <div id="advanced" style="margin: 5px; padding: 7px; padding-left: 15px; float:left;display:none; font-size:7pt; border-left:1px solid white;">
-    <span onclick="hide_a_search();" style="margin-left:-10px;" class="link" title="<?php echo _('Close'); ?>">[ <?php echo _('Advanced search'); ?> ]</span><br>
+    <span onclick="hide_a_search();" style="margin-left:-10px;" class="link" title="<?php echo _('Close'); ?>">[ x ]</span><br><br>
     <?php echo _('Search in a timeperiod:'); ?><br>
     <input onchange="validtime_start();" title="<?php echo _('Excepts any english timeformat'); ?>" name="time_start" id="time_start" size="20;" value="Starttime" onBlur="if(this.value=='') this.value='Starttime';" onFocus="if(this.value=='Starttime') this.value='';">
     <input onchange="validtime_end();" title="<?php echo _('Excepts any english timeformat'); ?>" name="time_end" id="time_end" size="20;" value="Endtime" onBlur="if(this.value=='') this.value='Endtime';" onFocus="if(this.value=='Endtime') this.value='';">
     <span id="starttime" style="display:none;"></span><span id="endtime" style="display:none;"></span>
 <br>
-<!--label for="sorting">ASC sorting</label--><input style="display:none;" name="sorting" type="checkbox" id="sorting" title="<?php echo _('Switch between DESC and ASC-Sorting; Default: DESC'); ?>">
-<span onclick="multiple();" style="margin-left:0px;" title="<?php echo _('Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once.'); ?>"><?php echo _('Switch multiple'); ?></span>
+<input style="display:none;" name="sorting" type="checkbox" id="sorting" title="<?php echo _('Switch between DESC and ASC-Sorting; Default: DESC'); ?>">
+
 <div style="clear:both;"><label for="regexid"><?php echo _('Regex:'); ?></label><input type="checkbox" name="regexid" id="regexid" title="<?php echo _('search with regular expression'); ?>" style="margin-right:15px;">
+
+<label for="multipleide"><?php echo _('Switch multiple'); ?>:</label><input type="checkbox" onChange="multiplejs();" name="multipleide" id="multipleide" title="<?php echo _('Switch between multi-search and single-search; Multisearch allows to search more than one Chat at once.'); ?>" style="margin-right:15px;">
+
 <div style="display:inline;<?php if($backend == "sqlite"){ echo ' display:none;'; } ?>"><label for="types"><?php echo _('Only messages:'); ?></label><input type="checkbox" name="types" id="types" title="<?php echo _('search only messages - if _not_ checked joins,quits,... will be shown and searched'); ?>" checked="checked"></div></div>
 
 </div></form></div>
