@@ -69,7 +69,9 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
             }
             $params[] = &$stmt1;
             $params[] = $param_type;
-            $params = array_merge($params, $search_zeug);
+            foreach ($search_zeug as &$value) {
+              $params[] = &$value;
+            }
             call_user_func_array("mysqli_stmt_bind_param", $params);
             $stmt1->execute();
 
@@ -92,8 +94,9 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
     
     if($sorting == 1){
         $output = array_reverse($output);}
-        
-    $output = implode('',$output);
+   
+    if (is_array($output)){     
+        $output = implode('',$output);}
     
     $outputary[0] = $output;
     $outputary[1] = $i;
