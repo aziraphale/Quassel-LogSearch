@@ -1,7 +1,7 @@
 <?php
 //
 // config-file for Quassel Backlog Search
-//      developed 2009-2011 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2012 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 //
@@ -10,7 +10,7 @@
 
 $backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) required
 #$backend = "sqlite";   // php-version with PDO Driver for SQLite 3.x required
-#$backend = "mysql";    // php-version with mysqli support required
+#$backend = "mysql";    // EXPERIMENTAL and UNSUPPORTED - php-version with mysqli support required
 // WARNING: please edit databaseinformations below.
 
 
@@ -91,11 +91,27 @@ $debug = "release"; // set to "debug" to enable debuging-class
 
 
 
+
+#################################################################
+// experimental featueres
+
+
+
+// livesearch - search and display line by line
+
+$livesearch = "true"; // EXPERIMENTAL (and  inefficient), but gives the feeling of speed ("true" or "false")
+
+
+
+// number of lines to search - default value, if nothing is stored by cookie
+
+$defaultnr = 20; // EXPERIMENTAL
+
 #################################################################
 #
 # parse config, please do not edit anything below here!
 #
-$config_version = '1.1';
+$config_version = '1.2';
 require('parseconf.php');
 
 ?>

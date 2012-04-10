@@ -4,6 +4,13 @@
 //      developed 2009-2011 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 require_once('classes/gettext.class.php');
+require_once('config.php');
+if($livesearch != 'true')
+  {
+  $searcher = 'such';
+  }else{
+  $searcher = 'rellig';
+  }
 ?><div style="width:100%; background: #6699cc;color:white;" >
 <!-- menu -->
 <span style="position:absolute; top:0px;right:0px;margin:10px;"><a href="logout.php"><?php echo _('logout'); ?></a>&nbsp;|&nbsp;<a href="javascript:Request('scontent','faq.php');"><?php echo _('faq'); ?></a>&nbsp;|&nbsp;<a href="javascript:Request('scontent','about.php');"><?php echo _('about'); ?></a></span>
@@ -11,7 +18,7 @@ require_once('classes/gettext.class.php');
 <img style="position:relative;float:left;margin:10px;margin-bottom:-20px; margin-right:0px;" alt="" src="style/quassel.png">
 <div style="overflow:none; float:left;">
 
-<form onsubmit="javascript:such(); return false" action="#">
+<form onsubmit="javascript:<?php echo $searcher; ?>(); return false" action="#">
 <div style="padding: 20px; float:left;">
 <span class="link" style="font-size: 20pt;color:white;"><?php echo _('Quassel Backlog Search'); ?></span><br><br>
 <input value="" id="input" size="60" type="search" x-webkit-speech />&nbsp;<input type="submit" value="<?php echo _('Start searching!'); ?>" class="button">

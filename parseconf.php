@@ -1,13 +1,12 @@
 <?php
 //
 //      Quassel Backlog Search
-//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2012 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 
 // hidden configs
-$defaultnr = 20;
-$config_version2 = '1.1';
+$config_version2 = '1.2';
 $required_php_version = '5.1.0';
 $recommended_php_version = '5.2.0';
  

@@ -131,7 +131,10 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
                         }}
 
     $Endzeit = $this->getmicrotime();   //zeit berechnen
-    $output .= '<div style="font-size:6pt;text-align:center;color: #4a4a4a;">'.$outputary[1]._(' results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
+    
+    if($livesearch != 'true'){
+       $output .= '<div style="font-size:6pt;text-align:center;color: #4a4a4a;">'.$outputary[1]._(' results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
+       }
   return $output;
   } 
 }

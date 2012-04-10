@@ -1,10 +1,11 @@
 <?php
 //
 //      Quassel Backlog Search
-//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2012 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 require_once('debuger.php');
+require_once('config.php');
 
     if(isset($_REQUEST['search'])){
          $search = $_REQUEST['search'];
@@ -59,7 +60,11 @@ if($searchid == 0){
         }else{
             echo '<div style="text-align:right;positon:relative;z-index:9;margin-bottom:-20px;">';
             }
-    echo '<span id="searchid" style="display:none;">0</span><span id="morespan" onclick="such_more('.$sorting.');" style="position:relative;right:-35px; top:17px;;z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span><span onclick="sorting();" title="'._('Change sorting-direction').'" style="position:relative; right:-15px;top:-10px; z-index:9;"><img id="sortlink" src="style/'.$sortingpic.'"></span></div>';
+            if($livesearch != 'true'){
+	          echo '<span id="searchid" style="display:none;">0</span><span id="morespan" onclick="such_more('.$sorting.');" style="position:relative;right:-35px; top:17px;;z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span><span onclick="sorting();" title="'._('Change sorting-direction').'" style="position:relative; right:-15px;top:-10px; z-index:9;"><img id="sortlink" src="style/'.$sortingpic.'"></span></div>';
+            }else{
+ 	          echo '<span id="searchid" style="display:none;">0</span><span id="morespan" onclick="rellig_more('.$sorting.');" style="position:relative;right:-35px; top:17px;;z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span><span onclick="sorting();" title="'._('Change sorting-direction').'" style="position:relative; right:-15px;top:-10px; z-index:9;"><img id="sortlink" src="style/'.$sortingpic.'"></span></div>';
+            }
     }
 
         echo '<script language="javascript" type="text/javascript">',
