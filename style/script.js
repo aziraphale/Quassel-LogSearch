@@ -13,8 +13,9 @@
         document.getElementById('load').style.display = 'block';
           },
           onComplete: function() {
+	    if(Ajax.activeRequestCount <= 1){
         document.getElementById('load').style.display = 'none';
-          }
+          }}
      });
 
      function stopError(){
@@ -77,7 +78,6 @@
         
              }
              
-             
 function rellig(){
 
         var ary = new Array();
@@ -89,14 +89,12 @@ function rellig(){
              new Ajax.Updater('scontent', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&buffername=' + ary + '&number=1&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true, onComplete: function(){}});
 
 for(j = 1; j < document.getElementById('number').value; j++){
-
         
         if(document.getElementById('sorting').checked == 1){
              new Ajax.Updater('innersearch', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&searchid=' + j + '&buffername=' + ary + '&number=' + '1' + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true, insertion: Insertion.Top});
         }else{
              new Ajax.Updater('innersearch', 'suche.php?search=1&string=' + encodeURIComponent(document.getElementById('input').value) + '&searchid=' + j + '&buffername=' + ary + '&number=' + '1' + '&time_end=' + encodeURIComponent(document.getElementById('time_end').value) + '&time_start=' + encodeURIComponent(document.getElementById('time_start').value) + '&regexid=' + document.getElementById('regexid').checked + '&types=' + document.getElementById('types').checked + '&sorting=' + document.getElementById('sorting').checked, {asynchronous:true, evalScripts:true, insertion: Insertion.Bottom});      
         }  
-  
 }
 document.cookie = 'saves=' + document.getElementById('regexid').checked +':'+ document.getElementById('types').checked +':'+ document.getElementById('sorting').checked;
  
