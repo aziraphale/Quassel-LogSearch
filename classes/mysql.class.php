@@ -177,13 +177,25 @@ function moreinfo($bufferid,$messageid,$types,$sorting=0){
     
     $dbconn = $this->login();
 
-    $result = $dbconn->query("SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid >= $messageid order by messageid ASC limit 9");
+    $resultAfter = $dbconn->query("SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid >= $messageid order by messageid ASC limit 9");
+    $resultBefore = $dbconn->query("SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid < $messageid order by messageid DESC limit 8");
+    if (!$resultAfter) {
+        echo "AFTER: " . $dbconn->error;
+        die();
+    }
+    if (!$resultBefore) {
+        echo "BEFORE: " . $dbconn->error;
+        die();
+    }
     $stmt = $dbconn->prepare('SELECT sender FROM sender WHERE senderid = ?');
     
-    while($search_ary = $result->fetch_row()){
-        $array[] = $search_ary;
-            }
-    $result->close();
+    $array = array();
+    if ($resultAfter) {
+        while($search_ary = $resultAfter->fetch_assoc()){
+            $array[] = $search_ary;
+                }
+        $resultAfter->close();
+    }
 
     $array = array_reverse($array);
     $i=count($array);
@@ -205,13 +217,13 @@ function moreinfo($bufferid,$messageid,$types,$sorting=0){
         }
         
         
-    $result = $dbconn->query("SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid < $messageid order by messageid DESC limit 8");
-
     $results = array();
-    while($search_ary = $result->fetch_row()){
-         $results[] = $search_ary;
+    if ($resultBefore) {
+        while($search_ary = $resultBefore->fetch_assoc()){
+             $results[] = $search_ary;
+        }
+        $resultBefore->close();
     }
-    $result->close();
     foreach($results as $search_ary) {
          $stmt->bind_param("i", $search_ary["senderid"]);
          $stmt->execute();
@@ -257,7 +269,7 @@ function moremore($bufferid,$messageid,$state,$types,$sorting=0){
     
     $result = $dbconn->query("SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid > $messageid order by messageid ASC limit 9");
     $array = array();
-    while($search_ary = $result->fetch_row()){
+    while($search_ary = $result->fetch_assoc()){
         $array[] = $search_ary;
             }
     $result->close();
@@ -284,7 +296,7 @@ function moremore($bufferid,$messageid,$state,$types,$sorting=0){
                 $result = $dbconn->query("SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid < $messageid order by messageid DESC limit 9");
 
             $results = array();
-            while($search_ary = $result->fetch_row()){
+            while($search_ary = $result->fetch_assoc()){
                    $results[] = $search_ary;
             }
             $result->close();
@@ -292,6 +304,7 @@ function moremore($bufferid,$messageid,$state,$types,$sorting=0){
                    $stmt->bind_param("i", $search_ary["senderid"]);
                    $stmt->execute();
                    $stmt->bind_result($sender);
+                   $stmt->fetch();
         
                    $user = explode ( '!', $sender );
                    $output[] = $this->parse($search_ary,$user,$types,1);   //parse

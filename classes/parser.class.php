@@ -174,13 +174,16 @@ class parser{
 
            // summer || winter ?
            $addtime = 36*$timezone;
-
+           
            if($hl == 1){
                     $hl = ' style="font-weight:bold;"';
                     }else{
                         $hl = '';}
            
-           $output = "\n".'<div style="display:table;width:100%;" id="md'. $search_ary[0] .'"><div class="wrap" id="d'. $search_ary[0] .'"><div class="date2 cell"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="'._('show context').'" style="font-size:7pt;">[&#8230;]</a><font class="date" style="color:c3c3c3;">['.date($dateformat,$addtime +@strtotime($search_ary["time"])).']</font>&nbsp;</div>'; // hautpsuche
+           $output = "\n".'<div style="display:table;width:100%;" id="md'. $search_ary['messageid'] .'"><div class="wrap" id="d'. $search_ary['messageid'] .'"><div class="date2 cell"><a href="javascript:moreinfo(\''. $search_ary['messageid'] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="'._('show context').'" style="font-size:7pt;">[&#8230;]</a><font class="date" style="color:c3c3c3;">['.date($dateformat,$addtime +@strtotime($search_ary["time"])).']</font>&nbsp;</div>'; // hautpsuche
+           if (!isset($search_ary['type'])) {
+               var_dump($search_ary);die();
+           }
            // alle unterstützten types: 1,4,8,32,128,64,256,1024,16384
            switch(intval($search_ary["type"])){
             //all
@@ -238,9 +241,9 @@ class parser{
                     $output = '<font class="date"'.$hl.'>['.date($dateformat,$addtime +strtotime($search_ary["time"])).']</font>'.$output1;
                     }
                 }elseif($this->mobile == TRUE){ //mobile braucht kein datum und more usw ...
-                    $output = "\n".'<div style="display:table;width:100%;"><div style="text-align:left;float:left;" class="wrap" id="d'. $search_ary[0] .'"><div class="cell"><a href="javascript:moreinfo(\''. $search_ary[0] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="'._('show context').'" style="font-size:7pt;">[&#8230;]&nbsp;</a></div>'.$output1.'</div></div><div style="display:table;width:100%;"><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;">'._('Loading...').'</div></div>';
+                    $output = "\n".'<div style="display:table;width:100%;"><div style="text-align:left;float:left;" class="wrap" id="d'. $search_ary['messageid'] .'"><div class="cell"><a href="javascript:moreinfo(\''. $search_ary['messageid'] .'\',\''. $search_ary["bufferid"] .'\',\''. $types .'\',\''. $sorting .'\');" title="'._('show context').'" style="font-size:7pt;">[&#8230;]&nbsp;</a></div>'.$output1.'</div></div><div style="display:table;width:100%;"><div class="wrap" id="m'. $search_ary['messageid'] .'" style="display: none;">'._('Loading...').'</div></div>';
                     }else{ //hauptsuche
-                        $output = $output . $output1.'</div></div><div style="display:table;width:100%;"><div class="wrap" id="m'. $search_ary[0] .'" style="display: none;color:black;">'._('Loading…').'</div></div>';  //hauptsuche ende
+                        $output = $output . $output1.'</div></div><div style="display:table;width:100%;"><div class="wrap" id="m'. $search_ary['messageid'] .'" style="display: none;color:black;">'._('Loading…').'</div></div>';  //hauptsuche ende
                         }       
         }
 
