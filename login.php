@@ -34,6 +34,13 @@ if($sessions == 1){
 
     $userid = $backend->login_backend($usern,$pwdn);
     $userid = intval($userid);
+
+    if($userid == 0){ // For monolithic users, allow direct hash value comparison as well (- avih).
+        $pwdn = $_REQUEST['quasselpwd'];
+        $userid = $backend->login_backend($usern,$pwdn);
+        $userid = intval($userid);
+    }
+
 // userid = valid?
 if($userid == 0){
     $error=_('<b>Username and Password do not match!</b><br>');
