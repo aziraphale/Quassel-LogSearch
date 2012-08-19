@@ -61,19 +61,43 @@ if($searchid == 0){
             echo '<div style="text-align:right;positon:relative;z-index:9;margin-bottom:-20px;">';
             }
             if($livesearch != 'true'){
+// 	      $_SESSION["searchid"] = 0 ;
 	          echo '<span id="searchid" style="display:none;">0</span><span id="morespan" onclick="such_more('.$sorting.');" style="position:relative;right:-35px; top:17px;;z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span><span onclick="sorting();" title="'._('Change sorting-direction').'" style="position:relative; right:-15px;top:-10px; z-index:9;"><img id="sortlink" src="style/'.$sortingpic.'"></span></div>';
             }else{
  	          echo '<span id="searchid" style="display:none;">0</span><span id="morespan" onclick="rellig_more('.$sorting.');" style="position:relative;right:-35px; top:17px;;z-index:9;" title="'._('Search further!').'"><img id="morelink" src="style/archive-insert.png"></span><span onclick="sorting();" title="'._('Change sorting-direction').'" style="position:relative; right:-15px;top:-10px; z-index:9;"><img id="sortlink" src="style/'.$sortingpic.'"></span></div>';
             }
+    }else{
+// 			$searchid_alt = $_SESSION["searchid"]+1;
+// 			$i=0;
+// 			while(intval($searchid) != intval($searchid_alt)){
+// 			  usleep(5000);
+// 			  
+// 			$searchid_alt = $_SESSION["searchid"]+1;
+// 			$i++;
+// 			if($i== 300){
+// 			break;
+// 			}
+// 			} 
     }
 
+ 
+// print('-'.intval($searchid).'.'.intval($searchid_alt).'-');
+// $_SESSION["searchid"]= $searchid;
+$results = $search->search($searchid,$bufferid, $input,$number,$time_start,$time_end,$regex,$types,$sorting);
+
+  if($results){
         echo '<script language="javascript" type="text/javascript">',
              'document.getElementById(\'searchid\').innerHTML=',
              intval($searchid)+1,
              '</script>';
-             
+        }
+        
+if($searchid == 0){             
     echo '<div id="innersearch">';
-    echo $search->search($searchid,$bufferid, $input,$number,$time_start,$time_end,$regex,$types,$sorting);
+    }
+echo $results;
+if($searchid == 0){
     echo '</div>';
+    }
 }
 ?>

@@ -127,7 +127,9 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
                 if($searchid == 0){
                     $output .=  '<center>'._('No results found for "').$input._('" - please try another searchstring.').'</center>';
                     }else{
+                    if($livesearch != 'true'){
                         $output .=  '<center>'._('No further results found for "').$input.'"</center>';
+                        }
                         }}
 
     $Endzeit = $this->getmicrotime();   //zeit berechnen
