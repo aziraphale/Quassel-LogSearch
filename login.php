@@ -35,7 +35,7 @@ if($sessions == 1){
     $userid = $backend->login_backend($usern,$pwdn);
     $userid = intval($userid);
 
-    if($userid == 0){ // For monolithic users, allow direct hash value comparison as well (- avih).
+if($enable_hash_login && $userid == 0){ // For monolithic users, allow direct hash value comparison as well (- avih).
         $pwdn = $_REQUEST['quasselpwd'];
         $userid = $backend->login_backend($usern,$pwdn);
         $userid = intval($userid);

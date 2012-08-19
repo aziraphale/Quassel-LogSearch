@@ -15,6 +15,14 @@ $backend = "sqlite";   // php-version with PDO Driver for SQLite 3.x required
 
 
 //
+// For monolithic users, the plaintext password (for default user AdminUser) is lost and never used.
+// For such databases, to enable login with explicit sha1 hash, enable the following.
+//
+
+$enable_hash_login = false;
+
+
+//
 //  timezone
 //  your timezone, eg. 'Europe/Berlin'
 //  supported timezones see here: http://php.net/manual/en/timezones.php
@@ -111,7 +119,7 @@ $defaultnr = 20; // EXPERIMENTAL
 #
 # parse config, please do not edit anything below here!
 #
-$config_version = '1.2';
+$config_version = '1.3';
 require('parseconf.php');
 
 ?>

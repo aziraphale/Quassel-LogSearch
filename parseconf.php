@@ -6,7 +6,7 @@
 
 
 // hidden configs
-$config_version2 = '1.2';
+$config_version2 = '1.3';
 $required_php_version = '5.1.0';
 $recommended_php_version = '5.2.0';
  
