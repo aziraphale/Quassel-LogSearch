@@ -8,8 +8,8 @@
 // choose backend postgresql, sqlite or mysql (simple remove and/or add #)
 //
 
-$backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) required
-#$backend = "sqlite";   // php-version with PDO Driver for SQLite 3.x required
+$backend = "sqlite";   // php-version with PDO Driver for SQLite 3.x required
+#$backend = "postgresql";    // php-version with PostgreSQL Support (pgsql) required
 #$backend = "mysql";    // EXPERIMENTAL and UNSUPPORTED - php-version with mysqli support required
 // WARNING: please edit databaseinformations below.
 
