@@ -44,6 +44,8 @@ if($enable_hash_login && $userid == 0){ // For monolithic users, allow direct ha
 // userid = valid?
 if($userid == 0){
     $error=_('<b>Username and Password do not match!</b><br>');
+	session_destroy();
+	setcookie('login', 0, time()-60);
     include('loginform.php');
         }else{
     $_SESSION['usern'] = $usern;
