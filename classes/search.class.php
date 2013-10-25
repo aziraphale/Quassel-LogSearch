@@ -1,7 +1,7 @@
 <?php
 //
 //      Quassel Backlog Search - classes
-//      developed 2009-2010 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
+//      developed 2009-2013 by m4yer <m4yer@minad.de> under a Creative Commons Licence by-nc-sa 3.0
 //
 
 // main search.class
@@ -71,12 +71,12 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
         if ($backend == "mysql")
             $param = "?";
         else
-            $param = "$".$i;
+            $param = function($i) { return "$".$i; };
         if(!empty($time_start)){
             if ($backend == "mysql"){
                 $time_string .= ' AND time > '.$param;
                 }else{
-                    $time_string .= ' AND time > '.$param.'AT TIME ZONE \'UTC\'';}
+                    $time_string .= ' AND time > '.$param($i).'AT TIME ZONE \'UTC\'';}
             $i++;
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_start));
             }
@@ -84,7 +84,7 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
             if ($backend == "mysql"){
                 $time_string .= ' AND time < '.$param;
                 }else{
-                    $time_string .= ' AND time < '.$param.'AT TIME ZONE \'UTC\'';}
+                    $time_string .= ' AND time < '.$param($i).'AT TIME ZONE \'UTC\'';}
             $i++;
             $search_zeug[] = date('Y-m-d H:i:s',strtotime($time_end));
             }
