@@ -86,8 +86,7 @@ function login_backend($usern,$pwdn){
     $dbconn = $this->login();
 
     // login
-    $db_qry = pg_query($dbconn,"SELECT userid FROM quasseluser WHERE username = '$usern' AND password = '$pwdn';");
-
+$db_qry = pg_query_params($dbconn,'SELECT userid FROM quasseluser WHERE username = $1 AND password = $2;', array($usern, $pwdn));
     if(pg_num_rows($db_qry)==0){
             return FALSE;
         }else{
