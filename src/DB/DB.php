@@ -10,6 +10,11 @@ class DB
         self::$inst = self::buildFromDsn($dsn);
     }
 
+    /**
+     * Returns our Singleton AbstractDB instance
+     *
+     * @return AbstractDB
+     */
     public static function getInstance() {
         if (!isset(self::$inst)) {
             throw new Exception("DB instance hasn't been set!");
