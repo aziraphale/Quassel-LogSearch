@@ -58,8 +58,14 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
 
         $buffers = array_shift($search_zeug);
     //prepare and execute search
-        $stmt1 = $dbconn->prepare($query = 'SELECT * FROM backlog WHERE bufferid IN ('.$buffers.') '. $type_string. $input_string . $time_string .$ssstring.' order by messageid DESC LIMIT '.$number.' OFFSET '.$searchid);
-        $stmt2 = $dbconn->prepare('SELECT sender FROM sender WHERE senderid = ?');
+        $stmt1 = $dbconn->prepare($query1 = "SELECT * FROM backlog WHERE bufferid IN ($buffers) $type_string $input_string $time_string $ssstring order by messageid DESC LIMIT $number OFFSET $searchid");
+        if (!$stmt1) {
+            debug(0, "Failed to prepare backlog query: ```$query1``` (".mysqli_errno($dbconn).": ".mysqli_error($dbconn).")");
+        }
+        $stmt2 = $dbconn->prepare($query2 = 'SELECT sender FROM sender WHERE senderid = ?');
+        if (!$stmt2) {
+            debug(0, "Failed to prepare sender query: ```$query2``` (".mysqli_errno($dbconn).": ".mysqli_error($dbconn).")");
+        }
         $i=0;
             $param_type = "";
             $params = array();
