@@ -1,5 +1,35 @@
 {
+    "name": "aziraphale/quassel-log-search",
+    "description": "A PHP webapp for search Quassel backlogs",
+    "homepage": "https://github.com/aziraphale/Quassel-LogSearch",
+    "license": "CC-BY-NC-SA-3.0",
+    "authors": [
+        {
+            "name": "Andrew Gillard",
+            "homepage": "http://github.com/aziraphale",
+            "role": "Developer"
+        },
+        {
+            "name": "m4yer",
+            "email": "m4yer+quassel@minad.de",
+            "homepage": "http://m4yer.minad.de/",
+            "role": "Developer of the original Quassel LogSearch"
+        }
+    ],
     "require": {
-        "monolog/monolog": "1.9.*"
+        "php": ">=5.3.0",
+        "ext-json": "*",
+        "ext-PDO": "*",
+        "lib-pcre": "*",
+        "monolog/monolog": "1.9.*",
+        "nesbot/Carbon": "1.*"
+    },
+    "suggest": {
+        "ext-pdo_mysql": "Required to support MySQL Quassel backends",
+        "ext-pdo_pgsql": "Required to support PostgreSQL Quassel backends",
+        "ext-pdo_sqlite": "Required to support SQLite Quassel backends"
+    },
+    "autoload": {
+        "psr-4": {"QuasselLogSearch\\": "src/"}
     }
 }
