@@ -26,7 +26,11 @@ class MySQL extends AbstractDB
 
         $dsn = preg_replace_callback('/(?<=[;:])(user|password)=(.*?)(?:;|$)/i', $replaceCallback, $dsn);
 
-        $this->pdo = new PDO($dsn, $username, $password);
+        $options = array(
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4',
+        );
+
+        $this->pdo = new PDO($dsn, $username, $password, $options);
     }
 }
 
