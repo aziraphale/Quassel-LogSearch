@@ -18,7 +18,7 @@ function login(){
         }
 
     $conn = mysqli_connect ($sql_host, $sql_user, $sql_password, $sql_dbname, $sql_port); // suppress error and parse later
-    
+
     if(mysqli_connect_errno()){    // parse error human readable
         echo _('<b>Could not connect to database!<br>Connection failed!<br>Please edit/check your config.php - wrong backend chosen or wrong database-infos!</b>');
         exit;
@@ -95,21 +95,21 @@ function search_backend($input_string,$time_string,$search_zeug,$number,$type=0,
            $stmt2->fetch();
            $user = explode ( '!', $sender );
            $output[] = $this->parse($search_ary,$user,$type,0,0,$sorting);    //parse everything.
-           $i++; 
+           $i++;
             }
-    
+
     if($sorting == 1){
         $output = array_reverse($output);}
-   
-    if (is_array($output)){     
+
+    if (is_array($output)){
         $output = implode('',$output);}
-    
+
     $outputary[0] = $output;
     $outputary[1] = $i;
 
     return $outputary;
     $dbconn->close();
-    }    
+    }
 
 
 function login_backend($usern,$pwdn){
@@ -132,8 +132,8 @@ function login_backend($usern,$pwdn){
 
 function bufferids($userid){
    $dbconn = $this->login();
-    // get bufferids und buffernames for user 
-   $result = $dbconn->query("SELECT buffername,bufferid,networkid FROM buffer WHERE userid = $userid AND buffername!='' order by networkid ASC,buffername COLLATE utf8_general_ci ASC");
+    // get bufferids und buffernames for user
+   $result = $dbconn->query("SELECT buffername,bufferid,networkid FROM buffer WHERE userid = $userid AND buffername!='' order by networkid ASC,buffername COLLATE utf8mb4_general_ci ASC");
 
     while($search_ary = $result->fetch_row()) {
         $array[] = $search_ary[0] .'||'. $search_ary[1].'||'.$search_ary[2];
@@ -147,7 +147,7 @@ function bufferids($userid){
 
 function networkname($networkid){
     $dbconn = $this->login();
-    $result = $dbconn->query("SELECT networkname FROM network WHERE networkid = '$networkid';");    
+    $result = $dbconn->query("SELECT networkname FROM network WHERE networkid = '$networkid';");
     $row = $result->fetch_row();
     $result->close();
     $dbconn->close();
@@ -180,7 +180,7 @@ function moreinfo($bufferid,$messageid,$types,$sorting=0){
             }else{
                 $type_string = ' AND `type` IN (1,4,8,32,64,128,256,512,1024,16384)';
                 }
-    
+
     $dbconn = $this->login();
 
     $resultAfter = $dbconn->query("SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid >= $messageid order by messageid ASC limit 9");
@@ -194,7 +194,7 @@ function moreinfo($bufferid,$messageid,$types,$sorting=0){
         die();
     }
     $stmt = $dbconn->prepare('SELECT sender FROM sender WHERE senderid = ?');
-    
+
     $array = array();
     if ($resultAfter) {
         while($search_ary = $resultAfter->fetch_assoc()){
@@ -221,8 +221,8 @@ function moreinfo($bufferid,$messageid,$types,$sorting=0){
            $user = explode ( '!', $sender );
            $output1[]= $this->parse($search_ary,$user,$types,1,$hl,$sorting);   //parse
         }
-        
-        
+
+
     $results = array();
     if ($resultBefore) {
         while($search_ary = $resultBefore->fetch_assoc()){
@@ -272,7 +272,7 @@ function moremore($bufferid,$messageid,$state,$types,$sorting=0){
     $stmt = $dbconn->prepare('SELECT sender FROM sender WHERE senderid = ?');
 
     if($state=='up'){   // if want newer
-    
+
     $result = $dbconn->query("SELECT * FROM backlog WHERE bufferid = $bufferid $type_string AND messageid > $messageid order by messageid ASC limit 9");
     $array = array();
     while($search_ary = $result->fetch_assoc()){
@@ -311,7 +311,7 @@ function moremore($bufferid,$messageid,$state,$types,$sorting=0){
                    $stmt->execute();
                    $stmt->bind_result($sender);
                    $stmt->fetch();
-        
+
                    $user = explode ( '!', $sender );
                    $output[] = $this->parse($search_ary,$user,$types,1);   //parse
                    $lastid = $search_ary["messageid"];

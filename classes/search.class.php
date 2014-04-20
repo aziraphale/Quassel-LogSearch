@@ -35,7 +35,7 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
         //regex braucht kein externes or, wer regex nutzt, soll auch das or so machen ;)
         if($regex != 'true' OR $input == ''){
              if ($backend == "mysql")
-               $method = 'COLLATE utf8_general_ci LIKE';
+               $method = 'COLLATE utf8mb4_general_ci LIKE';
              else
                $method = 'ILIKE';
             $input_array = explode(' ',$input);
@@ -52,7 +52,7 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
                 $i++;
             }
          }else{ // regex
-            if ($backend == "mysql") $input_string  .= 'AND message COLLATE utf8_general_ci REGEXP ? ';
+            if ($backend == "mysql") $input_string  .= 'AND message COLLATE utf8mb4_general_ci REGEXP ? ';
             else $input_string  .= 'AND message ~* $1';
             $search_zeug[] = $input;
             }
@@ -108,7 +108,7 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
                     $search_zeug[] = '%'.$sonstwas.'%';
                     $i++;
                 }
-                
+
                     }else{
                     $input_string  = 'AND regex("'.$input.'", message)';
                     $search_zeug[] = $input;
@@ -120,7 +120,7 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
 
             // search with backend
             $outputary = $this->search_backend($input_string,$time_string,$search_zeug,$number,$types,$sorting,$ssary,$searchid);
-            
+
             $output = $outputary[0];
 
             if($outputary[1] == 0){
@@ -133,12 +133,12 @@ function search($searchid, $bufferid, $input,$number,$time_start,$time_end,$rege
                         }}
 
     $Endzeit = $this->getmicrotime();   //zeit berechnen
-    
+
     if($livesearch != 'true'){
        $output .= '<div style="font-size:6pt;text-align:center;color: #4a4a4a;">'.$outputary[1]._(' results in ') . number_format($Endzeit-$Anfangszeit, 4, ",", ".") . _(' seconds.').'</div>';
        }
   return $output;
-  } 
+  }
 }
 
 ?>
