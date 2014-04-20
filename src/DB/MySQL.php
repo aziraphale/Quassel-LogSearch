@@ -6,7 +6,7 @@ use PDO;
 
 class MySQL extends AbstractDB
 {
-    public function __construct($dsn)
+    protected function connect($dsn)
     {
         // The MySQL driver doesn't let us include the username & password in the DSN, so we have to parse that out
         //  here, instead...

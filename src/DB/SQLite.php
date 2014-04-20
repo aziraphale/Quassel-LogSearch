@@ -6,7 +6,7 @@ use PDO;
 
 class SQLite extends AbstractDB
 {
-    public function __construct($dsn) {
+    protected function connect($dsn) {
         $this->pdo = new PDO($dsn);
     }
 }
