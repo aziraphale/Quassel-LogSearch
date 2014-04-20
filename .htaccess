@@ -1,0 +1,5 @@
+# Prevent access to our config file from the Web (if we're running Apache)
+<FilesMatch "\.ini$">
+    Order Allow,Deny
+    Deny From All
+</FilesMatch>
