@@ -2,6 +2,8 @@
 
 namespace QuasselLogSearch\DB;
 
+use Exception;
+
 class DB
 {
     private static $inst;

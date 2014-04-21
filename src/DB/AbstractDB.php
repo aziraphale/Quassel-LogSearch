@@ -4,7 +4,8 @@ namespace QuasselLogSearch\DB;
 
 use PDO,
     PDOStatement,
-    PDOException;
+    PDOException,
+    Exception;
 
 /**
  * @method public static bool beginTransaction()
