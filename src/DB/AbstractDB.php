@@ -2,10 +2,10 @@
 
 namespace QuasselLogSearch\DB;
 
-use PDO,
-    PDOStatement,
-    PDOException,
-    Exception;
+use PDO;
+use PDOStatement;
+use PDOException;
+use Exception;
 
 /**
  * @method public static bool beginTransaction()
@@ -27,7 +27,8 @@ abstract class AbstractDB
      */
     protected $pdo;
 
-    public function __construct($dsn) {
+    public function __construct($dsn)
+    {
         $this->connect($dsn);
 
         if (!$this->pdo instanceof PDO) {
@@ -40,7 +41,8 @@ abstract class AbstractDB
 
     abstract protected function connect($dsn);
 
-    public function __call($name, $args) {
+    public function __call($name, $args)
+    {
         switch (strtolower($name)) {
             case 'begintransaction':
             case 'commit':
@@ -57,4 +59,3 @@ abstract class AbstractDB
         }
     }
 }
-

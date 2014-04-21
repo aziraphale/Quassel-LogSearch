@@ -8,7 +8,8 @@ class DB
 {
     private static $inst;
 
-    public static function _init($dsn) {
+    public static function _init($dsn)
+    {
         self::$inst = self::buildFromDsn($dsn);
     }
 
@@ -17,7 +18,8 @@ class DB
      *
      * @return AbstractDB
      */
-    public static function getInstance() {
+    public static function getInstance()
+    {
         if (!isset(self::$inst)) {
             throw new Exception("DB instance hasn't been set!");
         }
@@ -53,4 +55,3 @@ class DB
         return $dbConn;
     }
 }
-

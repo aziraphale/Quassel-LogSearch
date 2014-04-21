@@ -6,8 +6,8 @@ use PDO;
 
 class PostgreSQL extends AbstractDB
 {
-    protected function connect($dsn) {
+    protected function connect($dsn)
+    {
         $this->pdo = new PDO($dsn);
     }
 }
-

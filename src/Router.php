@@ -2,8 +2,8 @@
 
 namespace QuasselLogSearch;
 
-use Klein\Klein,
-    QuasselLogSearch\Controller;
+use Klein\Klein;
+use QuasselLogSearch\Controller;
 
 class Router
 {
@@ -23,14 +23,14 @@ class Router
         // Alias self::$klein to $klein for our callbacks
         $klein = self::$klein;
 
-        $klein->with('!@^/ajax/', function() use ($klein) {
+        $klein->with('!@^/ajax/', function () use ($klein) {
             // All NON-Ajax requests
             $klein->service()->layout('src/View/Layout/Layout.php');
 
             $klein->respond('GET', '/', array("QuasselLogSearch\\Controller\\Core", "index"));
         });
 
-        $klein->with('/ajax', function() use ($klein) {
+        $klein->with('/ajax', function () use ($klein) {
 
         });
     }
