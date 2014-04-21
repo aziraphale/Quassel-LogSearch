@@ -14,5 +14,9 @@ class Bootstrap
         date_default_timezone_set(Config::get(Config::TIMEZONE));
 
         DB\DB::_init(Config::get(Config::BACKEND));
+
+        Router::_init();
+
+        Router::dispatch();
     }
 }

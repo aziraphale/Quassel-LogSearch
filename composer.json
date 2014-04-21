@@ -22,7 +22,8 @@
         "ext-PDO": "*",
         "lib-pcre": "*",
         "monolog/monolog": "1.9.*",
-        "nesbot/Carbon": "1.*"
+        "nesbot/Carbon": "1.*",
+        "klein/klein": "2.0.*"
     },
     "suggest": {
         "ext-pdo_mysql": "Required to support MySQL Quassel backends",
