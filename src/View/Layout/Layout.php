@@ -41,7 +41,7 @@
 
 <?php if ($this->loggedIn): ?>
     <aside id="logged_in" style="float: right;">
-        <p>You are logged in as: <strong><?=$this->loggedIn->username?></strong></p>
+        <p>You are logged in as: <strong><?=$this->loggedIn->username?></strong>. <a href="logout">Log out</a></p>
     </aside>
 <?php else: ?>
     <aside id="login_dialog" style="float: right;">
