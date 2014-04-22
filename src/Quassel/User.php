@@ -57,7 +57,6 @@ class User extends Model
         $stmt = DB::getInstance()->prepare("SELECT * FROM quasseluser WHERE username=? AND password=?");
         if ($stmt->execute(array($username, $passwordHash)) && $stmt->rowCount()) {
             $row = $stmt->fetchObject();
-            var_dump($row);
             return self::fromDbRow($row);
         }
         return null;

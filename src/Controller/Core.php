@@ -17,4 +17,3 @@ class Core
         $service->render('src/View/Index.php');
     }
 }
-

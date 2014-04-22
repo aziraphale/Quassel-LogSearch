@@ -6,6 +6,12 @@
 <meta charset="utf-8">
 <base href="<?=$this->escape($this->baseUrl)?>">
 <title>Quassel Log Search</title>
+
+<script src="public/vendor/jquery/jquery.min.js"></script>
+<!--<script src="public/vendor/jquery/jquery-migrate.min.js"></script>-->
+<link rel="stylesheet" href="public/vendor/jquery-ui/themes/base/minified/jquery-ui.min.css">
+<script src="public/vendor/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+
 <link rel="stylesheet" href="public/style/main.css">
 <script src="public/script/main.js"></script>
 </head>
