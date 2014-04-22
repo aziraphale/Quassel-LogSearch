@@ -4,9 +4,14 @@
     Deny From All
 </FilesMatch>
 
-# Rewrite all requests to index.php
 Options -MultiViews
 RewriteEngine On
+
+# If Quassel LogSearch isn't installed in your web document root (i.e. if it's in a subdirectory of your domain),
+#  uncomment the below line and change it to point to the subdirectory where this app is installed
+# RewriteBase /quassel-logsearch/
+
+# Rewrite all requests to index.php
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
 
