@@ -3,20 +3,36 @@
 namespace QuasselLogSearch\Utility;
 
 use QuasselLogSearch\Quassel\User;
+use QuasselLogSearch\Router;
 
 class Authentication
 {
-    const COOKIE_NAME = 'quassel_log_search_login';
+    const SESSION_KEY_NAME = 'quassel_log_search_login';
 
     private static $loggedIn;
 
+    private static function _init()
+    {
+        if (!session_id()) {
+            session_set_cookie_params(0, Router::baseDir(), null, null, true);
+            session_start();
+        }
+    }
+
     public static function loggedIn()
     {
+        self::_init();
+
         if (!isset(self::$loggedIn)) {
             // Cache the result of this function as verifying the login may require a DB lookup
-            if (!empty($_COOKIE[self::COOKIE_NAME])) {
-                $loginCookie = $_COOKIE[self::COOKIE_NAME];
-                self::$loggedIn = self::validateLoginCookie($loginCookie);
+            if (!empty($_SESSION[self::SESSION_KEY_NAME])) {
+                $loggedInData = self::decodeLoginValue($_SESSION[self::SESSION_KEY_NAME]);
+                if ($loggedInData) {
+                    self::$loggedIn = $loggedInData;
+                } else {
+                    self::$loggedIn = false;
+                    self::logout();
+                }
             } else {
                 self::$loggedIn = false;
             }
@@ -24,34 +40,27 @@ class Authentication
         return self::$loggedIn;
     }
 
-    private static function generateLoginCookie(User $user)
+    private static function encodeLoginValue(User $user)
     {
-        /** @todo This really needs to be better... Session plx */
-        return sprintf("%s:%s", $user->username, $user->passwordHash);
+        return serialize($user);
     }
 
-    private static function validateLoginCookie($cookie)
+    private static function decodeLoginValue($value)
     {
-        if (strpos($cookie, ':') !== false) {
-            list ($username, $passwordHash) = explode(':', $cookie, 2);
-
-            $user = User::loadByUsernameAndPasswordHash($username, $passwordHash);
-            if ($user instanceof User) {
-                return $user;
-            }
+        $data = unserialize($value);
+        if ($data instanceof User) {
+            return $data;
         }
-
-        // Invalid cookie
-        self::logout();
-        return false;
+        return null;
     }
 
     public static function attemptLogin($username, $password)
     {
+        self::_init();
+
         $user = User::loadByUsernameAndPasswordHash($username, self::hashPassword($password));
         if ($user instanceof User) {
-            // Session cookie; HTTP-only
-            setcookie(self::COOKIE_NAME, self::generateLoginCookie($user), null, null, null, null, true);
+            $_SESSION[self::SESSION_KEY_NAME] = self::encodeLoginValue($user);
             return $user;
         }
         return null;
@@ -59,7 +68,8 @@ class Authentication
 
     public static function logout()
     {
-        setcookie(self::COOKIE_NAME, false, null, null, null, null, true);
+        self::_init();
+        $_SESSION[self::SESSION_KEY_NAME] = '';
     }
 
     public static function hashPassword($password)
