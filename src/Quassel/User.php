@@ -42,6 +42,16 @@ class User extends Model
         return new User($row->userid, $row->username, $row->password);
     }
 
+    public static function loadByUserId($userId)
+    {
+        $stmt = DB::getInstance()->prepare("SELECT * FROM quasseluser WHERE userid=?");
+        if ($stmt->execute(array($userId))) {
+            $row = $stmt->fetchObject();
+            return self::fromDbRow($row);
+        }
+        return null;
+    }
+
     public static function loadByUsername($username)
     {
         $stmt = DB::getInstance()->prepare("SELECT * FROM quasseluser WHERE username=?");
