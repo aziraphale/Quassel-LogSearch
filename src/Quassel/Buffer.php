@@ -119,6 +119,16 @@ class Buffer extends Model
         return $result;
     }
 
+    public static function loadByBufferId($bufferId)
+    {
+        $stmt = DB::getInstance()->prepare("SELECT * FROM buffer WHERE bufferid=?");
+        if ($stmt->execute(array($bufferId))) {
+            $row = $stmt->fetchObject();
+            return self::fromDbRow($row);
+        }
+        return null;
+    }
+
     public function __get($name)
     {
         // Lazy-load the user and network objects before the parent class tries to access them
