@@ -62,7 +62,7 @@ class Network extends Model
         'user',
     );
 
-    private function __construct($networkId, $userId, $networkName, $connected, User $user=null)
+    private function __construct($networkId, $userId, $networkName, $connected, User $user = null)
     {
         $this->networkId    = $networkId;
         $this->userId       = $userId;
@@ -74,7 +74,8 @@ class Network extends Model
         }
     }
 
-    private static function fromDbRow(\stdClass $row, User $user=null) {
+    private static function fromDbRow(\stdClass $row, User $user = null)
+    {
         return new Network($row->networkid, $row->userid, $row->networkname, $row->connected, $user);
     }
 

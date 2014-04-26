@@ -91,7 +91,8 @@ class Buffer extends Model
         }
     }
 
-    private static function fromDbRow(\stdClass $row, User $user=null, Network $network=null) {
+    private static function fromDbRow(\stdClass $row, User $user = null, Network $network = null)
+    {
         return new Buffer($row->bufferid, $row->userid, $row->networkid, $row->buffername, $row->buffertype, $row->joined, $user, $network);
     }
 
@@ -107,7 +108,7 @@ class Buffer extends Model
         return $result;
     }
 
-    public static function loadAllForNetwork(Network $network, User $user=null)
+    public static function loadAllForNetwork(Network $network, User $user = null)
     {
         $result = array();
         $stmt = DB::getInstance()->prepare("SELECT * FROM buffer WHERE networkid=?");

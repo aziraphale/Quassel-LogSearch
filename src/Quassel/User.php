@@ -38,7 +38,8 @@ class User extends Model
         $this->passwordHash = $password;
     }
 
-    private static function fromDbRow(\stdClass $row) {
+    private static function fromDbRow(\stdClass $row)
+    {
         return new User($row->userid, $row->username, $row->password);
     }
 
