@@ -16,6 +16,12 @@
             "role": "Developer of the original Quassel LogSearch"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/clickinnovation/dissect"
+        }
+    ],
     "require": {
         "php": ">=5.3.0",
         "ext-json": "*",
@@ -25,7 +31,8 @@
         "nesbot/Carbon": "1.*",
         "klein/klein": "2.0.*",
         "components/jquery": "1.*",
-        "components/jqueryui": "1.10.*"
+        "components/jqueryui": "1.10.*",
+        "jakubledl/dissect": "dev-master"
     },
     "suggest": {
         "ext-pdo_mysql": "Required to support MySQL Quassel backends",

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6393d3a8ec7319ce8ffc611f94d63a16",
+    "hash": "6b3626e0324f8210a7b6d753f040ffcc",
     "packages": [
         {
             "name": "components/jquery",
@@ -129,6 +129,64 @@
             ],
             "description": "jQuery UI is a curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library. Whether you're building highly interactive web applications or you just need to add a date picker to a form control, jQuery UI is the perfect choice.",
             "time": "2014-02-19 12:22:40"
+        },
+        {
+            "name": "jakubledl/dissect",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clickinnovation/dissect.git",
+                "reference": "f030b185a98926c5c9807a2e1c271dbb989216ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clickinnovation/dissect/zipball/f030b185a98926c5c9807a2e1c271dbb989216ca",
+                "reference": "f030b185a98926c5c9807a2e1c271dbb989216ca",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/console": "~2.1"
+            },
+            "suggest": {
+                "symfony/console": "for the command-line tool"
+            },
+            "bin": [
+                "bin/dissect.php",
+                "bin/dissect"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Dissect": [
+                        "src/"
+                    ]
+                }
+            },
+            "license": [
+                "unlicense"
+            ],
+            "authors": [
+                {
+                    "name": "Jakub Lédl",
+                    "email": "jakubledl@gmail.com"
+                }
+            ],
+            "description": "Lexing and parsing in pure PHP",
+            "homepage": "https://github.com/jakubledl/dissect",
+            "keywords": [
+                "ast",
+                "lexing",
+                "parser",
+                "parsing"
+            ],
+            "support": {
+                "source": "https://github.com/clickinnovation/dissect/tree/master",
+                "issues": "https://github.com/clickinnovation/dissect/issues"
+            },
+            "time": "2013-12-09 11:15:59"
         },
         {
             "name": "klein/klein",
@@ -257,16 +315,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "1afc39690e7414412face1f8cbf67b73db34485c"
+                "reference": "65026b610f8c19e61d7242f600530677b0466aac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1afc39690e7414412face1f8cbf67b73db34485c",
-                "reference": "1afc39690e7414412face1f8cbf67b73db34485c",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/65026b610f8c19e61d7242f600530677b0466aac",
+                "reference": "65026b610f8c19e61d7242f600530677b0466aac",
                 "shasum": ""
             },
             "require": {
@@ -321,7 +379,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-04-20 16:41:26"
+            "time": "2014-04-24 13:29:03"
         },
         {
             "name": "nesbot/carbon",
@@ -508,9 +566,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "jakubledl/dissect": 20
+    },
     "platform": {
         "php": ">=5.3.0",
         "ext-json": "*",
