@@ -47,8 +47,8 @@ class Sender extends Model
         if (($exclPos = strpos($sender, '!')) !== false && ($atPos = strpos($sender, '@', $exclPos)) !== false) {
             // Got the positions of both the ! and the @, so we can proceed
             $this->senderNick = substr($sender, 0, $exclPos);
-            $this->senderIdent = substr($sender, $exclPos+1, $atPos);
-            $this->senderHost = substr($sender, $atPos+1);
+            $this->senderIdent = substr($sender, $exclPos + 1, ($atPos - ($exclPos + 1)));
+            $this->senderHost = substr($sender, $atPos + 1);
         } else {
             // Can't find the '!' and/or the '@'. This is the case for network messages, network services, and for one's
             //  own nick
