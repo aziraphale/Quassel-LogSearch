@@ -15,16 +15,26 @@ use QuasselLogSearch\DB\DB;
  * ) ENGINE=InnoDB DEFAULT CHARSET=utf8
  *
  * @property-read string $senderId
+ * @property-read string $senderNick
+ * @property-read string $senderIdent
+ * @property-read string $senderHost
  * @property-read string $sender
+ * @property-read bool $isBareNick
  */
 class Sender extends Model
 {
     protected $senderId;
-    protected $sender;
+    protected $senderNick;
+    protected $senderIdent;
+    protected $senderHost;
 
     protected static $publicPropertiesRead = array(
         'senderId',
+        'senderNick',
+        'senderIdent',
+        'senderHost',
         'sender',
+        'isBareNick',
     );
 
     private static $senderCache = array();
@@ -32,7 +42,18 @@ class Sender extends Model
     private function __construct($senderId, $sender)
     {
         $this->senderId = $senderId;
-        $this->sender = $sender;
+
+        // Split the nick!ident@host string into its component parts
+        if (($exclPos = strpos($sender, '!')) !== false && ($atPos = strpos($sender, '@', $exclPos)) !== false) {
+            // Got the positions of both the ! and the @, so we can proceed
+            $this->senderNick = substr($sender, 0, $exclPos);
+            $this->senderIdent = substr($sender, $exclPos+1, $atPos);
+            $this->senderHost = substr($sender, $atPos+1);
+        } else {
+            // Can't find the '!' and/or the '@'. This is the case for network messages, network services, and for one's
+            //  own nick
+            $this->senderNick = $sender;
+        }
     }
 
     private static function fromDbRow(\stdClass $row)
@@ -57,5 +78,23 @@ class Sender extends Model
             return $sender;
         }
         return null;
+    }
+
+    public function __get($name)
+    {
+        switch ($name) {
+            case 'sender':
+                if (isset($this->senderIdent, $this->senderHost)) {
+                    return sprintf('%s!%s@%s', $this->senderNick, $this->senderIdent, $this->senderHost);
+                } else {
+                    return $this->senderNick;
+                }
+                break;
+            case 'isBareNick':
+                return !isset($this->senderIdent, $this->senderHost);
+                break;
+        }
+
+        return parent::__get($name);
     }
 }
