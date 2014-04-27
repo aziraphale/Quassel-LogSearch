@@ -6,7 +6,15 @@
 <?php if ($this->searchResults): ?>
     <ul>
         <?php foreach ($this->searchResults as /** @var \QuasselLogSearch\Quassel\Message */ $msg): ?>
-            <li>[<?=$msg->time->format('Y-m-d H:i:s')?>] &lt;<?=$msg->sender->sender?>&gt; <?=$this->escape($msg->message)?></li>
+            <li>
+                [<?=$msg->time->format('Y-m-d H:i:s')?>]
+                <?php if ($msg->sender->isBareNick): ?>
+                    &lt;<?=$msg->sender->senderNick?>&gt;
+                <?php else: ?>
+                    &lt;<span title="<?=$msg->sender->sender?>"><?=$msg->sender->senderNick?></span>&gt;
+                <?php endif; ?>
+                <?=$this->escape($msg->message)?>
+            </li>
         <?php endforeach; ?>
     </ul>
 <?php else: ?>
