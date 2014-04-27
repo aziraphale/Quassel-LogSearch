@@ -13,7 +13,7 @@
                 <?php else: ?>
                     &lt;<span title="<?=$msg->sender->sender?>"><?=$msg->sender->senderNick?></span>&gt;
                 <?php endif; ?>
-                <?=$this->escape($msg->message)?>
+                <?=$msg->asHtml()?>
             </li>
         <?php endforeach; ?>
     </ul>
