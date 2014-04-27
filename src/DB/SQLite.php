@@ -10,4 +10,9 @@ class SQLite extends AbstractDB
     {
         $this->pdo = new PDO($dsn);
     }
+
+    public function regexp($pattern, $subject)
+    {
+        return sprintf('%s REGEXP %s', $subject, $pattern);
+    }
 }

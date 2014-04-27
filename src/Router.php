@@ -140,6 +140,8 @@ class Router
         $klein->respond(        '/',            "QuasselLogSearch\\Controller\\Core::index");
         $klein->respond('POST', '/login',       "QuasselLogSearch\\Controller\\Login::attemptLogin");
         $klein->respond(        '/logout',      "QuasselLogSearch\\Controller\\Login::logout");
+
+        $klein->respond('GET',  '/search',      "QuasselLogSearch\\Controller\\Search::perform");
     }
 
     private static function _initLayout()

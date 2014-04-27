@@ -32,4 +32,9 @@ class MySQL extends AbstractDB
 
         $this->pdo = new PDO($dsn, $username, $password, $options);
     }
+
+    public function regexp($pattern, $subject)
+    {
+        return sprintf('%s REGEXP %s', $subject, $pattern);
+    }
 }

@@ -27,6 +27,11 @@ class DB
         return self::$inst;
     }
 
+    public static function regexp($pattern, $subject)
+    {
+        return self::getInstance()->regexp($pattern, $subject);
+    }
+
     private static function buildFromDsn($dsn)
     {
         $colonPos = strpos($dsn, ':');

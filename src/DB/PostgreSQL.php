@@ -10,4 +10,9 @@ class PostgreSQL extends AbstractDB
     {
         $this->pdo = new PDO($dsn);
     }
+
+    public function regexp($pattern, $subject)
+    {
+        return sprintf('%s ~ %s', $subject, $pattern);
+    }
 }

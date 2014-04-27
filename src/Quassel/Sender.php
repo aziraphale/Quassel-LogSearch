@@ -27,6 +27,8 @@ class Sender extends Model
         'sender',
     );
 
+    private static $senderCache = array();
+
     private function __construct($senderId, $sender)
     {
         $this->senderId = $senderId;
@@ -40,10 +42,19 @@ class Sender extends Model
 
     public static function loadBySenderId($senderId)
     {
+        // It's quite likely that we'll be finding ourselves trying to load the same sender multiple times on a single
+        //  execution (e.g. multiple messages by the same sender in the same search result), so we cache sender objects
+        //  here to save us having duplicate objects kicking around everywhere
+        if (isset(self::$senderCache[$senderId])) {
+            return self::$senderCache[$senderId];
+        }
+
         $stmt = DB::getInstance()->prepare("SELECT * FROM sender WHERE senderid=?");
         if ($stmt->execute(array($senderId))) {
             $row = $stmt->fetchObject();
-            return self::fromDbRow($row);
+            $sender = self::fromDbRow($row);
+            self::$senderCache[$senderId] = $sender;
+            return $sender;
         }
         return null;
     }

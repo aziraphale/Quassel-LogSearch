@@ -130,6 +130,21 @@ class Buffer extends Model
         return null;
     }
 
+    public static function loadByBufferIdForUser($bufferId, User $user)
+    {
+        $stmt = DB::getInstance()->prepare("SELECT * FROM buffer WHERE bufferid=? AND userid=?");
+        if ($stmt->execute(array($bufferId, $user->userId))) {
+            $row = $stmt->fetchObject();
+            return self::fromDbRow($row);
+        }
+        return null;
+    }
+
+    public function search($query, $limit, $queryIsRegex = false, $earlierThanMessageId = null)
+    {
+        return Message::search($this, $query, $limit, $queryIsRegex, $earlierThanMessageId);
+    }
+
     public function __get($name)
     {
         // Lazy-load the user and network objects before the parent class tries to access them

@@ -41,6 +41,8 @@ abstract class AbstractDB
 
     abstract protected function connect($dsn);
 
+    abstract public function regexp($pattern, $subject);
+
     public function __call($name, $args)
     {
         switch (strtolower($name)) {

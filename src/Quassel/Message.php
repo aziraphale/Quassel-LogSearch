@@ -32,15 +32,15 @@ use QuasselLogSearch\DB\DB;
  */
 class Message extends Model
 {
-    private $messageId;
-    private $time;
-    private $bufferId;
-    private $type;
-    private $flags;
-    private $senderId;
-    private $message;
-    private $buffer;
-    private $sender;
+    protected $messageId;
+    protected $time;
+    protected $bufferId;
+    protected $type;
+    protected $flags;
+    protected $senderId;
+    protected $message;
+    protected $buffer;
+    protected $sender;
 
     protected static $publicPropertiesRead = array(
         'messageId',
@@ -66,7 +66,7 @@ class Message extends Model
         Sender $sender = null
     ) {
         $this->messageId = $messageId;
-        $this->time = new DateTime('@'.$time);
+        $this->time = $time;
         $this->bufferId = $bufferId;
         $this->type = $type;
         $this->flags = $flags;
@@ -88,10 +88,50 @@ class Message extends Model
             $row->message, $buffer, $sender);
     }
 
+    public static function search(Buffer $buffer, $query, $limit, $queryIsRegex = false, $earlierThanMessageId = null)
+    {
+        $sql = "SELECT * FROM backlog WHERE ";
+        $args = array();
+
+        $sql .= " bufferid=? ";
+        $args[] = $buffer->bufferId;
+
+        if ($queryIsRegex) {
+            $sql .= ' ' . DB::regexp('message', '?') . ' ';
+            $args[] = $query;
+        } else {
+            $sql .= ' AND message LIKE ? ';
+            $args[] = '%' . $query . '%';
+        }
+
+        if ($earlierThanMessageId) {
+            $sql .= ' AND messageid < ? ';
+            $args[] = $earlierThanMessageId;
+        }
+
+        $sql .= ' ORDER BY messageid DESC ';
+
+        $sql .= ' LIMIT ' . ((int) $limit);
+
+        $result = array();
+        $stmt = DB::getInstance()->prepare($sql);
+        if ($stmt->execute($args)) {
+            while ($row = $stmt->fetchObject()) {
+                $result[] = self::fromDbRow($row, $buffer);
+            }
+        }
+        return $result;
+    }
+
     public function __get($name)
     {
         // Lazy-load the sender & buffer objects before the parent class tries to access them
         switch ($name) {
+            case 'time':
+                if (!$this->time instanceof \DateTime) {
+                    $this->time = new \DateTime($this->time);
+                }
+                break;
             case 'buffer':
                 if (!isset($this->buffer)) {
                     $this->buffer = Buffer::loadByBufferId($this->bufferId);
