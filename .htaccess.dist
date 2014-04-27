@@ -17,3 +17,8 @@ RewriteRule . index.php [L]
 
 # This is needed for PHP 5.3 where short_open_tag=off also disabled the `<?=` shortcut which we rely on
 php_flag short_open_tag On
+
+# Enable gzip output compression on relevant MIME types
+<IfModule deflate_module>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript application/x-javascript
+</IfModule>
