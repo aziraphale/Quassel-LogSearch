@@ -4,6 +4,7 @@ namespace QuasselLogSearch\Quassel;
 
 use QuasselLogSearch\Model;
 use QuasselLogSearch\DB\DB;
+use QuasselLogSearch\Utility\MIRC;
 
 /**
  *
@@ -121,6 +122,12 @@ class Message extends Model
             }
         }
         return $result;
+    }
+
+    public function asHtml(array $config = array())
+    {
+        $mirc = new MIRC(htmlspecialchars($this->message, ENT_QUOTES, 'UTF-8'));
+        return $mirc->toHtml();
     }
 
     public function __get($name)

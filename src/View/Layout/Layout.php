@@ -13,6 +13,7 @@
 <script src="public/vendor/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 
 <link rel="stylesheet" href="public/style/main.css">
+<link rel="stylesheet" href="public/style/mirc-formatting.css">
 <script src="public/script/main.js"></script>
 </head>
 <body>
