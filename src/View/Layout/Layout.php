@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="public/vendor/jquery-ui/themes/base/minified/jquery-ui.min.css">
 <script src="public/vendor/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 
+<script src="public/vendor/Autolinker.js/dist/Autolinker.min.js"></script>
+
 <link rel="stylesheet" href="public/style/main.css">
 <link rel="stylesheet" href="public/style/mirc-formatting.css">
 <script src="public/script/main.js"></script>

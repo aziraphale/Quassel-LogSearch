@@ -7,13 +7,13 @@
     <ul>
         <?php foreach ($this->searchResults as /** @var \QuasselLogSearch\Quassel\Message */ $msg): ?>
             <li>
-                [<?=$msg->time->format('Y-m-d H:i:s')?>]
+                <span class="timestamp">[<?=$msg->time->format('Y-m-d H:i:s')?>]</span>
                 <?php if ($msg->sender->isBareNick): ?>
-                    &lt;<?=$msg->sender->senderNick?>&gt;
+                    &lt;<span class="sender"><?=$msg->sender->senderNick?></span>&gt;
                 <?php else: ?>
-                    &lt;<span title="<?=$msg->sender->sender?>"><?=$msg->sender->senderNick?></span>&gt;
+                    &lt;<span class="sender" title="<?=$msg->sender->sender?>"><?=$msg->sender->senderNick?></span>&gt;
                 <?php endif; ?>
-                <?=$msg->asHtml()?>
+                <span class="message"><?=$msg->asHtml()?></span>
             </li>
         <?php endforeach; ?>
     </ul>
