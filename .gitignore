@@ -2,3 +2,4 @@
 /public/vendor/
 config.ini
 .htaccess
+.sass-cache/

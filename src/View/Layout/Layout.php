@@ -14,8 +14,11 @@
 
 <script src="public/vendor/Autolinker.js/dist/Autolinker.min.js"></script>
 
-<link rel="stylesheet" href="public/style/main.css">
-<link rel="stylesheet" href="public/style/mirc-formatting.css">
+<link href="/public/style/screen.css" media="screen, projection" rel="stylesheet">
+<link href="/public/style/print.css" media="print" rel="stylesheet">
+<!--[if IE]>
+    <link href="/public/style/ie.css" media="screen, projection" rel="stylesheet">
+<![endif]-->
 <script src="public/script/main.js"></script>
 </head>
 <body>

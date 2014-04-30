@@ -1,0 +1,199 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+html {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+q, blockquote {
+  quotes: none;
+}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+a img {
+  border: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+.mirc-formatted {
+  /**/
+}
+
+.mirc-bold {
+  font-weight: bold;
+}
+
+.mirc-italic {
+  font-style: italic;
+}
+
+.mirc-underline {
+  text-decoration: underline;
+}
+
+.mirc-colour {
+  /**/
+}
+
+.mirc-colour-fg-white {
+  color: white;
+}
+
+.mirc-colour-fg-black {
+  color: black;
+}
+
+.mirc-colour-fg-blue {
+  color: blue;
+}
+
+.mirc-colour-fg-green {
+  color: green;
+}
+
+.mirc-colour-fg-red {
+  color: red;
+}
+
+.mirc-colour-fg-brown {
+  color: brown;
+}
+
+.mirc-colour-fg-purple {
+  color: purple;
+}
+
+.mirc-colour-fg-orange {
+  color: orange;
+}
+
+.mirc-colour-fg-yellow {
+  color: yellow;
+}
+
+.mirc-colour-fg-light-green {
+  color: lightgreen;
+}
+
+.mirc-colour-fg-teal {
+  color: teal;
+}
+
+.mirc-colour-fg-light-cyan {
+  color: lightcyan;
+}
+
+.mirc-colour-fg-light-blue {
+  color: lightblue;
+}
+
+.mirc-colour-fg-pink {
+  color: pink;
+}
+
+.mirc-colour-fg-grey {
+  color: grey;
+}
+
+.mirc-colour-bg-white {
+  background-color: white;
+}
+
+.mirc-colour-bg-black {
+  background-color: black;
+}
+
+.mirc-colour-bg-blue {
+  background-color: blue;
+}
+
+.mirc-colour-bg-green {
+  background-color: green;
+}
+
+.mirc-colour-bg-red {
+  background-color: red;
+}
+
+.mirc-colour-bg-brown {
+  background-color: brown;
+}
+
+.mirc-colour-bg-purple {
+  background-color: purple;
+}
+
+.mirc-colour-bg-orange {
+  background-color: orange;
+}
+
+.mirc-colour-bg-yellow {
+  background-color: yellow;
+}
+
+.mirc-colour-bg-light-green {
+  background-color: lightgreen;
+}
+
+.mirc-colour-bg-teal {
+  background-color: teal;
+}
+
+.mirc-colour-bg-light-cyan {
+  background-color: lightcyan;
+}
+
+.mirc-colour-bg-light-blue {
+  background-color: lightblue;
+}
+
+.mirc-colour-bg-pink {
+  background-color: pink;
+}
+
+.mirc-colour-bg-grey {
+  background-color: grey;
+}
