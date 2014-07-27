@@ -1,12 +1,10 @@
-<?php $this->partial('src/View/Fragment/SearchForm.php'); ?>
-
 <h1>Search Results</h1>
 <h2>&ldquo;<?=$this->escape($this->searchQuery)?>&rdquo;</h2>
 
 <?php if ($this->searchResults): ?>
     <ul>
         <?php foreach ($this->searchResults as /** @var \QuasselLogSearch\Quassel\Message */ $msg): ?>
-            <li>
+            <li data-messageid="<?=$msg->messageId?>" data-messageurlenc="<?=urlencode($msg->message)?>">
                 <span class="timestamp">[<?=$msg->time->format('Y-m-d H:i:s')?>]</span>
                 <?php if ($msg->sender->isBareNick): ?>
                     &lt;<span class="sender"><?=$msg->sender->senderNick?></span>&gt;

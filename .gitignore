@@ -3,3 +3,4 @@
 config.ini
 .htaccess
 .sass-cache/
+.idea/

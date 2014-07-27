@@ -1,0 +1,38 @@
+/*
+<form action="login" method="post">
+    <label for="username">Quassel username:</label>
+    <input type="text" name="username" id="username" value=""><br>
+
+    <label for="password">Quassel password:</label>
+    <input type="password" name="password" id="password"><br>
+
+    <button type="submit">Log In</button>
+</form>
+*/
+/*
+body.main...
+body.static...
+<aside id="logged_in">
+    <p>You are logged in as: <span class="logged-in-as">$this->loggedIn->username</span>. <a href="logout" class="logout">Log out</a></p>
+</aside>
+*/
+
+#logged_in {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    height: $searchFormHeight;
+    border: 0px solid #000000;
+    border-left-width: 1px;
+    padding: 8px 8px 6px 8px;
+    box-sizing: border-box;
+
+    .logged-in-as {
+        font-weight: bold;
+    }
+
+    .logout {
+        margin-left: 10px;
+    }
+}
+

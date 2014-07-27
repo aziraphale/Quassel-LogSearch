@@ -111,7 +111,7 @@ class Buffer extends Model
     public static function loadAllForNetwork(Network $network, User $user = null)
     {
         $result = array();
-        $stmt = DB::getInstance()->prepare("SELECT * FROM buffer WHERE networkid=?");
+        $stmt = DB::getInstance()->prepare("SELECT * FROM buffer WHERE networkid=? ORDER BY buffername ASC");
         if ($stmt->execute(array($network->networkId))) {
             while ($row = $stmt->fetchObject()) {
                 $result[] = self::fromDbRow($row, $user, $network);

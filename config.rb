@@ -17,9 +17,17 @@ output_style = :expanded
 # To disable debugging comments that display the original location of your selectors. Uncomment:
 line_comments = false
 
-
 # If you prefer the indented syntax, you might want to regenerate this
 # project again passing --syntax sass, or you can uncomment this:
 # preferred_syntax = :sass
 # and then run:
 # sass-convert -R --from scss --to sass public/style/sass scss && rm -rf sass && mv scss sass
+
+require 'autoprefixer-rails'
+
+on_stylesheet_saved do |file|
+  css = File.read(file)
+  File.open(file, 'w') do |io|
+    io << AutoprefixerRails.process(css)
+  end
+end

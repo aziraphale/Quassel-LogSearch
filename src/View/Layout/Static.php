@@ -12,16 +12,13 @@
 <link rel="stylesheet" href="public/vendor/jquery-ui/themes/base/minified/jquery-ui.min.css">
 <script src="public/vendor/jquery-ui/ui/minified/jquery-ui.min.js"></script>
 
-<script src="public/vendor/Autolinker.js/dist/Autolinker.min.js"></script>
-
-<link href="/public/style/screen.css" media="screen, projection" rel="stylesheet">
-<link href="/public/style/print.css" media="print" rel="stylesheet">
+<link href="public/style/screen.css" media="screen, projection" rel="stylesheet">
+<link href="public/style/print.css" media="print" rel="stylesheet">
 <!--[if IE]>
-    <link href="/public/style/ie.css" media="screen, projection" rel="stylesheet">
+    <link href="public/style/ie.css" media="screen, projection" rel="stylesheet">
 <![endif]-->
-<script src="public/script/main.js"></script>
 </head>
-<body>
+<body class="static">
 
 <h1>Quassel Log Search</h1>
 
@@ -46,18 +43,18 @@
 <?php endif; ?>
 
 <?php if ($this->loggedIn): ?>
-    <aside id="logged_in" style="float: right;">
-        <p>You are logged in as: <strong><?=$this->loggedIn->username?></strong>. <a href="logout">Log out</a></p>
+    <aside id="logged_in">
+        <p>You are logged in as: <span class="logged-in-as"><?=$this->loggedIn->username?></span>. <a href="logout" class="logout">Log out</a></p>
     </aside>
+
+    <div id="content">
+        <?php $this->yieldView(); ?>
+    </div>
 <?php else: ?>
-    <aside id="login_dialog" style="float: right;">
+    <aside id="login_dialog">
         <?php $this->partial('src/View/Fragment/LoginForm.php'); ?>
     </aside>
 <?php endif; ?>
-
-<div id="content">
-    <?php $this->yieldView(); ?>
-</div>
 
 </body>
 </html>

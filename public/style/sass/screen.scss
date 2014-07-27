@@ -1,9 +1,11 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@import "_base";
 
-@import "compass/reset";
-
+@import "_config";
 @import "_main";
 @import "_mirc-formatting";
+
+/* Pages */
+@import "_buffer-list.scss";
+@import "_search-form.scss";
+@import "_messages-area.scss";
+@import "_login-box.scss";

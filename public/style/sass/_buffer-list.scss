@@ -1,0 +1,30 @@
+#buffer-list {
+    position: absolute;
+    left: 0px;
+//    top: 0px;
+    width: $bufferlistWidth;
+    height: 100%;
+    border-right: $bufferlistBorderWidth solid #000000;
+    overflow: auto;
+
+    ul.networks {
+
+        & > li {
+            padding-left: 5px;
+
+            .network-name {
+                font-weight: bold;
+            }
+        }
+    }
+
+    ul.buffers {
+        & > li {
+            padding-left: 20px;
+
+            .buffer-name {
+                font-weight: bold;
+            }
+        }
+    }
+}

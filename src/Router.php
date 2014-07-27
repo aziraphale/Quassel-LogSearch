@@ -141,7 +141,12 @@ class Router
         $klein->respond('POST', '/login',       "QuasselLogSearch\\Controller\\Login::attemptLogin");
         $klein->respond(        '/logout',      "QuasselLogSearch\\Controller\\Login::logout");
 
-        $klein->respond('GET',  '/search',      "QuasselLogSearch\\Controller\\Search::perform");
+//        $klein->respond('GET',  '/search',      "QuasselLogSearch\\Controller\\Search::perform");
+
+        $klein->with('/ajax', function () use ($klein) {
+            // All Ajax requests...
+
+        });
     }
 
     private static function _initLayout()
@@ -156,10 +161,14 @@ class Router
             $klein->onError(function ($klein, $err_msg) {
                 $klein->service()->flash($err_msg, "error");
                 $klein->service()->back();
-        });
+            });
 
             // Give it a layout (common header/footer/etc.)
-            $klein->service()->layout('src/View/Layout/Layout.php');
+            if (Authentication::loggedIn()) {
+                $klein->service()->layout('src/View/Layout/Main.php');
+            } else {
+                $klein->service()->layout('src/View/Layout/Static.php');
+            }
 
             Layout::globalVariables($klein);
         });
