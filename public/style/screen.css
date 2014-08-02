@@ -1,232 +1,9 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-}
-
-html {
-  line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-caption, th, td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
-}
-
-q, blockquote {
-  quotes: none;
-}
-q:before, q:after, blockquote:before, blockquote:after {
-  content: "";
-  content: none;
-}
-
-a img {
-  border: none;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
-  display: block;
-}
-
 /* Config variables */
 body {
-  font-family: sans-serif;
-}
-
-#container {
-  margin-top: 80px;
-  height: 100%;
-  width: 100%;
-}
-
-.mirc-formatted {
-  /**/
-}
-
-.mirc-bold {
-  font-weight: bold;
-}
-
-.mirc-italic {
-  font-style: italic;
-}
-
-.mirc-underline {
-  text-decoration: underline;
-}
-
-.mirc-colour {
-  /**/
-}
-
-.mirc-colour-fg-white {
-  color: white;
-}
-
-.mirc-colour-fg-black {
-  color: black;
-}
-
-.mirc-colour-fg-blue {
-  color: blue;
-}
-
-.mirc-colour-fg-green {
-  color: green;
-}
-
-.mirc-colour-fg-red {
-  color: red;
-}
-
-.mirc-colour-fg-brown {
-  color: brown;
-}
-
-.mirc-colour-fg-purple {
-  color: purple;
-}
-
-.mirc-colour-fg-orange {
-  color: orange;
-}
-
-.mirc-colour-fg-yellow {
-  color: yellow;
-}
-
-.mirc-colour-fg-light-green {
-  color: lightgreen;
-}
-
-.mirc-colour-fg-teal {
-  color: teal;
-}
-
-.mirc-colour-fg-light-cyan {
-  color: lightcyan;
-}
-
-.mirc-colour-fg-light-blue {
-  color: lightblue;
-}
-
-.mirc-colour-fg-pink {
-  color: pink;
-}
-
-.mirc-colour-fg-grey {
-  color: grey;
-}
-
-.mirc-colour-bg-white {
-  background-color: white;
-}
-
-.mirc-colour-bg-black {
-  background-color: black;
-}
-
-.mirc-colour-bg-blue {
-  background-color: blue;
-}
-
-.mirc-colour-bg-green {
-  background-color: green;
-}
-
-.mirc-colour-bg-red {
-  background-color: red;
-}
-
-.mirc-colour-bg-brown {
-  background-color: brown;
-}
-
-.mirc-colour-bg-purple {
-  background-color: purple;
-}
-
-.mirc-colour-bg-orange {
-  background-color: orange;
-}
-
-.mirc-colour-bg-yellow {
-  background-color: yellow;
-}
-
-.mirc-colour-bg-light-green {
-  background-color: lightgreen;
-}
-
-.mirc-colour-bg-teal {
-  background-color: teal;
-}
-
-.mirc-colour-bg-light-cyan {
-  background-color: lightcyan;
-}
-
-.mirc-colour-bg-light-blue {
-  background-color: lightblue;
-}
-
-.mirc-colour-bg-pink {
-  background-color: pink;
-}
-
-.mirc-colour-bg-grey {
-  background-color: grey;
+  background-color: #eee;
 }
 
 /* Pages */
-#buffer-list {
-  position: absolute;
-  left: 0px;
-  width: 13em;
-  height: 100%;
-  border-right: 3px solid black;
-  overflow: auto;
-}
-#buffer-list ul.networks > li {
-  padding-left: 5px;
-}
-#buffer-list ul.networks > li .network-name {
-  font-weight: bold;
-}
-#buffer-list ul.buffers > li {
-  padding-left: 20px;
-}
-#buffer-list ul.buffers > li .buffer-name {
-  font-weight: bold;
-}
-
 /*
 <section id="search-form">
     <form action="search" method="get">
@@ -239,73 +16,60 @@ body {
     </form>
 </section>
 */
-#search-form {
+.form-login {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-login h2 {
+  margin-bottom: 10px;
+}
+.form-login .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-login .form-control:focus {
+  z-index: 2;
+}
+.form-login input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-login input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 100px;
+}
+
+.footer {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   width: 100%;
-  height: 2em;
-  padding-left: 13em;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
-#search-form > form {
-  padding-left: 3px;
-  border-top: 3px solid #000000;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
 }
 
-body.main {
-  padding: 80px 0 2em 0;
+body {
+  margin-top: 60px;
 }
 
-#messages-area {
-  background-color: blue;
-  margin-left: 13em;
-  padding-left: 3px;
-  /* [inset] x-offset y-offset [blur distance] [spread distance] [colour] */
-  -webkit-box-shadow: inset 2px 2px 4px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: inset 2px 2px 4px 2px rgba(0, 0, 0, 0.3);
-}
-
-/*
-<form action="login" method="post">
-    <label for="username">Quassel username:</label>
-    <input type="text" name="username" id="username" value=""><br>
-
-    <label for="password">Quassel password:</label>
-    <input type="password" name="password" id="password"><br>
-
-    <button type="submit">Log In</button>
-</form>
-*/
-/*
-body.main...
-body.static...
-<aside id="logged_in">
-    <p>You are logged in as: <span class="logged-in-as">$this->loggedIn->username</span>. <a href="logout" class="logout">Log out</a></p>
-</aside>
-*/
-#logged_in {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
-  height: 2em;
-  border: 0px solid #000000;
-  border-left-width: 1px;
-  padding: 8px 8px 6px 8px;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-}
-#logged_in .logged-in-as {
+.logged-in-as {
   font-weight: bold;
-}
-#logged_in .logout {
-  margin-left: 10px;
 }
