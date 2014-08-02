@@ -146,11 +146,11 @@ class Router
             $klein->respond(        '/',            function ($request, $response, $service) {
                 Router::redirect('/search');
             });
-            
-            $klein->respond(        '/search',            "QuasselLogSearch\\Controller\\Core::index");
+
+            $klein->respond(        '/search',      "QuasselLogSearch\\Controller\\Core::index");
             $klein->respond(        '/logout',      "QuasselLogSearch\\Controller\\Login::logout");
             $klein->respond(        '/stats',       "QuasselLogSearch\\Controller\\Stats::index");
-            $klein->respond('GET',  '/results',      "QuasselLogSearch\\Controller\\Search::perform");
+            $klein->respond('GET',  '/results',     "QuasselLogSearch\\Controller\\Search::perform");
 
             $klein->with('/ajax', function () use ($klein) {
                 // All Ajax requests...
