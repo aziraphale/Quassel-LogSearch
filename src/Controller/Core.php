@@ -14,6 +14,6 @@ class Core
 {
     public static function index(Request $request, Response $response, ServiceProvider $service, App $app)
     {
-        $service->render('src/View/Index.php');
+        $service->render('src/View/Page/MainApp.php');
     }
 }
