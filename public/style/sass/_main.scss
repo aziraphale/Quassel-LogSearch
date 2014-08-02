@@ -1,13 +1,13 @@
-//body {
-//    font-family: sans-serif;
-//}
-//
-//#container {
-//    margin-top: 80px;
-//    height: 100%;
-//    width: 100%;
-//}
 body {
     background-color: #eee;
 }
 
+@include placeholder {
+    font-style: oblique;
+    font-weight: bold;
+}
+
+@include selection {
+    color: gold;
+    background: red;
+}

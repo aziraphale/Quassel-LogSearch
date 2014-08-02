@@ -5,7 +5,3 @@
 <section id="messages-area">
     <?php $this->partial('src/View/Fragment/MessagesArea.php'); ?>
 </section>
-
-<section id="search-form">
-    <?php $this->partial('src/View/Fragment/SearchForm.php'); ?>
-</section>
