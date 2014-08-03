@@ -81,6 +81,7 @@ class Router
         self::$klein = new Klein();
         self::_initLayout();
         self::_initRoutes();
+        self::_initErrorRoutes();
     }
 
     /**
@@ -137,15 +138,51 @@ class Router
         // Alias self::$klein to $klein for our callbacks
         $klein = self::$klein;
 
-        $klein->respond(        '/',            "QuasselLogSearch\\Controller\\Core::index");
+        $klein->respond('GET',  '/login',       "QuasselLogSearch\\Controller\\Login::showForm");
         $klein->respond('POST', '/login',       "QuasselLogSearch\\Controller\\Login::attemptLogin");
-        $klein->respond(        '/logout',      "QuasselLogSearch\\Controller\\Login::logout");
+        $klein->respond(        '/about',       "QuasselLogSearch\\Controller\\Misc::about");
 
-//        $klein->respond('GET',  '/search',      "QuasselLogSearch\\Controller\\Search::perform");
+        if (Authentication::loggedIn()) {
+            $klein->respond(        '/',            function ($request, $response, $service) {
+                Router::redirect('/search');
+            });
 
-        $klein->with('/ajax', function () use ($klein) {
-            // All Ajax requests...
+            $klein->respond(        '/search',      "QuasselLogSearch\\Controller\\Core::index");
+            $klein->respond(        '/logout',      "QuasselLogSearch\\Controller\\Login::logout");
+            $klein->respond(        '/stats',       "QuasselLogSearch\\Controller\\Stats::index");
+            $klein->respond('GET',  '/results',     "QuasselLogSearch\\Controller\\Search::perform");
 
+            $klein->with('/ajax', function () use ($klein) {
+                // All Ajax requests...
+
+            });
+        } else {
+            // All pages that require auth redirect to login page
+            $klein->respond('/[logout|stats|search]', function ($request, $response, $service) {
+                Router::redirect('/login');
+            });
+        }
+    }
+
+    private static function _initErrorRoutes()
+    {
+        self::$klein->onHttpError(function ($code, $router) {
+            switch ($code) {
+                case 404:
+                    $router->response()->body(
+                        'Y U so lost?!'
+                    );
+                    break;
+                case 405:
+                    $router->response()->body(
+                        'You can\'t do that!'
+                    );
+                    break;
+                default:
+                    $router->response()->body(
+                        'Oh no, a bad error happened that caused a '. $code
+                    );
+            }
         });
     }
 
@@ -164,11 +201,7 @@ class Router
             });
 
             // Give it a layout (common header/footer/etc.)
-            if (Authentication::loggedIn()) {
-                $klein->service()->layout('src/View/Layout/Main.php');
-            } else {
-                $klein->service()->layout('src/View/Layout/Static.php');
-            }
+            $klein->service()->layout('src/View/Layout/Main.php');
 
             Layout::globalVariables($klein);
         });

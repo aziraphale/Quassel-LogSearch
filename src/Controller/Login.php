@@ -12,6 +12,11 @@ use QuasselLogSearch\Router;
 
 class Login
 {
+    public static function showForm(/** @var Request */ $request, /** @var Response */ $response, /** @var ServiceProvider */ $service, /** @var App */ $app)
+    {
+        $service->render('src/View/Page/Login.php');
+    }
+
     public static function attemptLogin(/** @var Request */ $request, /** @var Response */ $response, /** @var ServiceProvider */ $service, /** @var App */ $app)
     {
         $user = Authentication::attemptLogin($request->param('username'), $request->param('password'));
@@ -20,7 +25,7 @@ class Login
             Router::redirect('/', Router::REDIRECT_SEE_OTHER);
         } else {
             $service->flash("Invalid username and/or password.", "error");
-            $service->render('src/View/Login.php');
+            $service->render('src/View/Page/Login.php');
         }
     }
 

@@ -1,38 +1,29 @@
-/*
-<form action="login" method="post">
-    <label for="username">Quassel username:</label>
-    <input type="text" name="username" id="username" value=""><br>
+.form-login {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
 
-    <label for="password">Quassel password:</label>
-    <input type="password" name="password" id="password"><br>
-
-    <button type="submit">Log In</button>
-</form>
-*/
-/*
-body.main...
-body.static...
-<aside id="logged_in">
-    <p>You are logged in as: <span class="logged-in-as">$this->loggedIn->username</span>. <a href="logout" class="logout">Log out</a></p>
-</aside>
-*/
-
-#logged_in {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    height: $searchFormHeight;
-    border: 0px solid #000000;
-    border-left-width: 1px;
-    padding: 8px 8px 6px 8px;
-    box-sizing: border-box;
-
-    .logged-in-as {
-        font-weight: bold;
+    h2 {
+        margin-bottom: 10px;
     }
-
-    .logout {
-        margin-left: 10px;
+    .form-control {
+        position: relative;
+        height: auto;
+        @include box-sizing(border-box);
+        padding: 10px;
+        font-size: 16px;
+    }
+    .form-control:focus {
+        z-index: 2;
+    }
+    input[type="text"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
     }
 }
-

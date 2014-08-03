@@ -1,8 +1,9 @@
-<form action="search" method="get">
-    <fieldset>
-        <label for="q">Search for:</label>
-        <input type="search" id="q" name="q" autocomplete="on" placeholder="Search query..." required>
+<section id="search-form">
+    <form action="search" method="get">
+        <button type="submit" class="btn btn-primary ">Search</button>
 
-        <button type="submit">Search</button>
-    </fieldset>
-</form>
+        <fieldset>
+            <input type="search" id="q" name="q" autocomplete="on" class="form-control" placeholder="Search query..." required>
+        </fieldset>
+    </form>
+</section>

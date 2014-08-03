@@ -1,4 +1,17 @@
-@import "compass/reset";
-@import "compass";
-@import "compass/layout/sticky-footer";
-@import "compass/layout/stretching";
+//@import "compass/reset";
+//@import "compass";
+@import "compass/css3";
+//@import "compass/layout/sticky-footer";
+//@import "compass/layout/stretching";
+@import "compass/css3/images";
+
+@mixin placeholder {
+    ::-webkit-input-placeholder {@content}
+    :-moz-placeholder           {@content}
+    ::-moz-placeholder          {@content}
+    :-ms-input-placeholder      {@content}
+}
+@mixin selection {
+    ::-moz-selection {@content}
+    ::selection      {@content}
+}

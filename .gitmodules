@@ -1,3 +1,6 @@
 [submodule "public/vendor/Autolinker.js"]
 	path = public/vendor/Autolinker.js
 	url = https://github.com/aziraphale/Autolinker.js.git
+[submodule "public/vendor/bootstrap"]
+	path = public/vendor/bootstrap
+	url = https://github.com/twbs/bootstrap.git
