@@ -23,9 +23,7 @@
         "lib-pcre": "*",
         "monolog/monolog": "1.9.*",
         "nesbot/Carbon": "1.*",
-        "klein/klein": "dev-master",
-        "components/jquery": "1.*",
-        "components/jqueryui": "1.10.*"
+        "klein/klein": "dev-master"
     },
     "suggest": {
         "ext-pdo_mysql": "Required to support MySQL Quassel backends",
@@ -35,7 +33,12 @@
     "autoload": {
         "psr-4": {"QuasselLogSearch\\": "src/"}
     },
-    "config": {
-        "component-dir": "public/vendor"
+    "scripts": {
+        "post-install-cmd": [
+            "bower install"
+        ],
+        "post-update-cmd": [
+            "bower install"
+        ]
     }
 }

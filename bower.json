@@ -1,0 +1,26 @@
+{
+  "name": "Quassel LogSearch",
+  "version": "0.0.5",
+  "homepage": "https://github.com/aziraphale/Quassel-LogSearch",
+  "authors": [
+    "Andrew Gillard (http://github.com/aziraphale)",
+    "m4yer <m4yer+quassel@minad.de>"
+  ],
+  "description": "A PHP webapp for searching Quassel backlogs",
+  "main": "index.php",
+  "keywords": [
+    "quassel"
+  ],
+  "license": "CC-BY-NC-SA-3.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0"
+  }
+}

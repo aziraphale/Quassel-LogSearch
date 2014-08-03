@@ -4,3 +4,4 @@ config.ini
 .htaccess
 .sass-cache/
 .idea/
+_meta/
