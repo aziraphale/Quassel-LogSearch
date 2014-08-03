@@ -119,3 +119,17 @@ body {
 .logged-in-as {
   font-weight: bold;
 }
+
+#flashes {
+  position: fixed;
+  top: 35px;
+  left: 20%;
+  width: 60%;
+  z-index: 2000;
+  cursor: pointer;
+  -webkit-box-shadow: 0 20px 50px 15px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 20px 50px 15px rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px 20px 2px 20px;
+  border-radius: 20px;
+}

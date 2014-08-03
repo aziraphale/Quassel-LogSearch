@@ -3,6 +3,7 @@
 @import "compass/css3";
 //@import "compass/layout/sticky-footer";
 //@import "compass/layout/stretching";
+@import "compass/css3/images";
 
 @mixin placeholder {
     ::-webkit-input-placeholder {@content}
