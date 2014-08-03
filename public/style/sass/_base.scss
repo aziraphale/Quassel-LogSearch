@@ -15,3 +15,22 @@
     ::-moz-selection {@content}
     ::selection      {@content}
 }
+@mixin scrollbar($size, $primary, $secondary: lighten($primary, 25%), $borderRadius: 0px) {
+    ::-webkit-scrollbar {
+        width:  $size;
+        height: $size;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: $primary;
+        @include border-radius($borderRadius);
+    }
+    ::-webkit-scrollbar-track {
+        background: $secondary;
+    }
+
+    // For Internet Explorer
+    body {
+        scrollbar-face-color: $primary;
+        scrollbar-track-color: $secondary;
+    }
+}

@@ -8,7 +8,7 @@
                         <span class="buffer-name"><?=$buffer->bufferName?></span>
                     </a>
                 <?php endforeach; ?>
-            </ul>
+            </div>
         </li>
     <?php endforeach; ?>
 </ul>

@@ -1,25 +1,3 @@
-//#buffer-list {
-//    ul.networks {
-//
-//        & > li {
-//            padding-left: 5px;
-//
-//            .network-name {
-//                font-weight: bold;
-//            }
-//        }
-//    }
-//
-//    ul.buffers {
-//        & > li {
-//            padding-left: 20px;
-//
-//            .buffer-name {
-//                font-weight: bold;
-//            }
-//        }
-//    }
-//}
 .buffer-list {
     position: fixed;
     top: 51px;
@@ -27,10 +5,34 @@
     left: 0;
     z-index: 1000;
     display: block;
-    padding: 20px;
+    padding: 10px;
     overflow-x: hidden;
     overflow-y: auto;
     background-color: #f5f5f5;
     border-right: 1px solid #eee;
     @include user-select(none);
+
+    .networks.list-group {
+        margin-bottom: 0px;
+
+        > .list-group-item {
+            padding: 0px 6px 0px 6px;
+            margin-bottom: 5px;
+
+            h4.network-name {
+                margin: 5px 0 3px 0;
+            }
+        }
+    }
+
+    .buffers.list-group {
+        margin-bottom: 6px;
+
+        .list-group-item {
+            font-size: 11px;
+            padding: 0 0 0 8px;
+            min-height: 10px;
+        }
+    }
 }
+

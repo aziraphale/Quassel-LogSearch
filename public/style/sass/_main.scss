@@ -1,5 +1,6 @@
 body {
     background-color: #eee;
+    @include scrollbar(0.8em, $bootstrapColorPrimary, transparent, 10px);
 }
 
 @include placeholder {
@@ -8,6 +9,6 @@ body {
 }
 
 @include selection {
-    color: #5bc0de;
-    background: #428bca;
+    color: $bootstrapColorInfo;
+    background: $bootstrapColorPrimary;
 }

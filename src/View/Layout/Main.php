@@ -17,7 +17,7 @@
 
 <?php if ($this->loggedIn): ?>
     <div class="footer">
-        <div class="container">
+        <div class="container-fluid">
             <?php $this->partial('src/View/Fragment/SearchForm.php'); ?>
         </div>
     </div>
