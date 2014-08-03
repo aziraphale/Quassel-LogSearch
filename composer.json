@@ -1,6 +1,6 @@
 {
     "name": "aziraphale/quassel-log-search",
-    "description": "A PHP webapp for search Quassel backlogs",
+    "description": "A PHP webapp for searching Quassel backlogs",
     "homepage": "https://github.com/aziraphale/Quassel-LogSearch",
     "license": "CC-BY-NC-SA-3.0",
     "authors": [
