@@ -232,9 +232,16 @@ body body {
   bottom: 50px;
   overflow: auto;
 }
+#messages-area ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
 #messages-area li {
-  text-indent: -19.5em;
-  padding-left: 19.5em;
+  text-indent: -17.3em;
+  padding-left: 17.3em;
+  font-size: 80%;
+  line-height: 110%;
 }
 #messages-area li .timestamp {
   display: inline-block;
@@ -242,6 +249,8 @@ body body {
   overflow-x: hidden;
   margin-right: 0.2em;
   text-indent: 0;
+  font-size: 80%;
+  color: #888;
 }
 #messages-area li .sender {
   display: inline-block;
@@ -256,6 +265,9 @@ body body {
   margin-right: 0.1em;
 }
 #messages-area li .message {
+  vertical-align: top;
+}
+#messages-area li .message * {
   vertical-align: top;
 }
 

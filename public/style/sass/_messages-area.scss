@@ -14,9 +14,17 @@
     bottom: 50px;
     overflow: auto;
 
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
     li {
-        text-indent: -19.5em;
-        padding-left: 19.5em;
+        text-indent: -17.3em;
+        padding-left: 17.3em;
+        font-size: 80%;
+        line-height: 110%;
 
         .timestamp {
             display: inline-block;
@@ -24,6 +32,8 @@
             overflow-x: hidden;
             margin-right: 0.2em;
             text-indent: 0;
+            font-size: 80%;
+            color: #888;
         }
         .sender {
             // Includes the < > around the nick
@@ -40,6 +50,10 @@
         }
         .message {
             vertical-align: top;
+
+            * {
+                vertical-align: top;
+            }
         }
     }
 }
