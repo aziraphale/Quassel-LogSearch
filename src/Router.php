@@ -155,6 +155,7 @@ class Router
             $klein->with('/ajax', function () use ($klein) {
                 // All Ajax requests...
                 $klein->respond('/load-buffer/[i:id]', "QuasselLogSearch\\Controller\\Ajax::loadBuffer");
+                $klein->respond('/load-more-messages/[i:id]/[i:earliestMessageId]', "QuasselLogSearch\\Controller\\Ajax::loadMoreMessages");
             });
         } else {
             // All pages that require auth redirect to login page
