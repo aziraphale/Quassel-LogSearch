@@ -2,6 +2,7 @@
 
 namespace QuasselLogSearch\Quassel;
 
+use DateTime;
 use QuasselLogSearch\Model;
 use QuasselLogSearch\DB\DB;
 use QuasselLogSearch\Utility\MIRC;
@@ -33,6 +34,27 @@ use QuasselLogSearch\Utility\MIRC;
  */
 class Message extends Model
 {
+    // Buffer type list unashamedly copied from the QuasselDroid source:
+    //  QuasselDroid/src/main/java/com/iskrembilen/quasseldroid/IrcMessage.java
+    const TYPE_PLAIN            = 0x00001;
+    const TYPE_NOTICE           = 0x00002;
+    const TYPE_ACTION           = 0x00004;
+    const TYPE_NICK             = 0x00008;
+    const TYPE_MODE             = 0x00010;
+    const TYPE_JOIN             = 0x00020;
+    const TYPE_PART             = 0x00040;
+    const TYPE_QUIT             = 0x00080;
+    const TYPE_KICK             = 0x00100;
+    const TYPE_KILL             = 0x00200;
+    const TYPE_SERVER           = 0x00400;
+    const TYPE_INFO             = 0x00800;
+    const TYPE_ERROR            = 0x01000;
+    const TYPE_DAY_CHANGE       = 0x02000;
+    const TYPE_TOPIC            = 0x04000;
+    const TYPE_NETSPLIT_JOIN    = 0x08000;
+    const TYPE_NETSPLIT_QUIT    = 0x10000;
+    const TYPE_INVITE           = 0x20000;
+
     protected $messageId;
     protected $time;
     protected $bufferId;
@@ -89,6 +111,38 @@ class Message extends Model
             $row->message, $buffer, $sender);
     }
 
+    public static function loadAllUnfiltered(Buffer $buffer, $limit, $earlierThanMessageId = null)
+    {
+        $sql = "SELECT * FROM backlog WHERE ";
+        $args = array();
+
+        $sql .= " bufferid=? ";
+        $args[] = $buffer->bufferId;
+
+        if ($earlierThanMessageId) {
+            $sql .= ' AND messageid < ? ';
+            $args[] = $earlierThanMessageId;
+        }
+
+        $sql .= ' ORDER BY messageid DESC ';
+
+        $sql .= ' LIMIT ' . ((int) $limit);
+
+        $result = array();
+        $stmt = DB::getInstance()->prepare($sql);
+        if ($stmt->execute($args)) {
+            while ($row = $stmt->fetchObject()) {
+                $result[] = self::fromDbRow($row, $buffer);
+            }
+        }
+
+        // We needed to specify "ORDER BY messageid DESC" in the query in order to start our search with the most recent
+        // messages, but we're not likely to want to DISPLAY them in that order - we'll want the most recent messages at
+        // the BOTTOM of the screen - so we reverse the output here
+        $result = array_reverse($result);
+        return $result;
+    }
+
     public static function search(Buffer $buffer, $query, $limit, $queryIsRegex = false, $earlierThanMessageId = null)
     {
         $sql = "SELECT * FROM backlog WHERE ";
@@ -121,6 +175,11 @@ class Message extends Model
                 $result[] = self::fromDbRow($row, $buffer);
             }
         }
+
+        // We needed to specify "ORDER BY messageid DESC" in the query in order to start our search with the most recent
+        // messages, but we're not likely to want to DISPLAY them in that order - we'll want the most recent messages at
+        // the BOTTOM of the screen - so we reverse the output here
+        $result = array_reverse($result);
         return $result;
     }
 

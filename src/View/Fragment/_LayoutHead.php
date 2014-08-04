@@ -6,12 +6,12 @@
     <title>Quassel Log Search</title>
 
     <!-- ##### jQuery ##### -->
-    <script src="public/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="public/vendor/jquery/jquery.min.js"></script>
     <!--<script src="public/vendor/jquery/jquery-migrate.min.js"></script>-->
 
     <!-- ##### jQuery UI ##### -->
-    <link rel="stylesheet" href="public/vendor/jquery-ui/themes/base/minified/jquery-ui.min.css">
-    <script src="public/vendor/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="public/vendor/jquery-ui/themes/base/all.css">
+    <script src="public/vendor/jquery-ui/jquery-ui.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

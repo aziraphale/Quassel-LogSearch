@@ -39,11 +39,11 @@ class Buffer extends Model
 {
     // Buffer type list unashamedly copied from the QuasselDroid source:
     //  QuasselDroid/src/main/java/com/iskrembilen/quasseldroid/BufferInfo.java
-    const BUFFER_TYPE_INVALID   = 0x00;
-    const BUFFER_TYPE_STATUS    = 0x01;
-    const BUFFER_TYPE_CHANNEL   = 0x02;
-    const BUFFER_TYPE_QUERY     = 0x04;
-    const BUFFER_TYPE_GROUP     = 0x08;
+    const TYPE_INVALID  = 0x00;
+    const TYPE_STATUS   = 0x01;
+    const TYPE_CHANNEL  = 0x02;
+    const TYPE_QUERY    = 0x04;
+    const TYPE_GROUP    = 0x08;
 
     protected $bufferId;
     protected $userId;
@@ -138,6 +138,11 @@ class Buffer extends Model
             return self::fromDbRow($row);
         }
         return null;
+    }
+
+    public function getMessagesUnfiltered($limit, $earlierThanMessageId = null)
+    {
+        return Message::loadAllUnfiltered($this, $limit, $earlierThanMessageId);
     }
 
     public function search($query, $limit, $queryIsRegex = false, $earlierThanMessageId = null)

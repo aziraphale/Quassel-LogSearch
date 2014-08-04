@@ -19,6 +19,9 @@ class Authentication
         }
     }
 
+    /**
+     * @return bool|User
+     */
     public static function loggedIn()
     {
         self::_init();

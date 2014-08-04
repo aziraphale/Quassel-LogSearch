@@ -49,8 +49,148 @@ body body {
   background: #428bca;
 }
 
+.mirc-formatted {
+  /**/
+}
+
+.mirc-bold {
+  font-weight: bold;
+}
+
+.mirc-italic {
+  font-style: italic;
+}
+
+.mirc-underline {
+  text-decoration: underline;
+}
+
+.mirc-colour {
+  /**/
+}
+
+.mirc-colour-fg-white {
+  color: white;
+}
+
+.mirc-colour-fg-black {
+  color: black;
+}
+
+.mirc-colour-fg-blue {
+  color: blue;
+}
+
+.mirc-colour-fg-green {
+  color: green;
+}
+
+.mirc-colour-fg-red {
+  color: red;
+}
+
+.mirc-colour-fg-brown {
+  color: brown;
+}
+
+.mirc-colour-fg-purple {
+  color: purple;
+}
+
+.mirc-colour-fg-orange {
+  color: orange;
+}
+
+.mirc-colour-fg-yellow {
+  color: yellow;
+}
+
+.mirc-colour-fg-light-green {
+  color: lightgreen;
+}
+
+.mirc-colour-fg-teal {
+  color: teal;
+}
+
+.mirc-colour-fg-light-cyan {
+  color: lightcyan;
+}
+
+.mirc-colour-fg-light-blue {
+  color: lightblue;
+}
+
+.mirc-colour-fg-pink {
+  color: pink;
+}
+
+.mirc-colour-fg-grey {
+  color: grey;
+}
+
+.mirc-colour-bg-white {
+  background-color: white;
+}
+
+.mirc-colour-bg-black {
+  background-color: black;
+}
+
+.mirc-colour-bg-blue {
+  background-color: blue;
+}
+
+.mirc-colour-bg-green {
+  background-color: green;
+}
+
+.mirc-colour-bg-red {
+  background-color: red;
+}
+
+.mirc-colour-bg-brown {
+  background-color: brown;
+}
+
+.mirc-colour-bg-purple {
+  background-color: purple;
+}
+
+.mirc-colour-bg-orange {
+  background-color: orange;
+}
+
+.mirc-colour-bg-yellow {
+  background-color: yellow;
+}
+
+.mirc-colour-bg-light-green {
+  background-color: lightgreen;
+}
+
+.mirc-colour-bg-teal {
+  background-color: teal;
+}
+
+.mirc-colour-bg-light-cyan {
+  background-color: lightcyan;
+}
+
+.mirc-colour-bg-light-blue {
+  background-color: lightblue;
+}
+
+.mirc-colour-bg-pink {
+  background-color: pink;
+}
+
+.mirc-colour-bg-grey {
+  background-color: grey;
+}
+
 /* Pages */
-.buffer-list {
+#buffer-list {
   position: fixed;
   top: 51px;
   bottom: 50px;
@@ -67,23 +207,56 @@ body body {
       -ms-user-select: none;
           user-select: none;
 }
-.buffer-list .networks.list-group {
+#buffer-list .networks.list-group {
   margin-bottom: 0px;
 }
-.buffer-list .networks.list-group > .list-group-item {
+#buffer-list .networks.list-group > .list-group-item {
   padding: 0px 6px 0px 6px;
   margin-bottom: 5px;
 }
-.buffer-list .networks.list-group > .list-group-item h4.network-name {
+#buffer-list .networks.list-group > .list-group-item h4.network-name {
   margin: 5px 0 3px 0;
 }
-.buffer-list .buffers.list-group {
+#buffer-list .buffers.list-group {
   margin-bottom: 6px;
 }
-.buffer-list .buffers.list-group .list-group-item {
+#buffer-list .buffers.list-group .list-group-item {
   font-size: 11px;
   padding: 0 0 0 8px;
   min-height: 10px;
+}
+
+#messages-area {
+  position: absolute;
+  top: 51px;
+  bottom: 50px;
+  overflow: auto;
+}
+#messages-area li {
+  text-indent: -19.5em;
+  padding-left: 19.5em;
+}
+#messages-area li .timestamp {
+  display: inline-block;
+  width: 10.5em;
+  overflow-x: hidden;
+  margin-right: 0.2em;
+  text-indent: 0;
+}
+#messages-area li .sender {
+  display: inline-block;
+  width: 8em;
+  overflow-x: hidden;
+  text-align: right;
+  margin-right: 0.1em;
+  text-indent: 0;
+}
+#messages-area li .senderName {
+  margin-left: 0.1em;
+  margin-right: 0.1em;
+}
+#messages-area li .message {
+  vertical-align: top;
 }
 
 .form-login {

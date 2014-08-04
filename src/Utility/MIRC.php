@@ -306,7 +306,7 @@ class MIRC
                     }
                 } elseif (isset($matches['code_colour']) && $matches['code_colour'][1] >= 0) {
                     // A colour formatting code
-                    if ($matches['colour_fg'][1] >= 0) {
+                    if (isset($matches['colour_fg']) && $matches['colour_fg'][1] >= 0) {
                         // Actually specified a colour!
                         $this->colourForeground = $matches['colour_fg'][0];
 

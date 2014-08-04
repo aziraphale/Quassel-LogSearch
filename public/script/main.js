@@ -1,10 +1,27 @@
 "use strict";
 
-$(function(){
-    $('.message').each(function(){
-        this.innerHTML = Autolinker.link(this.innerHTML);
-    });
+var App = {
+    linkifyMessages : function(selectorOrigin) {
+        if (selectorOrigin === undefined) {
+            selectorOrigin = document.body;
+        }
 
+        $('.message', selectorOrigin).each(function(){
+            this.innerHTML = Autolinker.link(this.innerHTML);
+        });
+    },
+
+    loadBuffer : function(bufferId) {
+        $('#messages-area').load('ajax/load-buffer/'+bufferId, null, function() {
+            var $msgArea = $('#messages-area');
+
+            $msgArea[0].scrollTop = $msgArea[0].offsetHeight;
+            App.linkifyMessages('#messages-area');
+        });
+    }
+};
+
+$(function(){
     $('#flashes').each(function(){
         // fade out slowly after a delay unless mouse is hovered over.
         // fade out quickly on click
@@ -36,5 +53,10 @@ $(function(){
             });
 
         startTimedFadeout();
+    });
+
+    $('#buffer-list').on('click', '.buffer-list-item', function(e) {
+        e.preventDefault();
+        App.loadBuffer($(this).data('bufferid'));
     });
 });
