@@ -3,9 +3,11 @@
 namespace QuasselLogSearch\Quassel;
 
 use DateTime;
+use Exception;
 use QuasselLogSearch\Model;
 use QuasselLogSearch\DB\DB;
 use QuasselLogSearch\Utility\MIRC;
+use QuasselLogSearch\Utility\NetsplitHelper;
 
 /**
  *
@@ -187,6 +189,59 @@ class Message extends Model
     {
         $mirc = new MIRC(htmlspecialchars($this->message, ENT_QUOTES, 'UTF-8'));
         return $mirc->toHtml();
+    }
+
+    public function getJoinedChannel()
+    {
+        if (($this->type & self::TYPE_JOIN) == 0) {
+            throw new Exception("getJoinedChannel() can only be called on TYPE_JOIN messages");
+        }
+
+        return $this->message;
+    }
+
+    public function getKickedUser()
+    {
+        if (($this->type & self::TYPE_KICK) == 0) {
+            throw new Exception("getKickedUser() can only be called on TYPE_KICK messages");
+        }
+
+        $parts = explode(' ', $this->message, 2);
+        return $parts[0];
+    }
+
+    public function getKickMessage()
+    {
+        if (($this->type & self::TYPE_KICK) == 0) {
+            throw new Exception("getKickMessage() can only be called on TYPE_KICK messages");
+        }
+
+        $parts = explode(' ', $this->message, 2);
+        if (count($parts) > 1) {
+            $mirc = new MIRC(htmlspecialchars($parts[1], ENT_QUOTES, 'UTF-8'));
+            return $mirc->toHtml();
+        }
+        return "";
+    }
+
+    public function getNetsplitJoinString()
+    {
+        if (($this->type & self::TYPE_NETSPLIT_JOIN) == 0) {
+            throw new Exception("getNetsplitJoinString() can only be called on TYPE_NETSPLIT_JOIN messages");
+        }
+
+        $helper = new NetsplitHelper($this->message);
+        return $helper->formatJoinMessage();
+    }
+
+    public function getNetsplitQuitString()
+    {
+        if (($this->type & self::TYPE_NETSPLIT_JOIN) == 0) {
+            throw new Exception("getNetsplitQuitString() can only be called on TYPE_NETSPLIT_JOIN messages");
+        }
+
+        $helper = new NetsplitHelper($this->message);
+        return $helper->formatQuitMessage();
     }
 
     public function __get($name)
