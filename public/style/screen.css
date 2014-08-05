@@ -242,6 +242,32 @@ body body {
   padding-left: 17.3em;
   font-size: 80%;
   line-height: 110%;
+  /*
+  <color name="chat_line_self_light">#000000</color>
+  <color name="chat_line_highlight_light">#ff8000</color>
+  */
+  /*
+  <color name="chat_line_self_dark">#009966</color>
+  <color name="chat_line_plain_dark">#debc85</color>
+  <color name="chat_line_notice_dark">#916409</color>
+  <color name="chat_line_action_dark">#007a80</color>
+  <color name="chat_line_nick_dark">#633b5a</color>
+  <color name="chat_line_mode_dark">#346E9E</color>
+  <color name="chat_line_join_dark">#005538</color>
+  <color name="chat_line_part_dark">#633b5a</color>
+  <color name="chat_line_quit_dark">#683A38</color>
+  <color name="chat_line_kick_dark">#633b5a</color>
+  <color name="chat_line_kill_dark">#633b5a</color>
+  <color name="chat_line_server_dark">#916409</color>
+  <color name="chat_line_info_dark">#916409</color>
+  <color name="chat_line_error_dark">#916409</color>
+  <color name="chat_line_daychange_dark">#916409</color>
+  <color name="chat_line_topic_dark">#633b5a</color>
+  <color name="chat_line_netsplitjoin_dark">#005538</color>
+  <color name="chat_line_netsplitquit_dark">#683A38</color>
+  <color name="chat_line_highlight_dark">#00583a</color>
+  <color name="chat_line_timestamp_dark">#707c70</color>
+  */
 }
 #messages-area li .timestamp {
   display: inline-block;
@@ -250,7 +276,7 @@ body body {
   margin-right: 0.2em;
   text-indent: 0;
   font-size: 80%;
-  color: #888;
+  color: #707c70;
 }
 #messages-area li .sender {
   display: inline-block;
@@ -269,6 +295,60 @@ body body {
 }
 #messages-area li .message * {
   vertical-align: top;
+}
+#messages-area li.msgtype_1 .message {
+  color: #000000;
+}
+#messages-area li.msgtype_2 .message {
+  color: #916409;
+}
+#messages-area li.msgtype_4 .message {
+  color: #0000ff;
+}
+#messages-area li.msgtype_8 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_10 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_20 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_40 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_80 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_100 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_200 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_400 .message {
+  color: #916409;
+}
+#messages-area li.msgtype_800 .message {
+  color: #916409;
+}
+#messages-area li.msgtype_1000 .message {
+  color: #916409;
+}
+#messages-area li.msgtype_2000 .message {
+  color: #916409;
+}
+#messages-area li.msgtype_4000 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_8000 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_10000 .message {
+  color: #960096;
+}
+#messages-area li.msgtype_20000 .message {
+  color: #960096;
 }
 
 .form-login {

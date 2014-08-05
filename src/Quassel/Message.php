@@ -28,6 +28,7 @@ use QuasselLogSearch\Utility\NetsplitHelper;
  * @property-read DateTime $time
  * @property-read string $bufferId
  * @property-read int $type
+ * @property-read int $typeAsHexString
  * @property-read int $flags
  * @property-read string $senderId
  * @property-read string $message
@@ -61,6 +62,7 @@ class Message extends Model
     protected $time;
     protected $bufferId;
     protected $type;
+    protected $typeAsHexString;
     protected $flags;
     protected $senderId;
     protected $message;
@@ -72,6 +74,7 @@ class Message extends Model
         'time',
         'bufferId',
         'type',
+        'typeAsHexString',
         'flags',
         'senderId',
         'message',
@@ -248,6 +251,11 @@ class Message extends Model
     {
         // Lazy-load the sender & buffer objects before the parent class tries to access them
         switch ($name) {
+            case 'typeAsHexString':
+                if (!isset($this->typeAsHexString)) {
+                    $this->typeAsHexString = sprintf('%x', $this->type);
+                }
+                break;
             case 'time':
                 if (!$this->time instanceof \DateTime) {
                     $this->time = new \DateTime($this->time);

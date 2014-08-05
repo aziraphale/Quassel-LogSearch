@@ -3,7 +3,7 @@
 if ($this->searchResults): ?>
     <ul>
         <?php foreach ($this->searchResults as /** @var \QuasselLogSearch\Quassel\Message */ $msg): ?>
-            <li data-messageid="<?=$msg->messageId?>" data-messageurlenc="<?=urlencode($msg->message)?>">
+            <li data-messageid="<?=$msg->messageId?>" data-messageurlenc="<?=urlencode($msg->message)?>" class="msgtype_<?=$msg->typeAsHexString?>">
                 <span class="timestamp">[<?=$msg->time->format('Y-m-d H:i:s')?>]</span>
 
                 <?php
