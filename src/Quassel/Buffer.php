@@ -140,9 +140,9 @@ class Buffer extends Model
         return null;
     }
 
-    public function getMessagesUnfiltered($limit, $earlierThanMessageId = null)
+    public function getMessagesUnfiltered($limit, $earlierThanMessageId = null, $laterThanMessageId = null)
     {
-        return Message::loadAllUnfiltered($this, $limit, $earlierThanMessageId);
+        return Message::loadAllUnfiltered($this, $limit, $earlierThanMessageId, $laterThanMessageId);
     }
 
     public function search($query, $limit, $queryIsRegex = false, $earlierThanMessageId = null)

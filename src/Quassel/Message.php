@@ -116,8 +116,11 @@ class Message extends Model
             $row->message, $buffer, $sender);
     }
 
-    public static function loadAllUnfiltered(Buffer $buffer, $limit, $earlierThanMessageId = null)
+    public static function loadAllUnfiltered(Buffer $buffer, $limit, $earlierThanMessageId = null, $laterThanMessageId = null)
     {
+        $loadAscending = false;
+        $returnAscending = true;
+
         $sql = "SELECT * FROM backlog WHERE ";
         $args = array();
 
@@ -127,9 +130,24 @@ class Message extends Model
         if ($earlierThanMessageId) {
             $sql .= ' AND messageid < ? ';
             $args[] = $earlierThanMessageId;
+
+            // When loading "the next block of older messages", we need to request DESC (newest-first) in the query in
+            // order to keep the returned messages adjacent to the already-loaded block. However we then need to invert
+            // the order before returning them so that the latest messages are displayed at the bottom of the screen.
+            $loadAscending = false;
+            $returnAscending = true;
+        } elseif ($laterThanMessageId) {
+            $sql .= ' AND messageid > ? ';
+            $args[] = $laterThanMessageId;
+
+            // When loading "the next few newer messages", we need to request ASC (oldest-first) in the query in order
+            // to keep the returned messages adjacent to the already-loaded block. This is also the order in which they
+            // have to be returned (most recent at the end) so they don't need to be reversed in this case.
+            $loadAscending = true;
+            $returnAscending = true;
         }
 
-        $sql .= ' ORDER BY messageid DESC ';
+        $sql .= ' ORDER BY messageid ' . ($loadAscending ? 'ASC' : 'DESC') . ' ';
 
         $sql .= ' LIMIT ' . ((int) $limit);
 
@@ -141,10 +159,10 @@ class Message extends Model
             }
         }
 
-        // We needed to specify "ORDER BY messageid DESC" in the query in order to start our search with the most recent
-        // messages, but we're not likely to want to DISPLAY them in that order - we'll want the most recent messages at
-        // the BOTTOM of the screen - so we reverse the output here
-        $result = array_reverse($result);
+        if ($loadAscending != $returnAscending) {
+            $result = array_reverse($result);
+        }
+
         return $result;
     }
 

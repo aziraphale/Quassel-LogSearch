@@ -28,7 +28,7 @@ class Ajax
         $service->partial('src/View/Fragment/MessagesArea.php', array('searchResults'=>$messages));
     }
 
-    public static function loadMoreMessages(Request $request, Response $response, ServiceProvider $service, App $app)
+    public static function loadEarlierMessages(Request $request, Response $response, ServiceProvider $service, App $app)
     {
         $id = $request->param('id');
         $earliestMessageId = $request->param('earliestMessageId');
@@ -41,6 +41,23 @@ class Ajax
         $buffer = Buffer::loadByBufferIdForUser($id, $user);
 
         $messages = $buffer->getMessagesUnfiltered(60, $earliestMessageId);
+
+        $service->partial('src/View/Fragment/MessagesArea.php', array('searchResults'=>$messages));
+    }
+
+    public static function loadLaterMessages(Request $request, Response $response, ServiceProvider $service, App $app)
+    {
+        $id = $request->param('id');
+        $latestMessageId = $request->param('latestMessageId');
+
+        $user = Authentication::loggedIn();
+        if (!$user instanceof User) {
+            throw new \Exception("You must be logged in!");
+        }
+
+        $buffer = Buffer::loadByBufferIdForUser($id, $user);
+
+        $messages = $buffer->getMessagesUnfiltered(60, null, $latestMessageId);
 
         $service->partial('src/View/Fragment/MessagesArea.php', array('searchResults'=>$messages));
     }

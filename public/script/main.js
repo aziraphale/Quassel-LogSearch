@@ -27,7 +27,8 @@ var App = {
         });
     },
 
-    loadMoreMessages : function() {
+    loadEarlierMessages : function() {
+        /** @todo Some way of realising that we've hit the first message of a buffer and then not issuing any more requests for earlier messages */
         var $msgArea = $('#messages-area'),
             $msgContainer = $('#messages-container'),
             bufferId = $msgArea.data('bufferId'),
@@ -42,7 +43,7 @@ var App = {
                 scrollOffsetFromBottom = $msgContainer[0].offsetHeight - $msgArea[0].scrollTop;
 
                 temp = $('<div/>');
-                temp.load('ajax/load-more-messages/'+bufferId+'/'+earliestMessageId, null, function() {
+                temp.load('ajax/load-earlier-messages/'+bufferId+'/'+earliestMessageId, null, function() {
                     App.linkifyMessages(temp);
                     temp.children('ul').prependTo($msgContainer);
 
@@ -51,6 +52,35 @@ var App = {
                         .data('earliestMessageId', $msgContainer.children('ul').first().children('li').first().data('messageid'));
 
                     $msgArea[0].scrollTop = $msgContainer[0].offsetHeight - scrollOffsetFromBottom;
+                });
+            }
+        }
+    },
+
+    loadLaterMessages : function() {
+        var $msgArea = $('#messages-area'),
+            $msgContainer = $('#messages-container'),
+            bufferId = $msgArea.data('bufferId'),
+            latestMessageId = $msgContainer.children('ul').last().children('li').last().data('messageid'),
+            temp,
+            scrollOffsetFromTop;
+
+        if (!$msgArea.data('loading')) {
+            if (bufferId) {
+                $msgArea.data('loading', true);
+
+                scrollOffsetFromTop = $msgArea[0].scrollTop;
+
+                temp = $('<div/>');
+                temp.load('ajax/load-later-messages/'+bufferId+'/'+latestMessageId, null, function() {
+                    App.linkifyMessages(temp);
+                    temp.children('ul').prependTo($msgContainer);
+
+                    $msgArea
+                        .data('loading', false)
+                        .data('latestMessageId', $msgContainer.children('ul').last().children('li').last().data('messageid'));
+
+                    $msgArea[0].scrollTop = scrollOffsetFromTop;
                 });
             }
         }
@@ -97,8 +127,17 @@ $(function(){
     });
 
     $('#messages-area').on('scroll', function(e){
-        if (this.scrollTop <= 100) {
-            App.loadMoreMessages();
+        var $msgArea = $('#messages-area'),
+            $msgContainer = $('#messages-container'),
+            scrollOffsetFromTop = $msgArea[0].scrollTop,
+            scrollOffsetFromBottom = $msgContainer[0].offsetHeight - ($msgArea[0].scrollTop + $msgArea[0].offsetHeight);
+
+        if (scrollOffsetFromTop <= 100) {
+            App.loadEarlierMessages();
+        }
+
+        if (scrollOffsetFromBottom <= 100) {
+            App.loadLaterMessages();
         }
     });
 });
