@@ -74,7 +74,7 @@ var App = {
                 temp = $('<div/>');
                 temp.load('ajax/load-later-messages/'+bufferId+'/'+latestMessageId, null, function() {
                     App.linkifyMessages(temp);
-                    temp.children('ul').prependTo($msgContainer);
+                    temp.children('ul').appendTo($msgContainer);
 
                     $msgArea
                         .data('loading', false)
