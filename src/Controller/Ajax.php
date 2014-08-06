@@ -12,6 +12,9 @@ use QuasselLogSearch\Utility\Authentication;
 
 class Ajax
 {
+    const MESSAGES_TO_LOAD_INITIAL = 60;
+    const MESSAGES_TO_LOAD_ADDITIONAL = 60;
+
     public static function loadBuffer(Request $request, Response $response, ServiceProvider $service, App $app)
     {
         $id = $request->param('id');
@@ -23,7 +26,7 @@ class Ajax
 
         $buffer = Buffer::loadByBufferIdForUser($id, $user);
 
-        $messages = $buffer->getMessagesUnfiltered(60);
+        $messages = $buffer->getMessagesUnfiltered(self::MESSAGES_TO_LOAD_INITIAL);
 
         $service->partial('src/View/Fragment/MessagesArea.php', array('searchResults'=>$messages));
     }
@@ -40,7 +43,7 @@ class Ajax
 
         $buffer = Buffer::loadByBufferIdForUser($id, $user);
 
-        $messages = $buffer->getMessagesUnfiltered(60, $earliestMessageId);
+        $messages = $buffer->getMessagesUnfiltered(self::MESSAGES_TO_LOAD_ADDITIONAL, $earliestMessageId);
 
         $service->partial('src/View/Fragment/MessagesArea.php', array('searchResults'=>$messages));
     }
@@ -57,7 +60,7 @@ class Ajax
 
         $buffer = Buffer::loadByBufferIdForUser($id, $user);
 
-        $messages = $buffer->getMessagesUnfiltered(60, null, $latestMessageId);
+        $messages = $buffer->getMessagesUnfiltered(self::MESSAGES_TO_LOAD_ADDITIONAL, null, $latestMessageId);
 
         $service->partial('src/View/Fragment/MessagesArea.php', array('searchResults'=>$messages));
     }

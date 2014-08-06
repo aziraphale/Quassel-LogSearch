@@ -1,6 +1,13 @@
 "use strict";
 
 var App = {
+    Flashes : {
+        fadeOutDuration : 3000,
+        fadeOutDelay : 1000
+    },
+
+    infiniteScrollThreshold : 100,
+
     linkifyMessages : function(selectorOrigin) {
         if (selectorOrigin === undefined) {
             selectorOrigin = document.body;
@@ -92,15 +99,13 @@ $(function(){
         // fade out slowly after a delay unless mouse is hovered over.
         // fade out quickly on click
         var $this = $(this),
-            fadeOutDuration = 3000,
-            fadeOutDelay = 1000,
             fadeOutDelayIntervalID,
             startTimedFadeout;
 
         startTimedFadeout = function() {
             fadeOutDelayIntervalID = window.setTimeout(function () {
-                $this.fadeOut(fadeOutDuration);
-            }, fadeOutDelay);
+                $this.fadeOut(App.Flashes.fadeOutDuration);
+            }, App.Flashes.fadeOutDelay);
         };
 
         $this
@@ -132,11 +137,11 @@ $(function(){
             scrollOffsetFromTop = $msgArea[0].scrollTop,
             scrollOffsetFromBottom = $msgContainer[0].offsetHeight - ($msgArea[0].scrollTop + $msgArea[0].offsetHeight);
 
-        if (scrollOffsetFromTop <= 100) {
+        if (scrollOffsetFromTop <= App.infiniteScrollThreshold) {
             App.loadEarlierMessages();
         }
 
-        if (scrollOffsetFromBottom <= 100) {
+        if (scrollOffsetFromBottom <= App.infiniteScrollThreshold) {
             App.loadLaterMessages();
         }
     });
