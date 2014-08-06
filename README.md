@@ -22,3 +22,11 @@ Installation
 4. `composer install`
 5. `cp config{.sample,}.ini`
 6. `vim config.ini` and edit it appropriately
+
+Compatibility
+-------------
+I'm currently only developing & testing this in **Chrome ~37**, with **Quassel 0.10** ([**with the unofficial MySQL DB driver port**](https://github.com/kode54/quassel/tree/branch_mysql_support)) alongside **PHP 5.4.29** and **MySQL 5.5.32** on the back-end.
+
+I do plan to support other browsers (recent versions of Firefox, at least IE10+ but maybe IE8 or IE9 as well) and, of course, the PostgreSQL and SQLite backends (though I can't begin to imagine how painfully slow SQLite would be...).
+
+I make no promises regarding support for PHP versions prior to 5.4 or MySQL versions prior to 5.5. Both have been the recommended production versions for years, and PHP 5.3 is already out of support for even security patches(!), so if you're still running 5.3, **stop it!**
