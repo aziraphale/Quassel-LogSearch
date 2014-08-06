@@ -56,8 +56,26 @@ class Sender extends Model
         }
     }
 
-    private static function fromDbRow(\stdClass $row)
+    private static function fromDbRow($row)
     {
+        if ($row === false) {
+            // There's something broken in Quassel (possibly only in my core or the MySQL driver) which results in the
+            // `backlog` table referencing records in the `sender` table that *don't exist*. This leads to our query to
+            // find the sender failing and thus in having `false` passed to this method. As a bit of an ugly workaround
+            // here, we create an empty Sender object that doesn't contain anything but empty strings, but does at least
+            // avoid nasty PHP errors everywhere.
+            // I mean, seriously, wtf is with this query result?
+            // +-----------+---------------------+----------+------+-------+----------+----------+
+            // | messageid | time                | bufferid | type | flags | senderid | message  |
+            // +-----------+---------------------+----------+------+-------+----------+----------+
+            // |  21132230 | 2014-08-06 03:23:38 |       29 |   32 |     0 |        0 | #....... |
+            // +-----------+---------------------+----------+------+-------+----------+----------+
+            return new Sender(0, '');
+        }
+        if (!is_object($row)) {
+            throw new Exception("Argument passed to Sender::fromDbRow() must be an object! (Or, in exceptional circumstances, `false`).");
+        }
+
         return new Sender($row->senderid, $row->sender);
     }
 
