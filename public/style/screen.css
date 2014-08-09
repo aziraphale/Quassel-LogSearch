@@ -296,6 +296,9 @@ body body {
 #messages-area li .message * {
   vertical-align: top;
 }
+#messages-area li.msg_searchhighlight {
+  background-color: #ff8000;
+}
 #messages-area li.msgtype_1 .message {
   color: #000000;
 }

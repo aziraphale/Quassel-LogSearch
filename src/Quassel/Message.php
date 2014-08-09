@@ -34,6 +34,7 @@ use QuasselLogSearch\Utility\NetsplitHelper;
  * @property-read string $message
  * @property-read Buffer $buffer
  * @property-read Sender $sender
+ * @property-write bool $isSearchHighlight
  */
 class Message extends Model
 {
@@ -68,6 +69,7 @@ class Message extends Model
     protected $message;
     protected $buffer;
     protected $sender;
+    protected $isSearchHighlight = false;
 
     protected static $publicPropertiesRead = array(
         'messageId',
@@ -80,6 +82,11 @@ class Message extends Model
         'message',
         'buffer',
         'sender',
+        'isSearchHighlight',
+    );
+
+    protected static $publicPropertiesWrite = array(
+        'isSearchHighlight',
     );
 
     private function __construct(
@@ -91,7 +98,8 @@ class Message extends Model
         $senderId,
         $message,
         Buffer $buffer = null,
-        Sender $sender = null
+        Sender $sender = null,
+        $isSearchHighlight = false
     ) {
         $this->messageId = $messageId;
         $this->time = $time;
@@ -100,6 +108,7 @@ class Message extends Model
         $this->flags = $flags;
         $this->senderId = $senderId;
         $this->message = $message;
+        $this->isSearchHighlight = $isSearchHighlight;
 
         if (isset($buffer)) {
             $this->buffer = $buffer;
@@ -110,10 +119,10 @@ class Message extends Model
         }
     }
 
-    private static function fromDbRow(\stdClass $row, Buffer $buffer = null, Sender $sender = null)
+    private static function fromDbRow(\stdClass $row, Buffer $buffer = null, Sender $sender = null, $isSearchHighlight = false)
     {
         return new Message($row->messageid, $row->time, $row->bufferid, $row->type, $row->flags, $row->senderid,
-            $row->message, $buffer, $sender);
+            $row->message, $buffer, $sender, $isSearchHighlight);
     }
 
     public static function loadAllUnfiltered(Buffer $buffer, $limit, $earlierThanMessageId = null, $laterThanMessageId = null)
@@ -202,7 +211,8 @@ class Message extends Model
         $stmt = DB::getInstance()->prepare($sql);
         if ($stmt->execute($args)) {
             while ($row = $stmt->fetchObject()) {
-                $result = self::fromDbRow($row, $buffer);
+                // Note that this gets marked as a search highlight row!
+                $result = self::fromDbRow($row, $buffer, null, true);
             }
         }
 

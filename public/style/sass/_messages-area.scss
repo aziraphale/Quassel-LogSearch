@@ -56,6 +56,10 @@
             }
         }
 
+        &.msg_searchhighlight {
+            background-color: #ff8000;  
+        }
+
         &.msgtype_1 { // Plain
             .message {
                 color: #000000;
