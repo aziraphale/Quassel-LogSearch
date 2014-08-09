@@ -106,6 +106,9 @@ var App = {
                 .data('earliestMessageId', $msgUl.children('li').first().data('messageid'));
 
             App.linkifyMessages('#messages-area');
+
+            $msgArea.find('.msg_searchhighlight')[0].scrollIntoView(true);
+            $msgArea[0].scrollTop -= ($msgArea[0].offsetHeight / 2);
         });
     }
 };
