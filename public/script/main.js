@@ -94,6 +94,16 @@ var App = {
     },
 
     searchBuffer : function(bufferId, query) {
+        if (bufferId === undefined || bufferId < 1) {
+            // These strings of options should be moved into a spawned humane type (see docs)
+            humane.log("You must select a buffer from the list on the left before searching for something!", {timeout: 5000, addnCls: 'humane-jackedup-error'});
+            return;
+        }
+        if (query === undefined || query.length === 0) {
+            humane.log("You need to enter a query term to search for!", {timeout: 5000, addnCls: 'humane-jackedup-error'});
+            return;
+        }
+
         $('#messages-container').data('loading', true).load('ajax/search-buffer/'+bufferId+'/'+encodeURIComponent(query), null, function() {
             var $msgArea = $('#messages-area'),
                 $msgContainer = $('#messages-container'),
@@ -169,7 +179,7 @@ $(function(){
         var $msgArea = $('#messages-area');
 
         e.preventDefault();
-        
+
         /** @todo no guarantee a buffer has been loaded yet */
         App.searchBuffer($msgArea.data('bufferId'), $('#q').val());
     });
