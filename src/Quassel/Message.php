@@ -166,8 +166,10 @@ class Message extends Model
         return $result;
     }
 
-    public static function search(Buffer $buffer, $query, $limit, $queryIsRegex = false, $earlierThanMessageId = null)
+    public static function getNextSearchResult(Buffer $buffer, $query, $queryIsRegex = false, $earlierThanMessageId = null, $laterThanMessageId = null)
     {
+        $loadAscending = false;
+
         $sql = "SELECT * FROM backlog WHERE ";
         $args = array();
 
@@ -185,24 +187,25 @@ class Message extends Model
         if ($earlierThanMessageId) {
             $sql .= ' AND messageid < ? ';
             $args[] = $earlierThanMessageId;
+            $loadAscending = false;
+        } elseif ($laterThanMessageId) {
+            $sql .= ' AND messageid > ? ';
+            $args[] = $laterThanMessageId;
+            $loadAscending = true;
         }
 
-        $sql .= ' ORDER BY messageid DESC ';
+        $sql .= ' ORDER BY messageid ' . ($loadAscending ? 'ASC' : 'DESC') . ' ';
 
-        $sql .= ' LIMIT ' . ((int) $limit);
+        $sql .= ' LIMIT 1';
 
-        $result = array();
+        $result = null;
         $stmt = DB::getInstance()->prepare($sql);
         if ($stmt->execute($args)) {
             while ($row = $stmt->fetchObject()) {
-                $result[] = self::fromDbRow($row, $buffer);
+                $result = self::fromDbRow($row, $buffer);
             }
         }
 
-        // We needed to specify "ORDER BY messageid DESC" in the query in order to start our search with the most recent
-        // messages, but we're not likely to want to DISPLAY them in that order - we'll want the most recent messages at
-        // the BOTTOM of the screen - so we reverse the output here
-        $result = array_reverse($result);
         return $result;
     }
 

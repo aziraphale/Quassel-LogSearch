@@ -154,9 +154,19 @@ class Router
 
             $klein->with('/ajax', function () use ($klein) {
                 // All Ajax requests...
-                $klein->respond('/load-buffer/[i:id]', "QuasselLogSearch\\Controller\\Ajax::loadBuffer");
-                $klein->respond('/load-earlier-messages/[i:id]/[i:earliestMessageId]', "QuasselLogSearch\\Controller\\Ajax::loadEarlierMessages");
-                $klein->respond('/load-later-messages/[i:id]/[i:latestMessageId]', "QuasselLogSearch\\Controller\\Ajax::loadLaterMessages");
+                $klein->respond('/load-buffer/[i:id]',
+                    "QuasselLogSearch\\Controller\\Ajax::loadBuffer");
+                $klein->respond('/load-earlier-messages/[i:id]/[i:earliestMessageId]',
+                    "QuasselLogSearch\\Controller\\Ajax::loadEarlierMessages");
+                $klein->respond('/load-later-messages/[i:id]/[i:latestMessageId]',
+                    "QuasselLogSearch\\Controller\\Ajax::loadLaterMessages");
+
+                $klein->respond('/search-buffer/[i:id]/[:query]',
+                    "QuasselLogSearch\\Controller\\Ajax::searchBuffer");
+                $klein->respond('/search-earlier/[i:id]/[:query]/[i:earliestMessageId]',
+                    "QuasselLogSearch\\Controller\\Ajax::searchEarlier");
+                $klein->respond('/search-later/[i:id]/[:query]/[i:latestMessageId]',
+                    "QuasselLogSearch\\Controller\\Ajax::searchLater");
             });
         } else {
             // All pages that require auth redirect to login page

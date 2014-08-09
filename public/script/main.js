@@ -91,6 +91,22 @@ var App = {
                 });
             }
         }
+    },
+
+    searchBuffer : function(bufferId, query) {
+        $('#messages-container').data('loading', true).load('ajax/search-buffer/'+bufferId+'/'+encodeURIComponent(query), null, function() {
+            var $msgArea = $('#messages-area'),
+                $msgContainer = $('#messages-container'),
+                $msgUl = $msgContainer.children('ul').first();
+
+            $msgArea[0].scrollTop = $msgContainer[0].offsetHeight;
+            $msgArea
+                .data('bufferId', bufferId)
+                .data('loading', false)
+                .data('earliestMessageId', $msgUl.children('li').first().data('messageid'));
+
+            App.linkifyMessages('#messages-area');
+        });
     }
 };
 
@@ -144,5 +160,14 @@ $(function(){
         if (scrollOffsetFromBottom <= App.infiniteScrollThreshold) {
             App.loadLaterMessages();
         }
+    });
+
+    $('#search-form').children('form').on('submit', function(e){
+        var $msgArea = $('#messages-area');
+
+        e.preventDefault();
+        
+        /** @todo no guarantee a buffer has been loaded yet */
+        App.searchBuffer($msgArea.data('bufferId'), $('#q').val());
     });
 });

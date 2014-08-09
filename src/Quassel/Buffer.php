@@ -145,9 +145,9 @@ class Buffer extends Model
         return Message::loadAllUnfiltered($this, $limit, $earlierThanMessageId, $laterThanMessageId);
     }
 
-    public function search($query, $limit, $queryIsRegex = false, $earlierThanMessageId = null)
+    public function getNextSearchResult($query, $limit, $queryIsRegex = false, $earlierThanMessageId = null, $laterThanMessageId = null)
     {
-        return Message::search($this, $query, $limit, $queryIsRegex, $earlierThanMessageId);
+        return Message::getNextSearchResult($this, $query, $limit, $queryIsRegex, $earlierThanMessageId, $laterThanMessageId);
     }
 
     public function __get($name)
